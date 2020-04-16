@@ -1,0 +1,9 @@
+---
+
+- name: Default grub configuration
+  copy:
+    src: default-grub
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0644'

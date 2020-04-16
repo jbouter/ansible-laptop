@@ -1,0 +1,40 @@
+---
+
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install base apt packages
+  apt:
+    state: present
+    pkg:
+    - htop
+    - atop
+    - iotop
+    - direnv
+    - borgbackup
+    - ffmpeg
+    - imagemagick
+    - libreoffice-base-core
+    - libreoffice-writer
+    - libreoffice-calc
+    - libreoffice-gnome
+    - libreoffice-gtk3
+    - pwgen
+    - wireguard
+    - qemu
+    - libvirt-daemon
+    - virt-manager
+    - tmux
+    - ubuntu-restricted-addons
+    - ubuntu-restricted-extras
+    - vim
+
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes

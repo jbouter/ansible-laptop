@@ -1,0 +1,120 @@
+---
+
+- name: Disable uncommon network protocols
+  copy:
+    dest: "/etc/modprobe.d/{{ item }}.conf"
+    owner: root
+    group: root
+    mode: '0644'
+    content: "install {{ item }} /bin/true"
+  with_items:
+    - dccp
+    - sctp
+    - rds
+    - tipc
+  register: uncommon_network_protocol_configs
+
+- name: Remove uncommon network protocol kernel modules
+  command: "rmmod {{ item }}"
+  with_items:
+    - dccp
+    - sctp
+    - rds
+    - tipc
+  when: uncommon_network_protocol_configs.changed
+  ignore_errors: yes
+
+#
+# Sysctl hardening
+#
+
+
+#
+# Ensure logging of suspicious packets
+#
+
+- name: Configure logging of suspicious packets
+  copy:
+    dest: /etc/sysctl.d/20-cis_log_suspicious_packets.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      net.ipv4.conf.all.log_martians = 1
+      net.ipv4.conf.default.log_martians = 1
+  register: log_suspicious_packets
+
+- name: Apply logging of suspicious packets
+  command: sysctl -p /etc/sysctl.d/20-cis_log_suspicious_packets.conf
+  when: log_suspicious_packets.changed
+
+
+#
+# Ignore ICMP broadcast
+#
+
+- name: Configure ignore ICMP broadcast
+  copy:
+    dest: /etc/sysctl.d/20-cis_ignore_icmp_broadcast.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: 'net.ipv4.icmp_echo_ignore_broadcasts = 1'
+  register: ignore_icmp_broadcast
+
+- name: Apply ignore ICMP broadcast
+  command: sysctl -p /etc/sysctl.d/20-cis_ignore_icmp_broadcast.conf
+  when: ignore_icmp_broadcast.changed
+
+#
+# Ignore bogus ICMP
+#
+
+- name: Configure ignore bogus ICMP
+  copy:
+    dest: /etc/sysctl.d/20-cis_ignore_bogus_icmp.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: 'net.ipv4.icmp_ignore_bogus_error_responses = 1'
+  register: ignore_icmp_broadcast
+
+- name: Apply ignore bogus ICMP
+  command: sysctl -p /etc/sysctl.d/20-cis_ignore_bogus_icmp.conf
+  when: ignore_icmp_broadcast.changed
+
+#
+# Ensure Reverse Path Filtering is enabled
+#
+
+- name: Configure ensure reverse path filtering
+  copy:
+    dest: /etc/sysctl.d/20-cis_ensure_reverse_path_filtering.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      net.ipv4.conf.all.rp_filter = 1
+      net.ipv4.conf.default.rp_filter = 1
+  register: reverse_path_filtering
+
+- name: Apply ensure reverse path filtering
+  command: sysctl -p /etc/sysctl.d/20-cis_ensure_reverse_path_filtering.conf
+  when: reverse_path_filtering.changed
+
+#
+# Ensure TCP SYN Cookies is enabled
+#
+
+- name: Configure ensure TCP SYN cookies
+  copy:
+    dest: /etc/sysctl.d/20-cis_ensure_tcp_syn_cookies.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: 'net.ipv4.tcp_syncookies = 1'
+  register: ensure_tcp_syn_cookies
+
+- name: CIS Apply ensure TCP SYN cookies
+  command: sysctl -p /etc/sysctl.d/20-cis_ensure_tcp_syn_cookies.conf
+  when: ensure_tcp_syn_cookies.changed

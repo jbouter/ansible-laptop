@@ -1,0 +1,23 @@
+---
+
+- name: Install snap daemon
+  apt:
+    name: snapd
+
+- name: Start and enable snapd daemon
+  service:
+    name: snapd
+    state: started
+    enabled: yes
+
+- name: Install snap packages
+  snap:
+    name:
+      - cawbird
+      - codium
+      - discord
+      - docker
+      - kubectl
+      - mattermost-desktop
+      - spotify
+      - telegram-desktop

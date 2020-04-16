@@ -1,0 +1,30 @@
+---
+
+- name: Configure magic trackpad udev rules
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/20-magic-trackpad.rules
+    dest: /etc/udev/rules.d/20-magic-trackpad.rules
+    owner: root
+    group: root
+    mode: '0644'
+  register: udevrules
+
+- name: Place magic trackpad libinput script
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/magictrackpad.sh
+    dest: /usr/local/bin/magictrackpad.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Place libinput quirks
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/local-overrides.quirks
+    dest: /etc/libinput/local-overrides.quirks
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: reload udev rules
+  command: 'udevadm control --reload-rules'
+  when: udevrules.changed
