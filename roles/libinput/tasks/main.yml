@@ -17,6 +17,14 @@
     group: root
     mode: '0755'
 
+- name: Create libinput directory
+  file:
+    name: /etc/libinput
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Place libinput quirks
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/local-overrides.quirks
