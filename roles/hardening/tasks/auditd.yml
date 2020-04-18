@@ -8,7 +8,7 @@
 
 - name: "dnf | Install auditd package"
   dnf:
-    name: auditd
+    name: audit
     state: latest
   when: ansible_facts['distribution'] == "Fedora"
 
