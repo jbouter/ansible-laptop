@@ -54,6 +54,10 @@ The gnome tasks will only be run specifically on Ubuntu, and set **gdm3** to hav
 
 Configure the Google Chrome repositories and install `google-chrome-stable`
 
+## GRUB
+
+Configure the default GRUB settings *(Ubuntu Only)*
+
 ## hardening
 
 Execute some basic hardening based upon [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/)
