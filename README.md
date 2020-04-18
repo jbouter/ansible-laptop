@@ -6,6 +6,12 @@ Tested on:
 
 * Ubuntu 20.04
 
+## User
+
+Configure my own user `jeffrey` to be in certain groups
+
+Allow passwordless sudo for `sudo` group
+
 ## Install base packages
 
 A certain set of packages I always want installed
@@ -84,8 +90,3 @@ Configure libinput to have support for my Magic Trackpad 2
 
 Configure repositories and install nextcloud-client
 
-## User
-
-Configure my own user `jeffrey` to be in certain groups
-
-Allow passwordless sudo for `sudoers` group
