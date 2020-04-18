@@ -3,7 +3,7 @@
   become: yes
   roles:
     - etckeeper
-    - base_apt
+    - base_packages
     - base_snap
     - grub
     - libinput
