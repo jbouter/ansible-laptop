@@ -1,27 +1,8 @@
 ---
 
-- name: "apt | Add nextcloud repository key"
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 1FCD77DD0DBEF5699AD2610160EE47FBAD3DD469
+- include: debian.yml
   when: ansible_facts['os_family'] == "Debian"
 
-- name: "apt | Configure nextcloud repository"
-  apt_repository:
-    repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu eoan main
-  when: ansible_facts['os_family'] == "Debian"
-
-- name: "apt | Install nextcloud packages"
-  apt:
-    update_cache: yes
-    state: present
-    pkg:
-    - nextcloud-client
-    - nextcloud-client-nautilus
-  when: ansible_facts['os_family'] == "Debian"
-
-- name: "dnf | Install nextcloud packages"
-  dnf:
-    name: nextcloud-client
-    state: latest
+- include: fedora.yml
   when: ansible_facts['distribution'] == "Fedora"
+

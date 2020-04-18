@@ -1,18 +1,5 @@
 ---
 
-- name: "apt | Install git"
-  apt:
-    name: git
-    state: present
-    update_cache: yes
-  when: ansible_facts['os_family'] == "Debian"
-
-- name: "dnf | Install git"
-  dnf:
-    name: git
-    state: latest
-  when: ansible_facts['distribution'] == "Fedora"
-
 - name: Check if root's git config exists
   stat:
     path: /root/.gitconfig
@@ -32,16 +19,10 @@
         default = simple
   when: not stat_gitconfig.stat.exists
 
-- name: "apt | Install etckeeper"
-  apt:
-    name: etckeeper
-    state: present
+- include: debian.yml
   when: ansible_facts['os_family'] == "Debian"
 
-- name: "dnf | Install etckeeper"
-  dnf:
-    name: etckeeper
-    state: latest
+- include: fedora.yml
   when: ansible_facts['distribution'] == "Fedora"
 
 - name: Configure etckeeper

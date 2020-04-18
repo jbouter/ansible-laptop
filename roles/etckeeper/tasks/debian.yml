@@ -1,0 +1,13 @@
+---
+
+- name: "apt | Install git"
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: "apt | Install etckeeper"
+  apt:
+    name: etckeeper
+    state: present
+

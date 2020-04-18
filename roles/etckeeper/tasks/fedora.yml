@@ -1,0 +1,11 @@
+---
+
+- name: "dnf | Install git"
+  dnf:
+    name: git
+    state: latest
+
+- name: "dnf | Install etckeeper"
+  dnf:
+    name: etckeeper
+    state: latest

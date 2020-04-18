@@ -1,0 +1,28 @@
+---
+
+- name: "apt | Add Google Chrome repository key"
+  apt_key:
+    url: https://dl.google.com/linux/linux_signing_key.pub
+    state: present
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "apt | Check if Google Chrome apt repository exists"
+  stat:
+    path: /etc/apt/sources.list.d/google-chrome.list
+  register: gchrome_stat_result
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "apt | Configure Google Chrome repository"
+  apt_repository:
+    filename: google-chrome
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+  when:
+    - ansible_facts['os_family'] == "Debian"
+    - not gchrome_stat_result.stat.exists
+
+- name: "apt | Install Google Chrome package"
+  apt:
+    update_cache: yes
+    state: present
+    name: google-chrome-stable
+  when: ansible_facts['os_family'] == "Debian"
