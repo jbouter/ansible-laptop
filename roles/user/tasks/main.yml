@@ -15,3 +15,25 @@
     content: |
       # Allow members of group sudo to execute any command
       %sudo ALL=(ALL:ALL) NOPASSWD:ALL
+
+- name: Configure bashrc for the user
+  get_url:
+    url: https://kn0x.org/data/bashrc
+    dest: "/home/{{ username }}/.bashrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: Check if user's vim config exists
+  stat:
+    path: "/home/{{ username }}/.vimrc"
+  register: stat_vimrc
+
+- name: Configure vimrc for the user
+  get_url:
+    url: https://kn0x.org/data/vimrc
+    dest: "/home/{{ username }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  when: not stat_vimrc.stat.exists
