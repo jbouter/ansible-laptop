@@ -5,7 +5,6 @@ These playbooks will setup my basic machine to my liking.
 Tested on:
 
 * Ubuntu 20.04
-* Fedora 32
 
 ## Install base packages
 
@@ -16,7 +15,7 @@ A certain set of packages I always want installed
 * iotop
 * direnv
 * borgbackup
-* ffmpeg *(Ubuntu only)*
+* ffmpeg
 * imagemagick
 * libreoffice
 * pwgen
@@ -26,8 +25,8 @@ A certain set of packages I always want installed
 * virt-manager
 * tmux
 * vim
-* ubuntu-restricted-extras *(Ubuntu only)*
-* ubuntu-restricted-addons *(Ubuntu only)*
+* ubuntu-restricted-extras
+* ubuntu-restricted-addons
 
 ## Install base snaps
 
@@ -48,7 +47,7 @@ etckeeper will keep a git repository of `/etc` and update it when your package m
 
 ## gnome
 
-The gnome tasks will only be run specifically on Ubuntu, and set **gdm3** to have the default look
+The gnome tasks is specifically for Ubuntu, and set **gdm3** to have the default look
 
 ## google-chrome
 
@@ -56,7 +55,7 @@ Configure the Google Chrome repositories and install `google-chrome-stable`
 
 ## GRUB
 
-Configure the default GRUB settings *(Ubuntu Only)*
+Configure the default GRUB settings
 
 ## hardening
 
@@ -68,4 +67,4 @@ Configure libinput to have support for my Magic Trackpad 2
 
 ## Nextcloud
 
-Configure repositories *(Ubuntu/Debian only)* and install nextcloud-client
+Configure repositories and install nextcloud-client

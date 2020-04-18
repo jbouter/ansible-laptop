@@ -19,11 +19,16 @@
         default = simple
   when: not stat_gitconfig.stat.exists
 
-- include: debian.yml
-  when: ansible_facts['os_family'] == "Debian"
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
 
-- include: fedora.yml
-  when: ansible_facts['distribution'] == "Fedora"
+- name: Install etckeeper"
+  apt:
+    name: etckeeper
+    state: present
 
 - name: Configure etckeeper
   copy:

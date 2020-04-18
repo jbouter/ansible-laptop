@@ -1,6 +1,0 @@
----
-
-- name: "dnf | Install nextcloud packages"
-  dnf:
-    name: nextcloud-client
-    state: latest

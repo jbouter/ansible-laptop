@@ -1,4 +1,15 @@
 ---
 
-- include: debian.yml
-  when: ansible_facts['os_family'] == "Debian"
+- name: Default grub configuration
+  copy:
+    src: default-grub
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0644'
+    force: no
+  register: grub_config
+
+- name: Update grub
+  command: update-grub
+  when: grub_config.changed

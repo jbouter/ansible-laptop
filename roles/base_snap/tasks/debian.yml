@@ -1,5 +1,0 @@
----
-
-- name: "apt | Install snap daemon"
-  apt:
-    name: snapd
