@@ -12,6 +12,12 @@
     enabled: no
     masked: yes
 
+- name: Configure timezone to be Europe/Amsterdam
+  file:
+    src: /usr/share/zoneinfo/Europe/Amsterdam
+    dest: /etc/localtime
+    state: link
+
 - name: Configure chronyd service
   systemd:
     name: chrony
