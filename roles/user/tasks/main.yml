@@ -1,10 +1,10 @@
 ---
 
-- name: Append user jeffrey to groups
+- name: Append user to groups
   user:
-    name: jeffrey
+    name: "{{ username }}"
     append: yes
-    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,lxd,sambashar,libvirt,docker
+    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,lxd,sambashare,libvirt,docker
 
 - name: Configure passwordless sudo
   copy:

@@ -12,6 +12,8 @@ Configure my own user `jeffrey` to be in certain groups
 
 Allow passwordless sudo for `sudo` group
 
+Username can be changed from `jeffrey` to whatever you like in `playbooks/provision_host.yml`
+
 ## Install base packages
 
 A certain set of packages I always want installed
