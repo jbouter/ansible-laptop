@@ -1,9 +1,16 @@
 ---
 
-- name: Install auditd package
+- name: "apt | Install auditd package"
   apt:
     name: auditd
     state: present
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "dnf | Install auditd package"
+  dnf:
+    name: auditd
+    state: latest
+  when: ansible_facts['distribution'] == "Fedora"
 
 - name: Configure auditd
   copy:

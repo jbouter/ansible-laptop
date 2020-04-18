@@ -24,15 +24,6 @@
   when: uncommon_network_protocol_configs.changed
   ignore_errors: yes
 
-#
-# Sysctl hardening
-#
-
-
-#
-# Ensure logging of suspicious packets
-#
-
 - name: Configure logging of suspicious packets
   copy:
     dest: /etc/sysctl.d/20-cis_log_suspicious_packets.conf
@@ -48,11 +39,6 @@
   command: sysctl -p /etc/sysctl.d/20-cis_log_suspicious_packets.conf
   when: log_suspicious_packets.changed
 
-
-#
-# Ignore ICMP broadcast
-#
-
 - name: Configure ignore ICMP broadcast
   copy:
     dest: /etc/sysctl.d/20-cis_ignore_icmp_broadcast.conf
@@ -66,10 +52,6 @@
   command: sysctl -p /etc/sysctl.d/20-cis_ignore_icmp_broadcast.conf
   when: ignore_icmp_broadcast.changed
 
-#
-# Ignore bogus ICMP
-#
-
 - name: Configure ignore bogus ICMP
   copy:
     dest: /etc/sysctl.d/20-cis_ignore_bogus_icmp.conf
@@ -82,10 +64,6 @@
 - name: Apply ignore bogus ICMP
   command: sysctl -p /etc/sysctl.d/20-cis_ignore_bogus_icmp.conf
   when: ignore_icmp_broadcast.changed
-
-#
-# Ensure Reverse Path Filtering is enabled
-#
 
 - name: Configure ensure reverse path filtering
   copy:
@@ -101,10 +79,6 @@
 - name: Apply ensure reverse path filtering
   command: sysctl -p /etc/sysctl.d/20-cis_ensure_reverse_path_filtering.conf
   when: reverse_path_filtering.changed
-
-#
-# Ensure TCP SYN Cookies is enabled
-#
 
 - name: Configure ensure TCP SYN cookies
   copy:

@@ -1,0 +1,71 @@
+---
+
+- name: "apt | Update all packages to the latest version"
+  apt:
+    upgrade: dist
+    update_cache: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "apt | Install base packages"
+  apt:
+    state: present
+    pkg:
+    - htop
+    - atop
+    - iotop
+    - direnv
+    - borgbackup
+    - ffmpeg
+    - imagemagick
+    - libreoffice-base-core
+    - libreoffice-writer
+    - libreoffice-calc
+    - libreoffice-gnome
+    - libreoffice-gtk3
+    - pwgen
+    - wireguard
+    - qemu
+    - libvirt-daemon
+    - virt-manager
+    - tmux
+    - ubuntu-restricted-addons
+    - ubuntu-restricted-extras
+    - vim
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "apt | Remove useless packages from the cache"
+  apt:
+    autoclean: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "apt | Remove dependencies that are no longer required"
+  apt:
+    autoremove: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "dnf | Upgrade all dnf packages"
+  dnf:
+    name: "*"
+    state: latest
+  when: ansible_facts['distribution'] == "Fedora"
+
+- name: "dnf | Install base dnf packages"
+  dnf:
+    name:
+      - htop
+      - atop
+      - iotop
+      - direnv
+      - borgbackup
+      - imagemagick
+      - libreoffice-writer
+      - libreoffice-calc
+      - libreoffice-gtk3
+      - pwgen
+      - wireguard
+      - qemu
+      - libvirt-daemon
+      - virt-manager
+      - tmux
+      - vim
+  when: ansible_facts['distribution'] == "Fedora"

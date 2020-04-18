@@ -1,8 +1,24 @@
 ---
 
-- name: Install snap daemon
+- name: "apt | Install snap daemon"
   apt:
     name: snapd
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "dnf | Install snap daemon"
+  dnf:
+    name: snapd
+    state: latest
+  when: ansible_facts['distribution'] == "Fedora"
+
+- name: Add support for classic snaps
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    owner: root
+    group: root
+    state: link
+  when: ansible_facts['distribution'] == "Fedora"
 
 - name: Start and enable snapd daemon
   service:
@@ -10,14 +26,19 @@
     state: started
     enabled: yes
 
-- name: Install snap packages
+- name: Install default snap packages
   snap:
     name:
       - cawbird
-      - codium
       - discord
       - docker
-      - kubectl
       - mattermost-desktop
       - spotify
       - telegram-desktop
+
+- name: Install classic snap packages
+  snap:
+    name:
+      - codium
+      - kubectl
+    classic: yes

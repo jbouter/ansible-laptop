@@ -35,5 +35,4 @@
       # mount /tmp noexec when dpkg is done
       DPkg::Pre-Invoke {"mount -o remount,exec /tmp";}
       DPkg::Post-Invoke {"mount -o remount /tmp";}
-
-
+  when: ansible_facts['os_family'] == "Debian"
