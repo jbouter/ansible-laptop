@@ -41,6 +41,19 @@ A certain set of snap packages I always want installed
 * codium *(classic)*
 * kubectl *(classic)*
 
+## Chrony
+
+Install the NTP daemon chrony and configure it.
+
+This disables `systemd-timesyncd`.
+
+## dnsmasq
+
+Install dnsmasq and configure it to be used as the internal caching mechanism
+used within NetworkManager.
+
+This disables `systemd-resolved`.
+
 ## etckeeper
 
 etckeeper will keep a git repository of `/etc` and update it when your package manager is run
