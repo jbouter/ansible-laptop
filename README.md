@@ -41,7 +41,7 @@ A certain set of snap packages I always want installed
 * codium *(classic)*
 * kubectl *(classic)*
 
-## Chrony
+## chrony
 
 Install the NTP daemon chrony and configure it.
 
@@ -58,11 +58,11 @@ This disables `systemd-resolved`.
 
 etckeeper will keep a git repository of `/etc` and update it when your package manager is run
 
-## gnome
+## GNOME
 
 The gnome tasks is specifically for Ubuntu, and set **gdm3** to have the default look
 
-## google-chrome
+## Google Chrome
 
 Configure the Google Chrome repositories and install `google-chrome-stable`
 
@@ -70,7 +70,7 @@ Configure the Google Chrome repositories and install `google-chrome-stable`
 
 Configure the default GRUB settings
 
-## hardening
+## Hardening
 
 Execute some basic hardening based upon [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/)
 
