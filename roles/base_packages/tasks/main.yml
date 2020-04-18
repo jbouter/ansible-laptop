@@ -30,6 +30,8 @@
     - ubuntu-restricted-addons
     - ubuntu-restricted-extras
     - vim
+    - adb
+    - fastboot
 
 - name: Remove useless packages from the cache
   apt:

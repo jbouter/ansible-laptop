@@ -27,6 +27,8 @@ A certain set of packages I always want installed
 * vim
 * ubuntu-restricted-extras
 * ubuntu-restricted-addons
+* adb
+* fastboot
 
 ## Install base snaps
 
@@ -81,3 +83,9 @@ Configure libinput to have support for my Magic Trackpad 2
 ## Nextcloud
 
 Configure repositories and install nextcloud-client
+
+## User
+
+Configure my own user `jeffrey` to be in certain groups
+
+Allow passwordless sudo for `sudoers` group

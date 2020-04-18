@@ -1,0 +1,17 @@
+---
+
+- name: Append user jeffrey to groups
+  user:
+    name: jeffrey
+    append: yes
+    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,lxd,sambashar,libvirt,docker
+
+- name: Configure passwordless sudo
+  copy:
+    dest: /etc/sudoers.d/sudo-group
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      # Allow members of group sudo to execute any command
+      %sudo ALL=(ALL:ALL) NOPASSWD:ALL

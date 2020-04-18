@@ -13,3 +13,4 @@
     - hardening
     - chrony
     - dnsmasq
+    - user
