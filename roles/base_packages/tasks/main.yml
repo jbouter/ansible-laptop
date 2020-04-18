@@ -57,12 +57,12 @@
       - iotop
       - direnv
       - borgbackup
-      - imagemagick
+      - ImageMagick
       - libreoffice-writer
       - libreoffice-calc
       - libreoffice-gtk3
       - pwgen
-      - wireguard
+      - wireguard-tools
       - qemu
       - libvirt-daemon
       - virt-manager
