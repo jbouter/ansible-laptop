@@ -6,7 +6,7 @@
     name: snapd
 
 - name: Start and enable snapd daemon
-  service:
+  systemd:
     name: snapd
     state: started
     enabled: yes

@@ -16,13 +16,13 @@
   register: configure_auditd
 
 - name: Restart auditd service
-  service:
+  systemd:
     name: auditd
     state: restarted
   when: configure_auditd.changed
 
 - name: Enable auditd service
-  service:
+  systemd:
     name: auditd
     enabled: true
 
