@@ -1,8 +1,6 @@
 ---
 - hosts: localhost
   become: yes
-  vars:
-    username: jeffrey
   roles:
     - etckeeper
     - base_packages
