@@ -6,13 +6,36 @@ Tested on:
 
 * Ubuntu 20.04
 
+## Preface/Notes
+
+Username can be changed from `jeffrey` to whatever you like in `inventory/host_vars/localhost/user.yml`
+GRUB password must be reconfigured by yourself in `inventory/host_Vars/localhost/vault.yml` by creating a new vault:
+
+Create a new `yaml` file with the following content:
+
+`inventory/host_vars/localhost/vault.yml`:
+
+``yaml
+---
+grub_PBKDF2: grub.pbkdf2.sha512.10000.....
+```
+
+Fill in the variable from the output of the following command:
+
+```bash
+grub-mkpasswd-pbkdf2
+```
+
+Encrypt the new `yaml` file:
+
+```bash
+ansible-vault encrypt inventory/host_vars/localhost/vault.yml
+```
+
 ## User
 
-Configure my own user `jeffrey` to be in certain groups
-
+Configure `{{ username }}` *(See Preface/Notes)* to be in certain groups
 Allow passwordless sudo for `sudo` group
-
-Username can be changed from `jeffrey` to whatever you like in `playbooks/provision_host.yml`
 
 ## Install base packages
 
