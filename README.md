@@ -12,7 +12,7 @@ Tested on:
 In order to allow this to run, install the following packages
 
 ```bash
-apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev linux-headers-generic build-essential
+apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
 ```
 
 Username can be changed from `jeffrey` to whatever you like in `inventory/host_vars/localhost/user.yml`
