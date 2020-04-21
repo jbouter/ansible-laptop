@@ -1,5 +1,12 @@
 ---
 
+- name: Install libinput package requirements
+  apt:
+    pkg:
+    - xdotool
+    - wmctrl
+    - libinput-tools
+
 - name: Configure magic trackpad udev rules
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/20-magic-trackpad.rules
