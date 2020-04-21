@@ -32,6 +32,8 @@
     - vim
     - adb
     - fastboot
+    - pass
+    - gnupg2
 
 - name: Remove useless packages from the cache
   apt:

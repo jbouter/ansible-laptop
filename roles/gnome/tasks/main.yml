@@ -5,6 +5,7 @@
     pkg:
       - gnome-session
       - gnome-shell-common
+      - gnome-tweaks
 
 - name: Configure GDM3 to have default look
   alternatives:
