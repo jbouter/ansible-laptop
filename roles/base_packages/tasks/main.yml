@@ -24,6 +24,7 @@
     - pwgen
     - wireguard
     - qemu
+    - qemu-kvm
     - libvirt-daemon
     - virt-manager
     - tmux
