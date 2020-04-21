@@ -6,7 +6,14 @@ Tested on:
 
 * Ubuntu 20.04
 
+
 ## Preface/Notes
+
+In order to allow this to run, install the following packages
+
+```bash
+apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev linux-headers-generic build-essential
+```
 
 Username can be changed from `jeffrey` to whatever you like in `inventory/host_vars/localhost/user.yml`
 GRUB password must be reconfigured by yourself in `inventory/host_Vars/localhost/vault.yml` by creating a new vault:
@@ -15,7 +22,7 @@ Create a new `yaml` file with the following content:
 
 `inventory/host_vars/localhost/vault.yml`:
 
-``yaml
+```yaml
 ---
 grub_PBKDF2: grub.pbkdf2.sha512.10000.....
 ```
