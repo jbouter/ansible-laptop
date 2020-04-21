@@ -24,10 +24,18 @@
     group: "{{ username }}"
     mode: '0644'
 
+- name: Configure bashrc for root
+  get_url:
+    url: https://kn0x.org/data/bashrc
+    dest: "/root/.bashrc"
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Check if user's vim config exists
   stat:
     path: "/home/{{ username }}/.vimrc"
-  register: stat_vimrc
+  register: stat_user_vimrc
 
 - name: Configure vimrc for the user
   get_url:
@@ -36,4 +44,18 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
-  when: not stat_vimrc.stat.exists
+  when: not stat_user_vimrc.stat.exists
+
+- name: Check if root's vim config exists
+  stat:
+    path: "/home/root/.vimrc"
+  register: stat_root_vimrc
+
+- name: Configure vimrc for root
+  get_url:
+    url: https://kn0x.org/data/vimrc
+    dest: "/root/.vimrc"
+    owner: root
+    group: root
+    mode: '0644'
+  when: not stat_root_vimrc.stat.exists
