@@ -16,13 +16,20 @@
     mode: '0644'
   register: udevrules
 
-- name: Place magic trackpad libinput script
+- name: Place magic trackpad libinput systemd service
   get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/magictrackpad.sh
-    dest: /usr/local/bin/magictrackpad.sh
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/magictrackpad.service
+    dest: /etc/systemd/system/magictrackpad.service
     owner: root
     group: root
     mode: '0755'
+
+- name: Start and enable magictrackpad service
+  systemd:
+    daemon_reload: yes
+    name: magictrackppad
+    enabled: yes
+    state: started
 
 - name: Create libinput directory
   file:
