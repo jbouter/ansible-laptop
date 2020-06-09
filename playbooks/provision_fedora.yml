@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - etckeeper/fedora
+    - base_packages/fedora
+    - grub/fedora
+    - libinput/fedora
+    - hardening/fedora
+    - chrony/fedora
+    - dnsmasq/fedora
+    - user/fedora
+    - virtualisation/fedora

@@ -1,0 +1,7 @@
+---
+
+- include: tmp.yml
+- include: sysctl.yml
+- include: filesystems.yml
+- include: network.yml
+- include: auditd.yml

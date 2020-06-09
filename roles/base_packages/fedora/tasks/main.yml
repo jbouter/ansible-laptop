@@ -1,0 +1,44 @@
+---
+
+- name: Update all packages to the latest version
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install RPMFusion Free
+  dnf:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+
+- name: Install base packages
+  dnf:
+    name:
+      - htop
+      - atop
+      - iotop
+      - direnv
+      - borgbackup
+      - ffmpeg
+      - ImageMagick
+      - libreoffice
+      - libreoffice-gtk3
+      - pwgen
+      - wireguard-tools
+      - qemu
+      - qemu-kvm
+      - libvirt-daemon
+      - virt-manager
+      - tmux
+      - vim
+      - adb
+      - fastboot
+      - pass
+      - gnupg2
+      - nextcloud-client
+      - nextcloud-client-nautilus
+
+- name: Install Development Tools group package
+  dnf:
+    name: '@Development tools'
+    state: present
+
