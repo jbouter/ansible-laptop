@@ -1,0 +1,16 @@
+---
+
+- name: Configure auditd
+  copy:
+    src: auditd-rules.d
+    dest: /etc/audit/rules.d
+    owner: root
+    group: root
+    mode: '0640'
+    directory_mode: '0750'
+  register: configure_auditd
+
+- name: Enable auditd service
+  systemd:
+    name: auditd
+    enabled: true

@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - etckeeper/ubuntu
+    - base_packages/ubuntu
+    - base_snap/ubuntu
+    - grub/ubuntu
+    - libinput/ubuntu
+    - gnome/ubuntu
+    - nextcloud/ubuntu
+    - google-chrome/ubuntu
+    - hardening/ubuntu
+    - chrony/ubuntu
+    - dnsmasq/ubuntu
+    - user/ubuntu

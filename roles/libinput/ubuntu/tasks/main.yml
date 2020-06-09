@@ -27,7 +27,7 @@
 - name: Start and enable magictrackpad service
   systemd:
     daemon_reload: yes
-    name: magictrackppad
+    name: magictrackpad
     enabled: yes
     state: started
 
