@@ -1,0 +1,25 @@
+---
+
+- name: Install Virtualization group package
+  dnf:
+    name: '@Virtualization'
+    state: present
+
+- name: Set libvirtd socket read-write permissions
+  replace:
+    path: /etc/libvirt/libvirtd.conf
+    regexp: '^#unix_sock_rw_perms = "0770"'
+    replace: 'unix_sock_rw_perms = "0770"'
+  register: libvirtd_config
+
+- name: Restart and enable libvirtd
+  systemd:
+    name: libvirtd
+    state: restarted
+  when: libvirtd_config.changed
+
+- name: Start and enable libvirtd
+  systemd:
+    name: libvirtd
+    state: started
+    enabled: yes

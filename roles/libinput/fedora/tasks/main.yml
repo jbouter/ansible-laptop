@@ -1,0 +1,52 @@
+---
+
+- name: Install libinput package requirements
+  dnf:
+    name:
+      - xdotool
+      - wmctrl
+    state: present
+
+- name: Configure magic trackpad udev rules
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/20-magic-trackpad.rules
+    dest: /etc/udev/rules.d/20-magic-trackpad.rules
+    owner: root
+    group: root
+    mode: '0644'
+  register: udevrules
+
+- name: Place magic trackpad libinput systemd service
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/magictrackpad.service
+    dest: /etc/systemd/system/magictrackpad.service
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Start and enable magictrackpad service
+  systemd:
+    daemon_reload: yes
+    name: magictrackpad
+    enabled: yes
+    state: started
+
+- name: Create libinput directory
+  file:
+    name: /etc/libinput
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Place libinput quirks
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/local-overrides.quirks
+    dest: /etc/libinput/local-overrides.quirks
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: reload udev rules
+  command: 'udevadm control --reload-rules'
+  when: udevrules.changed
