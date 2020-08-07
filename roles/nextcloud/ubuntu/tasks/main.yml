@@ -7,7 +7,7 @@
 
 - name: Configure nextcloud repository
   apt_repository:
-    repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu eoan main
+    repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main
 
 - name: Install nextcloud packages
   apt:
@@ -15,4 +15,3 @@
     state: present
     pkg:
     - nextcloud-client
-    - nextcloud-client-nautilus
