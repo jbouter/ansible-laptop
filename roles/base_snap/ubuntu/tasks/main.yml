@@ -1,6 +1,5 @@
 ---
 
-
 - name: Install snap daemon
   apt:
     name: snapd
@@ -10,14 +9,12 @@
     name: snapd
     state: started
     enabled: yes
+  ignore_errors: yes
 
 - name: Install default snap packages
   snap:
     name:
-      - cawbird
       - discord
-      - docker
-      - mattermost-desktop
       - spotify
       - telegram-desktop
 

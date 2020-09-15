@@ -11,6 +11,7 @@
     state: stopped
     enabled: no
     masked: yes
+  ignore_errors: yes
 
 - name: Configure NetworkManager to use dnsmasq
   copy:
@@ -39,6 +40,7 @@
     state: stopped
     enabled: no
     masked: yes
+  ignore_errors: yes
 
 - name: Configure /etc/resolv.conf
   copy:
@@ -57,9 +59,11 @@
     state: restarted
   when: networkmanager_dnsmasq_config.changed or dnsmasq_cache_config.changed or resolvconf_updated.changed
   register: networkmanager_service
+  ignore_errors: yes
 
 - name: Restart wpa_supplicant service
   systemd:
     name: wpa_supplicant
     state: restarted
   when: networkmanager_service.changed
+  ignore_errors: yes

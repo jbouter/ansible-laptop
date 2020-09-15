@@ -11,6 +11,7 @@
     state: stopped
     enabled: no
     masked: yes
+  ignore_errors: yes
 
 - name: Configure timezone to be Europe/Amsterdam
   file:
@@ -23,6 +24,7 @@
     name: chrony
     state: started
     enabled: yes
+  ignore_errors: yes
 
 - name: Configure chrony
   copy:
@@ -38,3 +40,4 @@
     name: chrony
     state: restarted
   when: configure_chrony.changed
+  ignore_errors: yes

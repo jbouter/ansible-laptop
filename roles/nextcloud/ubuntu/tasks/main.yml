@@ -7,7 +7,7 @@
 
 - name: Configure nextcloud repository
   apt_repository:
-    repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu bionic main
+    repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu {{ ansible_distribution_release }} main
 
 - name: Install nextcloud packages
   apt:

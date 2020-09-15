@@ -3,33 +3,60 @@
 - name: Install libinput package requirements
   apt:
     pkg:
-    - xdotool
-    - wmctrl
+    - build-essential
     - libinput-tools
+    - ruby
+    - wmctrl
+    - libevdev-dev
+    - ruby-dev
 
-- name: Configure magic trackpad udev rules
+- name: Install ruby gems required by fusuma
+  gem:
+    name: {{ item }}
+    state: present
+  with_items:
+    - fusuma
+    - fusuma-plugin-wmctrl
+    - fusuma-plugin-keypress
+    - fusuma-plugin-sendkey
+
+- name: Create fusuma configuration directory for {{ username }}
+  file:
+    name: /home/{{ username }}/.config/fusuma
+    state: directory
+    owner: {{ username }}
+    group: {{ username }}
+    mode: '0755'
+
+- name: Configure fusuma for {{ username }}
   get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/20-magic-trackpad.rules
-    dest: /etc/udev/rules.d/20-magic-trackpad.rules
-    owner: root
-    group: root
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma-config.yml
+    dest: /home/{{ username }}/.config/fusuma/config.yml
+    owner: {{ username }}
+    group: {{ username }}
     mode: '0644'
-  register: udevrules
 
-- name: Place magic trackpad libinput systemd service
+- name: Create fusuma service
   get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/magictrackpad.service
-    dest: /etc/systemd/system/magictrackpad.service
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma.service
+    dest: /etc/systemd/system/fusuma.service
     owner: root
     group: root
     mode: '0755'
 
-- name: Start and enable magictrackpad service
+- name: Replace 'jeffrey' with {{ username }} in service file
+  replace:
+    path: /etc/systemd/system/fusuma.service
+    regexp: 'jeffrey'
+    replace: {{ username }}
+
+- name: Start and enable fusuma service
   systemd:
     daemon_reload: yes
-    name: magictrackpad
+    name: fusuma
     enabled: yes
     state: started
+  ignore_errors: yes
 
 - name: Create libinput directory
   file:
@@ -47,6 +74,18 @@
     group: root
     mode: '0644'
 
-- name: reload udev rules
-  command: 'udevadm control --reload-rules'
-  when: udevrules.changed
+- name: Create xorg configuration directory
+  file:
+    name: /etc/X11/xorg.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Configure xorg libinput stuff
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/10-libinput.conf
+    dest: /etc/X11/xorg.conf.d/10-libinput.conf
+    owner: root
+    group: root
+    mode: '0644'

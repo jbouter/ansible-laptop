@@ -6,7 +6,6 @@
     - base_packages/ubuntu
     - base_snap/ubuntu
     - grub/ubuntu
-    - libinput/ubuntu
     - nextcloud/ubuntu
     - hardening/ubuntu
     - chrony/ubuntu

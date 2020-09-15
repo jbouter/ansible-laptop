@@ -20,18 +20,8 @@
   register: tmpmount
 
 - name: Manually remount /tmp with noexec permissions
-  command: mount -o remount,noexec /tmp
+  mount:
+    path: /tmp
+    opts: noexec
+    state: remounted
   when: tmpmount.changed
-
-- name: Configure apt to remount tmp with exec permissions during package installations
-  copy:
-    dest: /etc/apt/apt.conf.d/00exectmp
-    owner: root
-    group: root
-    mode: '0644'
-    content: |
-      # This file is managed by SaltStack. Do not edit!
-      # mount /tmp with exec before running dpkg commands
-      # mount /tmp noexec when dpkg is done
-      DPkg::Pre-Invoke {"mount -o remount,exec /tmp";}
-      DPkg::Post-Invoke {"mount -o remount /tmp";}
