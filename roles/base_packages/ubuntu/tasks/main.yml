@@ -43,3 +43,8 @@
 - name: Remove dependencies that are no longer required
   apt:
     autoremove: yes
+
+- name: Configure vim to be the default editor systemd wide
+  alternatives:
+    name: editor
+    path: /usr/bin/vim.basic
