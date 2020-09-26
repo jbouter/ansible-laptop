@@ -11,3 +11,4 @@
     - hardening/ubuntu
     - chrony/ubuntu
     - user/ubuntu
+    - google-chrome/ubuntu
