@@ -12,15 +12,38 @@
     append: yes
     groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,libvirt,docker
 
-- name: Configure passwordless sudo
+- name: Configure passwordless sudo for apt commands
   copy:
-    dest: /etc/sudoers.d/sudo-group
+    dest: /etc/sudoers.d/apt
     owner: root
     group: root
     mode: '0440'
     content: |
-      # Allow members of group sudo to execute any command
-      %sudo ALL=(ALL:ALL) NOPASSWD:ALL
+      #Allow members of group sudo to execute apt commands
+      Cmnd_Alias APT = /usr/bin/apt update, \
+                 /usr/bin/apt full-upgrade, \
+                 /usr/bin/apt full-upgrade -y, \
+                 /usr/bin/apt install *, \
+                 /usr/bin/apt remove *, \
+                 /usr/bin/apt purge *, \
+                 /usr/bin/apt autoremove, \
+                 /usr/bin/apt autoremove -y \
+
+      %sudo ALL = NOPASSWD: APT
+
+- name: Configure passwordless sudo for wireguard commands
+  copy:
+    dest: /etc/sudoers.d/wireguard
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      #Allow members of group sudo to execute wireguard commands
+      Cmnd_Alias WIREGUARD = /usr/bin/wg show, \
+                             /usr/bin/wg-quick up wg0, \
+                             /usr/bin/wg-quick down wg0
+
+      %sudo ALL = NOPASSWD: WIREGUARD
 
 - name: Configure bashrc for the user
   get_url:
