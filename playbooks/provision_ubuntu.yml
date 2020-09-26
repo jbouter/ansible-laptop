@@ -5,9 +5,9 @@
     - etckeeper/ubuntu
     - base_packages/ubuntu
     - base_snap/ubuntu
+    - gnome/ubuntu
     - grub/ubuntu
     - nextcloud/ubuntu
     - hardening/ubuntu
     - chrony/ubuntu
-    - dnsmasq/ubuntu
     - user/ubuntu
