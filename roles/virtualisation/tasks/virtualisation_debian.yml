@@ -1,0 +1,10 @@
+---
+
+- name: Install virtualisation packages
+  apt:
+    state: present
+    pkg:
+    - qemu
+    - qemu-kvm
+    - libvirt-daemon-system
+    - virt-manager

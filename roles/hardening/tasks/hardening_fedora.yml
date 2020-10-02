@@ -1,0 +1,7 @@
+---
+
+- include: tmp_fedora.yml
+- include: sysctl_fedora.yml
+- include: filesystems_fedora.yml
+- include: network_fedora.yml
+- include: auditd_fedora.yml

@@ -1,0 +1,39 @@
+---
+
+- name: Check if root's git config exists
+  stat:
+    path: /root/.gitconfig
+  register: stat_gitconfig
+
+- name: Basic git configuration for root user
+  copy:
+    dest: /root/.gitconfig
+    owner: root
+    group: root
+    mode: '0640'
+    content: |
+      [user]
+        name = root
+        email = root@localhost
+      [push]
+        default = simple
+  when: not stat_gitconfig.stat.exists
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Install etckeeper"
+  apt:
+    name: etckeeper
+    state: present
+
+- name: Configure etckeeper
+  copy:
+    src: etckeeper_ubuntu.conf
+    dest: /etc/etckeeper/etckeeper.conf
+    owner: root
+    group: root
+    mode: '0644'

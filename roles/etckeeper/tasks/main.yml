@@ -1,0 +1,9 @@
+---
+
+- name: install etckeeper for Debian based systems
+  include_tasks: etckeeper_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: install etckeeper for RedHat based systems
+  include_tasks: etckeeper_fedora.yml
+  when: ansible_os_family == "RedHat"
