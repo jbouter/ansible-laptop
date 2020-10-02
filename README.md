@@ -62,14 +62,6 @@ ansible-vault encrypt inventory/host_vars/localhost/vault.yml
 
 Please read through roles for an explanation on what it all does.
 
-For Ubuntu:
-
 ```bash
-ansible-playbook playbooks/provision_ubuntu.yml
-```
-
-For Fedora:
-
-```bash
-ansible-playbook playbooks/provision_fedora.yml
+ansible-playbook playbooks/provision.yml
 ```
