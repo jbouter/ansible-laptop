@@ -9,4 +9,3 @@
   systemd:
       name: chronyd
       state: restarted
-  

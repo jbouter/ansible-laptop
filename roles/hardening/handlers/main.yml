@@ -6,7 +6,7 @@
     state: restarted
   when: configure_auditd.changed
 
-- name: Remove uncommon network protocol kernel modules
+- name: Remove uncommon filesystem kernel modules
   command: "rmmod {{ item }}"
   with_items:
     - cramfs
@@ -15,7 +15,15 @@
     - hfs
     - hfsplus
     - udf
-  when: uncommon_filesystem_configs.changed
+  ignore_errors: yes
+
+- name: Remove uncommon network protocol kernel modules
+  command: "rmmod {{ item }}"
+  with_items:
+    - dccp
+    - sctp
+    - rds
+    - tipc
   ignore_errors: yes
 
 - name: Apply logging of suspicious packets
