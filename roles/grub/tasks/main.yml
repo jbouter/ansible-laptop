@@ -1,0 +1,9 @@
+---
+
+- name: install grub for Debian based systems
+  include_tasks: grub_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: install grub for RedHat based systems
+  include_tasks: grub_fedora.yml
+  when: ansible_os_family == "RedHat"

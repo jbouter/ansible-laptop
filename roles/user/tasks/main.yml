@@ -1,0 +1,9 @@
+---
+
+- name: install user for Debian based systems
+  include_tasks: user_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: install user for RedHat based systems
+  include_tasks: user_fedora.yml
+  when: ansible_os_family == "RedHat"

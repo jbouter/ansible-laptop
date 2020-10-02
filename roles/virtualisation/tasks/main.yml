@@ -1,0 +1,9 @@
+---
+
+- name: install virtualisation for Debian based systems
+  include_tasks: virtualisation_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: install virtualisation for RedHat based systems
+  include_tasks: virtualisation_fedora.yml
+  when: ansible_os_family == "RedHat"

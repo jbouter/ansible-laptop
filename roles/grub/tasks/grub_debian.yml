@@ -1,0 +1,35 @@
+---
+
+- name: Default grub configuration
+  copy:
+    src: debian_default-grub
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0644'
+    force: no
+  register: grub_default_config
+
+- name: Configure unrestricted boot
+  replace:
+    path: /etc/grub.d/10_linux
+    regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
+    replace: '\1 --unrestricted\3'
+  register: grub_unrestricted_config
+
+- name: Configure grub edit password
+  blockinfile:
+    path: /etc/grub.d/00_header
+    insertafter: EOF
+    block: |
+      cat << EOF
+      set superusers="{{ username }}"
+      password_pbkdf2 {{ username }} {{ grub_PBKDF2 }}
+      EOF
+  register: grub_header_config
+
+- name: Update grub
+  command: update-grub
+  when: grub_default_config.changed or grub_unrestricted_config.changed or grub_header_config.changed
+
+

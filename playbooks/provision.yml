@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - etckeeper
+    - base_packages
+    - base_snap
+    - gnome
+    - grub
+    - nextcloud
+    - hardening
+    - chrony
+    - user
+    - google-chrome
