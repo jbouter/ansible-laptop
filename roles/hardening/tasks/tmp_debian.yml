@@ -17,11 +17,5 @@
     name: tmp.mount
     enabled: yes
     masked: no
-  register: tmpmount
-
-- name: Manually remount /tmp with noexec permissions
-  mount:
-    path: /tmp
-    opts: noexec
-    state: remounted
-  when: tmpmount.changed
+  notify:
+  - Manually remount /tmp with noexec permissions

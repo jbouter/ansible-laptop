@@ -1,7 +1,7 @@
 ---
 
 - include: tmp_debian.yml
-- include: sysctl_debian.yml
-- include: filesystems_debian.yml
-- include: network_debian.yml
+- include: sysctl.yml
+- include: filesystems.yml
+- include: network.yml
 - include: auditd_debian.yml

@@ -8,9 +8,11 @@
     group: root
     mode: '0640'
     directory_mode: '0750'
-  register: configure_auditd
+  notify:
+    - restart auditd service
 
 - name: Enable auditd service
   systemd:
     name: auditd
+    state: started
     enabled: true

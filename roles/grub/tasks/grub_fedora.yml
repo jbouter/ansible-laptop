@@ -5,7 +5,8 @@
     path: /etc/grub.d/10_linux
     regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
     replace: '\1 --unrestricted\3'
-  register: grub_unrestricted_config
+  notify:
+    - update grub fedora
 
 - name: Configure grub edit password
   blockinfile:
@@ -16,10 +17,9 @@
       set superusers="{{ username }}"
       password_pbkdf2 {{ username }} {{ grub_PBKDF2 }}
       EOF
-  register: grub_header_config
+  notify:
+  - update grub fedora
 
-- name: Update grub
-  command: grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"
-  when: grub_unrestricted_config.changed or grub_header_config.changed
+
 
 

@@ -15,11 +15,8 @@
     group: root
     mode: '0644'
     content: 'fs.suid_dumpable = 0'
-  register: cis_sysctl_suid_dumpable
-
-- name: Apply sysctl SUID dumpable
-  command: sysctl -p /etc/sysctl.d/20-cis_suid_dumpable.conf
-  when: cis_sysctl_suid_dumpable.changed
+  notify:
+  - Apply sysctl SUID dumpable
 
 - name: Configure sysctl Address Space Layout Randomisation
   copy:
@@ -28,8 +25,5 @@
     group: root
     mode: '0644'
     content: 'kernel.randomize_va_space = 2'
-  register: cis_sysctl_aslr
-
-- name: Apply sysctl Address Space Layout Randomisation
-  command: sysctl -p /etc/sysctl.d/20-cis_aslr.conf
-  when: cis_sysctl_aslr.changed
+  notify:
+  - Apply sysctl Address Space Layout Randomisation

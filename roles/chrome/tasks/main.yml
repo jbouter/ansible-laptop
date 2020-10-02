@@ -1,0 +1,5 @@
+---
+
+- name: install Google Chrome for Debian based systems
+  include_tasks: chrome_debian.yml
+  when: ansible_os_family == "Debian"
