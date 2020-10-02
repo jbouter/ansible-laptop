@@ -31,10 +31,6 @@
     owner: root
     group: root
     mode: '0644'
-  register: configure_chrony
+  notify:
+  - restart chronyd fedora
 
-- name: Restart chrony service
-  systemd:
-    name: chronyd
-    state: restarted
-  when: configure_chrony.changed

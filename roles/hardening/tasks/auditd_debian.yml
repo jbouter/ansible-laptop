@@ -13,17 +13,13 @@
     group: root
     mode: '0640'
     directory_mode: '0750'
-  register: configure_auditd
-
-- name: Restart auditd service
-  systemd:
-    name: auditd
-    state: restarted
-  when: configure_auditd.changed
+  notify:
+  - restart auditd service
 
 - name: Enable auditd service
   systemd:
     name: auditd
+    state: started
     enabled: true
 
 - name: Configure auditd logrotation

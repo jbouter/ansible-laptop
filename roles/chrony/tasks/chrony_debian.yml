@@ -33,11 +33,5 @@
     owner: root
     group: root
     mode: '0644'
-  register: configure_chrony
-
-- name: Restart chrony service
-  systemd:
-    name: chrony
-    state: restarted
-  when: configure_chrony.changed
-  ignore_errors: yes
+  notify:
+    - restart chrony debian

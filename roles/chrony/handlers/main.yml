@@ -1,0 +1,12 @@
+---
+
+- name: Restart chrony service debian
+  systemd:
+    name: chrony
+    state: restarted
+
+- name: Restart chrony service fedora
+  systemd:
+      name: chronyd
+      state: restarted
+  

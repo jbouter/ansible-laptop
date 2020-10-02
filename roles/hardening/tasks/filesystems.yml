@@ -1,0 +1,19 @@
+---
+
+- name: Disable uncommon filesystems
+  copy:
+    dest: "/etc/modprobe.d/{{ item }}.conf"
+    owner: root
+    group: root
+    mode: '0644'
+    content: "install {{ item }} /bin/true"
+  with_items:
+    - cramfs
+    - freevxfs
+    - jffs2
+    - hfs
+    - hfsplus
+    - udf
+  notify:
+  - Remove uncommon network protocol kernel modules
+
