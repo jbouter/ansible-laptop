@@ -10,20 +10,20 @@
     - fusuma-plugin-keypress
     - fusuma-plugin-sendkey
 
-- name: create fusuma configuration directory for {{ username }}
+- name: create fusuma configuration directory for user
   file:
-    name: /home/{{ username }}/.config/fusuma
+    name: "/home/{{ username }}/.config/fusuma"
     state: directory
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: '0755'
 
-- name: configure fusuma for {{ username }}
+- name: configure fusuma for user
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma-config.yml
-    dest: /home/{{ username }}/.config/fusuma/config.yml
-    owner: {{ username }}
-    group: {{ username }}
+    dest: "/home/{{ username }}/.config/fusuma/config.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: '0644'
 
 - name: create fusuma service
@@ -34,11 +34,11 @@
     group: root
     mode: '0755'
 
-- name: replace 'jeffrey' with {{ username }} in service file
+- name: configure correct user in service file
   replace:
     path: /etc/systemd/system/fusuma.service
     regexp: 'jeffrey'
-    replace: {{ username }}
+    replace: "{{ username }}"
 
 - name: start and enable fusuma service
   systemd:
