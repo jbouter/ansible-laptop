@@ -10,4 +10,6 @@
       - ruby-devel
       - libinput
       - libinput-utils
+      - "Development Tools"
+      - "Development Libraries"
     state: present
