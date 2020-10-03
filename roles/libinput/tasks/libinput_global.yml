@@ -59,7 +59,7 @@
 
 - name: place libinput quirks
   get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/local-overrides.quirks
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/local-overrides.quirks
     dest: /etc/libinput/local-overrides.quirks
     owner: root
     group: root
