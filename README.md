@@ -46,6 +46,9 @@ Create a new `yaml` file with the following content:
 ```yaml
 ---
 grub_PBKDF2: grub.pbkdf2.sha512.10000.....
+user_fullname: Firstname Lastname
+user_email: email@example.com
+git_signingkey: 123412341234ABCD
 ```
 
 Fill in the variable from the output of the following command:

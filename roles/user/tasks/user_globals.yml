@@ -1,0 +1,80 @@
+---
+
+- name: create "docker" group
+  group:
+    name: docker
+    state: present
+    system: yes
+
+- name: configure passwordless sudo for wireguard commands
+  copy:
+    dest: /etc/sudoers.d/wireguard
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      #Allow members of group sudo to execute wireguard commands
+      Cmnd_Alias WIREGUARD = /usr/bin/wg show, \
+                              /usr/bin/wg-quick up wg0, \
+                              /usr/bin/wg-quick down wg0
+
+      %sudo ALL = NOPASSWD: WIREGUARD
+      %wheel ALL = NOPASSWD: WIREGUARD
+
+- name: configure bashrc for the user
+  get_url:
+    url: https://kn0x.org/data/bashrc
+    dest: "/home/{{ username }}/.bashrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: configure bashrc for root
+  get_url:
+    url: https://kn0x.org/data/bashrc
+    dest: "/root/.bashrc"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: check if user's vim config exists
+  stat:
+    path: "/home/{{ username }}/.vimrc"
+  register: stat_user_vimrc
+
+- name: configure vimrc for the user
+  get_url:
+    url: https://kn0x.org/data/vimrc
+    dest: "/home/{{ username }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  when: not stat_user_vimrc.stat.exists
+
+- name: check if root's vim config exists
+  stat:
+    path: "/home/root/.vimrc"
+  register: stat_root_vimrc
+
+- name: configure vimrc for root
+  get_url:
+    url: https://kn0x.org/data/vimrc
+    dest: "/root/.vimrc"
+    owner: root
+    group: root
+    mode: '0644'
+  when: not stat_root_vimrc.stat.exists
+
+- name: check if user's git config exists
+  stat:
+    path: "/home/{{ username }}/.gitconfig"
+  register: stat_user_gitconfig
+
+- name: configure git for user
+  template:
+    src: gitconfig.j2
+    dest: "/home/{{ username }}/.gitconfig"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  when: not stat_user_gitconfig.exists
