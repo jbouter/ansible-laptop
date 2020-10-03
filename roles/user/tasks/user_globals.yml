@@ -91,7 +91,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0775'
-  when: not stat_user_rofi_configrofi.stat.exists
+  when: not stat_user_rofi_configdir.stat.exists
 
 - name: configure rofi for user
   copy:
