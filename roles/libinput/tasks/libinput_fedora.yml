@@ -14,10 +14,10 @@
 
 - name: install development tools
   dnf:
-    name: 'Development Tools'
+    name: '@Development Tools'
     state: present
 
 - name: install development libraries
   dnf:
-    name: 'Development Libraries'
+    name: '@Development Libraries'
     state: present
