@@ -10,4 +10,3 @@
 
 - name: install global libinput software and configuration
   include_tasks: libinput_global.yml
-  

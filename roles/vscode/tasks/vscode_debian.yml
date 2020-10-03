@@ -2,7 +2,7 @@
 
 - name: add apt key for microsoft repositories
   apt_key:
-    url: https://packages.microsoft.com/keys/microsoft.asc 
+    url: https://packages.microsoft.com/keys/microsoft.asc
     state: present
 
 - name: configure visual studio code repository

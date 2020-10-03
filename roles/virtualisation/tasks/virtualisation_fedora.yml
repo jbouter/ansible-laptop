@@ -10,13 +10,8 @@
     path: /etc/libvirt/libvirtd.conf
     regexp: '^#unix_sock_rw_perms = "0770"'
     replace: 'unix_sock_rw_perms = "0770"'
-  register: libvirtd_config
-
-- name: restart and enable libvirtd
-  systemd:
-    name: libvirtd
-    state: restarted
-  when: libvirtd_config.changed
+  notify:
+  - restart and enable libvirtd on fedora
 
 - name: start and enable libvirtd
   systemd:
