@@ -18,7 +18,7 @@
         {
             "column": "120",
             "color": "#ff0000"
-        },
+        }
     ],
     "[yaml]": {
         "editor.insertSpaces": true,
@@ -29,5 +29,5 @@
             "strings": true
         }
     },
-    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDragAndDrop": false
 }
