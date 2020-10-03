@@ -2,9 +2,9 @@
 
 - name: install ruby gems required by fusuma
   gem:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
-  with_items:
+  loop:
     - fusuma
     - fusuma-plugin-wmctrl
     - fusuma-plugin-keypress
