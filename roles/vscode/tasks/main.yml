@@ -7,3 +7,6 @@
 - name: install visual studio code for RedHat based systems
   include_tasks: vscode_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: configure visual studio code
+  include_tasks: vscode_configure.yml

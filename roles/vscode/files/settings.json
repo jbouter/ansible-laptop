@@ -1,0 +1,33 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.fontFamily": "'Ubuntu Mono'",
+    "editor.fontSize": 15,
+    "git.alwaysSignOff": true,
+    "git.autofetch": true,
+    "git.postCommitCommand": "sync",
+    "window.menuBarVisibility": "toggle",
+    "workbench.colorTheme": "Default Light+",
+    "git.enableCommitSigning": true,
+    "git.confirmSync": false,
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#ff00FF"
+        },
+        100,
+        {
+            "column": "120",
+            "color": "#ff0000"
+        },
+    ],
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
+    },
+    "explorer.confirmDragAndDrop": false,
+}
