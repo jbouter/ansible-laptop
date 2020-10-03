@@ -19,6 +19,6 @@
                   /usr/bin/dnf install *, \
                   /usr/bin/dnf remove *, \
                   /usr/bin/dnf search *, \
-                  /usr/bin/dnf info *, \
+                  /usr/bin/dnf info * \
 
       %wheel ALL = NOPASSWD: DNF
