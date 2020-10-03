@@ -1,17 +1,17 @@
 ---
 
-- name: Append user to groups
+- name: append user to groups
   user:
     name: "{{ username }}"
     append: yes
     groups: wheel,libvirt,input
 
-- name: Check if user's vim config exists
+- name: check if user's vim config exists
   stat:
     path: "/home/{{ username }}/.vimrc"
   register: stat_user_vimrc
 
-- name: Configure vimrc for the user
+- name: configure vimrc for the user
   get_url:
     url: https://kn0x.org/data/vimrc
     dest: "/home/{{ username }}/.vimrc"

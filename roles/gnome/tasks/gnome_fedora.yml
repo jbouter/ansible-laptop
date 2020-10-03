@@ -1,6 +1,6 @@
 ---
 
-- name: Install GNOME Packages
+- name: install GNOME Packages
   dnf:
     name: gnome-tweaks
     state: present

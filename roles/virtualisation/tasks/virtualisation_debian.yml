@@ -1,6 +1,6 @@
 ---
 
-- name: Install virtualisation packages
+- name: install virtualisation packages
   apt:
     state: present
     pkg:

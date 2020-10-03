@@ -3,5 +3,5 @@
 - name: update grub debian
   command: update-grub
 
-- name: Update grub fedora
+- name: update grub fedora
   command: grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"

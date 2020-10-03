@@ -1,11 +1,11 @@
 ---
 
-- name: Install chrony
+- name: install chrony
   apt:
     name: chrony
     state: present
 
-- name: Stop and disable systemd-timesyncd
+- name: stop and disable systemd-timesyncd
   systemd:
     name: systemd-timesyncd
     state: stopped
@@ -13,20 +13,20 @@
     masked: yes
   ignore_errors: yes
 
-- name: Configure timezone to be Europe/Amsterdam
+- name: configure timezone to be Europe/Amsterdam
   file:
     src: /usr/share/zoneinfo/Europe/Amsterdam
     dest: /etc/localtime
     state: link
 
-- name: Configure chronyd service
+- name: configure chronyd service
   systemd:
     name: chrony
     state: started
     enabled: yes
   ignore_errors: yes
 
-- name: Configure chrony
+- name: configure chrony
   copy:
     src: chrony_debian.conf
     dest: /etc/chrony/chrony.conf

@@ -1,13 +1,13 @@
 ---
 
-- name: Add the flathub remote
+- name: add the flathub remote
   flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: system
 
-- name: Install flatpaks from flathub
+- name: install flatpaks from flathub
   flatpak:
     name: "{{ item }}"
     state: present

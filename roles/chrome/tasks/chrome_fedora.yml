@@ -1,6 +1,6 @@
 ---
 
-- name: Configure the Google Chrome yum repository
+- name: configure the Google Chrome yum repository
   yum_repository:
     name: google-chrome
     description: google-chrome
@@ -8,7 +8,7 @@
     gpgcheck: yes
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
 
-- name: Install Google Chrome
+- name: install Google Chrome
   dnf:
     name: google-chrome-stable
     state: latest

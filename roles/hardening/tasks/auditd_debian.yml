@@ -1,11 +1,11 @@
 ---
 
-- name: Install auditd package
+- name: install auditd package
   apt:
     name: auditd
     state: present
 
-- name: Configure auditd
+- name: configure auditd
   copy:
     src: debian_auditd-rules.d
     dest: /etc/audit/rules.d
@@ -16,13 +16,13 @@
   notify:
   - restart auditd service
 
-- name: Enable auditd service
+- name: enable auditd service
   systemd:
     name: auditd
     state: started
     enabled: true
 
-- name: Configure auditd logrotation
+- name: configure auditd logrotation
   copy:
     dest: /etc/logrotate.d/auditd
     src: debian_auditd-logrotation

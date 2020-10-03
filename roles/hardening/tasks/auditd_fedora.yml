@@ -1,6 +1,6 @@
 ---
 
-- name: Configure auditd
+- name: configure auditd
   copy:
     src: fedora_auditd-rules.d
     dest: /etc/audit/rules.d
@@ -11,7 +11,7 @@
   notify:
     - restart auditd service
 
-- name: Enable auditd service
+- name: enable auditd service
   systemd:
     name: auditd
     state: started

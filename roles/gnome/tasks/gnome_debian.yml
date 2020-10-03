@@ -1,13 +1,13 @@
 ---
 
-- name: Install vanilla GNOME session
+- name: install vanilla GNOME session
   apt:
     pkg:
       - gnome-session
       - gnome-shell-common
       - gnome-tweaks
 
-- name: Configure GDM3 to have default look
+- name: configure GDM3 to have default look
   alternatives:
     name: gdm3-theme.gresource
     path: /usr/share/gnome-shell/gnome-shell-theme.gresource

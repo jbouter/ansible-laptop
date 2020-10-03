@@ -1,6 +1,6 @@
 ---
 
-- name: Install flatpak
+- name: install flatpak
   apt:
     pkg:
     - flatpak

@@ -1,6 +1,6 @@
 ---
 
-- name: Install libinput package requirements
+- name: install libinput package requirements
   apt:
     pkg:
     - build-essential
@@ -10,7 +10,7 @@
     - libevdev-dev
     - ruby-dev
 
-- name: Install ruby gems required by fusuma
+- name: install ruby gems required by fusuma
   gem:
     name: {{ item }}
     state: present
@@ -20,7 +20,7 @@
     - fusuma-plugin-keypress
     - fusuma-plugin-sendkey
 
-- name: Create fusuma configuration directory for {{ username }}
+- name: create fusuma configuration directory for {{ username }}
   file:
     name: /home/{{ username }}/.config/fusuma
     state: directory
@@ -28,7 +28,7 @@
     group: {{ username }}
     mode: '0755'
 
-- name: Configure fusuma for {{ username }}
+- name: configure fusuma for {{ username }}
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma-config.yml
     dest: /home/{{ username }}/.config/fusuma/config.yml
@@ -36,7 +36,7 @@
     group: {{ username }}
     mode: '0644'
 
-- name: Create fusuma service
+- name: create fusuma service
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma.service
     dest: /etc/systemd/system/fusuma.service
@@ -44,13 +44,13 @@
     group: root
     mode: '0755'
 
-- name: Replace 'jeffrey' with {{ username }} in service file
+- name: replace 'jeffrey' with {{ username }} in service file
   replace:
     path: /etc/systemd/system/fusuma.service
     regexp: 'jeffrey'
     replace: {{ username }}
 
-- name: Start and enable fusuma service
+- name: start and enable fusuma service
   systemd:
     daemon_reload: yes
     name: fusuma
@@ -58,7 +58,7 @@
     state: started
   ignore_errors: yes
 
-- name: Create libinput directory
+- name: create libinput directory
   file:
     name: /etc/libinput
     state: directory
@@ -66,7 +66,7 @@
     group: root
     mode: '0755'
 
-- name: Place libinput quirks
+- name: place libinput quirks
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/master/local-overrides.quirks
     dest: /etc/libinput/local-overrides.quirks
@@ -74,7 +74,7 @@
     group: root
     mode: '0644'
 
-- name: Create xorg configuration directory
+- name: create xorg configuration directory
   file:
     name: /etc/X11/xorg.conf.d
     state: directory
@@ -82,7 +82,7 @@
     group: root
     mode: '0755'
 
-- name: Configure xorg libinput stuff
+- name: configure xorg libinput stuff
   get_url:
     url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/10-libinput.conf
     dest: /etc/X11/xorg.conf.d/10-libinput.conf
