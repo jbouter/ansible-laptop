@@ -12,3 +12,4 @@
     - chrony
     - user
     - chrome
+    - libinput
