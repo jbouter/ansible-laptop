@@ -1,25 +1,26 @@
 ---
 
-- name: Install Virtualization group package
+- name: install Virtualization group package
   dnf:
     name: '@Virtualization'
     state: present
 
-- name: Set libvirtd socket read-write permissions
+- name: set libvirtd socket read-write permissions
   replace:
     path: /etc/libvirt/libvirtd.conf
     regexp: '^#unix_sock_rw_perms = "0770"'
     replace: 'unix_sock_rw_perms = "0770"'
-  register: libvirtd_config
+  notify:
+  - restart and enable libvirtd on fedora
 
-- name: Restart and enable libvirtd
-  systemd:
-    name: libvirtd
-    state: restarted
-  when: libvirtd_config.changed
-
-- name: Start and enable libvirtd
+- name: start and enable libvirtd
   systemd:
     name: libvirtd
     state: started
     enabled: yes
+
+- name: append user to libvirt group
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups: libvirt

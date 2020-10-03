@@ -1,0 +1,21 @@
+---
+
+- name: add the flathub remote
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
+
+- name: install flatpaks from flathub
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    remote: flathub
+    method: system
+  loop:
+    - com.discordapp.Discord
+    - com.microsoft.Teams
+    - com.spotify.Client
+    - org.gnome.Geary
+    - org.telegram.desktop

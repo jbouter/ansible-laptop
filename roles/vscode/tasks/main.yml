@@ -1,0 +1,12 @@
+---
+
+- name: install visual studio code for Debian based systems
+  include_tasks: vscode_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: install visual studio code for RedHat based systems
+  include_tasks: vscode_fedora.yml
+  when: ansible_os_family == "RedHat"
+
+- name: configure visual studio code
+  include_tasks: vscode_configure.yml

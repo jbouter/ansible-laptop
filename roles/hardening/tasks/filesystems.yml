@@ -1,6 +1,6 @@
 ---
 
-- name: Disable uncommon filesystems
+- name: disable uncommon filesystems
   copy:
     dest: "/etc/modprobe.d/{{ item }}.conf"
     owner: root
@@ -15,5 +15,5 @@
     - hfsplus
     - udf
   notify:
-  - Remove uncommon filesystem kernel modules
+  - remove uncommon filesystem kernel modules
 

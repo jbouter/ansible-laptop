@@ -1,6 +1,6 @@
 ---
 
-- name: Disable uncommon network protocols
+- name: disable uncommon network protocols
   copy:
     dest: "/etc/modprobe.d/{{ item }}.conf"
     owner: root
@@ -13,9 +13,9 @@
     - rds
     - tipc
   notify:
-  - Remove uncommon network protocol kernel modules
+  - remove uncommon network protocol kernel modules
 
-- name: Configure logging of suspicious packets
+- name: configure logging of suspicious packets
   copy:
     dest: /etc/sysctl.d/20-cis_log_suspicious_packets.conf
     owner: root
@@ -25,9 +25,9 @@
       net.ipv4.conf.all.log_martians = 1
       net.ipv4.conf.default.log_martians = 1
   notify:
-  - Apply logging of suspicious packets
+  - apply logging of suspicious packets
 
-- name: Configure ignore ICMP broadcast
+- name: configure ignore ICMP broadcast
   copy:
     dest: /etc/sysctl.d/20-cis_ignore_icmp_broadcast.conf
     owner: root
@@ -35,9 +35,9 @@
     mode: '0644'
     content: 'net.ipv4.icmp_echo_ignore_broadcasts = 1'
   notify:
-  - Apply ignore ICMP broadcast
+  - apply ignore ICMP broadcast
 
-- name: Configure ignore bogus ICMP
+- name: configure ignore bogus ICMP
   copy:
     dest: /etc/sysctl.d/20-cis_ignore_bogus_icmp.conf
     owner: root
@@ -45,9 +45,9 @@
     mode: '0644'
     content: 'net.ipv4.icmp_ignore_bogus_error_responses = 1'
   notify:
-  - Apply ignore bogus ICMP
+  - apply ignore bogus ICMP
 
-- name: Configure ensure reverse path filtering
+- name: configure ensure reverse path filtering
   copy:
     dest: /etc/sysctl.d/20-cis_ensure_reverse_path_filtering.conf
     owner: root
@@ -57,9 +57,9 @@
       net.ipv4.conf.all.rp_filter = 1
       net.ipv4.conf.default.rp_filter = 1
   notify:
-  - Apply ensure reverse path filtering
+  - apply ensure reverse path filtering
 
-- name: Configure ensure TCP SYN cookies
+- name: configure ensure TCP SYN cookies
   copy:
     dest: /etc/sysctl.d/20-cis_ensure_tcp_syn_cookies.conf
     owner: root
@@ -67,4 +67,4 @@
     mode: '0644'
     content: 'net.ipv4.tcp_syncookies = 1'
   notify:
-  - Apply ensure TCP SYN cookies
+  - apply ensure TCP SYN cookies

@@ -1,6 +1,6 @@
 ---
 
-- name: Default grub configuration
+- name: default grub configuration
   copy:
     src: debian_default-grub
     dest: /etc/default/grub
@@ -10,7 +10,7 @@
     force: no
   register: grub_default_config
 
-- name: Configure unrestricted boot
+- name: configure unrestricted boot
   replace:
     path: /etc/grub.d/10_linux
     regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
@@ -18,7 +18,7 @@
   notify:
     - update grub debian
 
-- name: Configure grub edit password
+- name: configure grub edit password
   blockinfile:
     path: /etc/grub.d/00_header
     insertafter: EOF

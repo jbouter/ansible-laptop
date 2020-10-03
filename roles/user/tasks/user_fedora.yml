@@ -1,21 +1,24 @@
 ---
 
-- name: Append user to groups
+- name: append user to groups
   user:
     name: "{{ username }}"
     append: yes
-    groups: wheel,libvirt,input
+    groups: wheel,libvirt,input,docker
 
-- name: Check if user's vim config exists
-  stat:
-    path: "/home/{{ username }}/.vimrc"
-  register: stat_user_vimrc
+- name: configure passwordless sudo and wheel for dnf commands
+  copy:
+    dest: /etc/sudoers.d/dnf
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      #Allow members of group sudo to execute dnf commands
+      Cmnd_Alias DNF = /usr/bin/dnf update, \
+                  /usr/bin/dnf upgrade, \
+                  /usr/bin/dnf install *, \
+                  /usr/bin/dnf remove *, \
+                  /usr/bin/dnf search *, \
+                  /usr/bin/dnf info * \
 
-- name: Configure vimrc for the user
-  get_url:
-    url: https://kn0x.org/data/vimrc
-    dest: "/home/{{ username }}/.vimrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-  when: not stat_user_vimrc.stat.exists
+      %wheel ALL = NOPASSWD: DNF

@@ -1,0 +1,9 @@
+---
+
+- name: install flatpak
+  dnf:
+    name:
+      - flatpak-libs
+      - flatpak-session-helper
+      - flatpak-selinux
+      - flatpak

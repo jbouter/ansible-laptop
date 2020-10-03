@@ -1,6 +1,6 @@
 ---
 
-- name: Install virtualisation packages
+- name: install virtualisation packages
   apt:
     state: present
     pkg:
@@ -8,3 +8,9 @@
     - qemu-kvm
     - libvirt-daemon-system
     - virt-manager
+
+- name: append user to libvirt group
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups: libvirt

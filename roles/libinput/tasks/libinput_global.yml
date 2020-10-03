@@ -1,0 +1,82 @@
+---
+
+- name: install ruby gems required by fusuma
+  gem:
+    name: "{{ item }}"
+    state: present
+    user_install: no
+  loop:
+    - fusuma
+    - fusuma-plugin-wmctrl
+    - fusuma-plugin-keypress
+    - fusuma-plugin-sendkey
+
+- name: create fusuma configuration directory for user
+  file:
+    name: "/home/{{ username }}/.config/fusuma"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+
+- name: configure fusuma for user
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma-config.yml
+    dest: "/home/{{ username }}/.config/fusuma/config.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: create fusuma service
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma.service
+    dest: /etc/systemd/system/fusuma.service
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: configure correct user in service file
+  replace:
+    path: /etc/systemd/system/fusuma.service
+    regexp: 'jeffrey'
+    replace: "{{ username }}"
+
+- name: start and enable fusuma service
+  systemd:
+    daemon_reload: yes
+    name: fusuma
+    enabled: yes
+    state: started
+  ignore_errors: yes
+
+- name: create libinput directory
+  file:
+    name: /etc/libinput
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: place libinput quirks
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/local-overrides.quirks
+    dest: /etc/libinput/local-overrides.quirks
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: create xorg configuration directory
+  file:
+    name: /etc/X11/xorg.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: configure xorg libinput stuff
+  get_url:
+    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/10-libinput.conf
+    dest: /etc/X11/xorg.conf.d/10-libinput.conf
+    owner: root
+    group: root
+    mode: '0644'

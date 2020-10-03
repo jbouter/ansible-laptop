@@ -1,18 +1,12 @@
 ---
 
-- name: Create "docker" group
-  group:
-    name: docker
-    state: present
-    system: yes
-
-- name: Append user to groups
+- name: append user to groups
   user:
     name: "{{ username }}"
     append: yes
-    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,libvirt,docker
+    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,docker
 
-- name: Configure passwordless sudo for apt commands
+- name: configure passwordless sudo for apt commands
   copy:
     dest: /etc/sudoers.d/apt
     owner: root
@@ -30,61 +24,3 @@
                  /usr/bin/apt autoremove -y \
 
       %sudo ALL = NOPASSWD: APT
-
-- name: Configure passwordless sudo for wireguard commands
-  copy:
-    dest: /etc/sudoers.d/wireguard
-    owner: root
-    group: root
-    mode: '0440'
-    content: |
-      #Allow members of group sudo to execute wireguard commands
-      Cmnd_Alias WIREGUARD = /usr/bin/wg show, \
-                             /usr/bin/wg-quick up wg0, \
-                             /usr/bin/wg-quick down wg0
-
-      %sudo ALL = NOPASSWD: WIREGUARD
-
-- name: Configure bashrc for the user
-  get_url:
-    url: https://kn0x.org/data/bashrc
-    dest: "/home/{{ username }}/.bashrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-
-- name: Configure bashrc for root
-  get_url:
-    url: https://kn0x.org/data/bashrc
-    dest: "/root/.bashrc"
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Check if user's vim config exists
-  stat:
-    path: "/home/{{ username }}/.vimrc"
-  register: stat_user_vimrc
-
-- name: Configure vimrc for the user
-  get_url:
-    url: https://kn0x.org/data/vimrc
-    dest: "/home/{{ username }}/.vimrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-  when: not stat_user_vimrc.stat.exists
-
-- name: Check if root's vim config exists
-  stat:
-    path: "/home/root/.vimrc"
-  register: stat_root_vimrc
-
-- name: Configure vimrc for root
-  get_url:
-    url: https://kn0x.org/data/vimrc
-    dest: "/root/.vimrc"
-    owner: root
-    group: root
-    mode: '0644'
-  when: not stat_root_vimrc.stat.exists

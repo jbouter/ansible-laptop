@@ -1,6 +1,6 @@
 ---
 
-- name: Configure Security Limits Hard Core
+- name: configure Security Limits Hard Core
   copy:
     dest: /etc/security/limits.d/cis_hard_core.conf
     owner: root
@@ -8,7 +8,7 @@
     mode: '0644'
     content: '* hard core 0'
 
-- name: Configure sysctl SUID dumpable
+- name: configure sysctl SUID dumpable
   copy:
     dest: /etc/sysctl.d/20-cis_suid_dumpable.conf
     owner: root
@@ -16,9 +16,9 @@
     mode: '0644'
     content: 'fs.suid_dumpable = 0'
   notify:
-  - Apply sysctl SUID dumpable
+  - apply sysctl SUID dumpable
 
-- name: Configure sysctl Address Space Layout Randomisation
+- name: configure sysctl Address Space Layout Randomisation
   copy:
     dest: /etc/sysctl.d/20-cis_aslr.conf
     owner: root
@@ -26,4 +26,4 @@
     mode: '0644'
     content: 'kernel.randomize_va_space = 2'
   notify:
-  - Apply sysctl Address Space Layout Randomisation
+  - apply sysctl Address Space Layout Randomisation

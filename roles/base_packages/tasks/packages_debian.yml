@@ -1,11 +1,11 @@
 ---
 
-- name: Update all packages to the latest version
+- name: update all packages to the latest version
   apt:
     upgrade: dist
     update_cache: yes
 
-- name: Install base packages
+- name: install base packages
   apt:
     state: present
     pkg:
@@ -31,16 +31,19 @@
     - fastboot
     - pass
     - gnupg2
+    - fzf
+    - pass
+    - rofi
 
-- name: Remove useless packages from the cache
+- name: remove useless packages from the cache
   apt:
     autoclean: yes
 
-- name: Remove dependencies that are no longer required
+- name: remove dependencies that are no longer required
   apt:
     autoremove: yes
 
-- name: Configure vim to be the default editor systemd wide
+- name: configure vim to be the default editor systemd wide
   alternatives:
     name: editor
     path: /usr/bin/vim.basic

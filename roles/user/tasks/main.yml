@@ -1,5 +1,8 @@
 ---
 
+- name: configure user globals
+  include_tasks: user_globals.yml
+
 - name: install user for Debian based systems
   include_tasks: user_debian.yml
   when: ansible_os_family == "Debian"
