@@ -18,4 +18,4 @@
     enabled: yes
     masked: no
   notify:
-  - Manually remount /tmp with noexec permissions
+  - manually remount /tmp with noexec permissions
