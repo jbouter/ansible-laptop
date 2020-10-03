@@ -19,7 +19,7 @@
 
 - name: configure vscode for user
   copy:
-    src: settins.json
+    src: settings.json
     dest: "/home/{{ username }}/.config/Code/User/settings.json"
     force: no
     owner: "{{ username }}"
