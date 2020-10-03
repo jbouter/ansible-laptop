@@ -7,3 +7,7 @@
 - name: install libinput for RedHat based systems
   include_tasks: libinput_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install global libinput software and configuration
+  include_tasks: libinput_global.yml
+  
