@@ -10,6 +10,14 @@
       - ruby-devel
       - libinput
       - libinput-utils
-      - "Development Tools"
-      - "Development Libraries"
+    state: present
+
+- name: install development tools
+  dnf:
+    name: 'Development Tools'
+    state: present
+
+- name: install development libraries
+  dnf:
+    name: 'Development Libraries'
     state: present
