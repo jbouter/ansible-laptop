@@ -78,3 +78,43 @@
     group: "{{ username }}"
     mode: '0644'
   when: not stat_user_gitconfig.stat.exists
+
+- name: check if user rofi configuration dir exists
+  stat:
+    path: "/home/{{ username }}/.config/rofi"
+  register: stat_user_rofi_configdir
+
+- name: create rofi config directory
+  file:
+    path: "/home/{{ username }}/.config/rofi"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0775'
+  when: not stat_user_rofi_configrofi.stat.exists
+
+- name: configure rofi for user
+  copy:
+    src: rofi_config.rasi
+    dest: "/home/{{ username }}/.config/rofi/config.rasi"
+    force: no
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: configure local bin directory for user
+  file:
+    path: "/home/{{ username }}/.local/bin"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+
+- name: install passmenu for user
+  copy:
+    src: passmenu
+    dest: "/home/{{ username }}/.local/bin/passmenu"
+    force: no
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'

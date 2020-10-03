@@ -31,6 +31,9 @@
     - fastboot
     - pass
     - gnupg2
+    - fzf
+    - pass
+    - rofi
 
 - name: remove useless packages from the cache
   apt:

@@ -37,6 +37,9 @@
       - gnupg2
       - nextcloud-client
       - nextcloud-client-nautilus
+      - fzf
+      - pass
+      - rofi
 
 - name: install Development Tools group package
   dnf:
