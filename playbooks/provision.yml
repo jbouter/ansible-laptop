@@ -4,8 +4,8 @@
   roles:
     - etckeeper
     - base_packages
-    - base_snap
     - gnome
+    - flatpak
     - grub
     - nextcloud
     - hardening
