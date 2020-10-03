@@ -23,3 +23,9 @@
     name: libvirtd
     state: started
     enabled: yes
+
+- name: append user to libvirt group
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups: libvirt

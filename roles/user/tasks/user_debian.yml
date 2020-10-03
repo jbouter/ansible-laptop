@@ -4,7 +4,7 @@
   user:
     name: "{{ username }}"
     append: yes
-    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,libvirt,docker
+    groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,docker
 
 - name: configure passwordless sudo for apt commands
   copy:

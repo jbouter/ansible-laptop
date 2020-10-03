@@ -8,3 +8,9 @@
     - qemu-kvm
     - libvirt-daemon-system
     - virt-manager
+
+- name: append user to libvirt group
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups: libvirt
