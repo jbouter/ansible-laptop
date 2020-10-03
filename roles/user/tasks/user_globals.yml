@@ -77,4 +77,4 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
-  when: not stat_user_gitconfig.exists
+  when: not stat_user_gitconfig.stat.exists
