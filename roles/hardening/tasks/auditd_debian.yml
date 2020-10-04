@@ -21,6 +21,7 @@
     name: auditd
     state: started
     enabled: true
+  ignore_errors: yes
 
 - name: configure auditd logrotation
   copy:
