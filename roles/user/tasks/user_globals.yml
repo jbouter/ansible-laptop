@@ -37,10 +37,15 @@
     group: root
     mode: '0644'
 
-- name: check if user's vim config exists
+- name: check if user's vimrc exists
   stat:
     path: "/home/{{ username }}/.vimrc"
   register: stat_user_vimrc
+
+- name: check if user's vimrc exists inside vim directory
+  stat:
+    path: "/home/{{ username }}/.vim/vimrc"
+  register: stat_user_vim_vimrc
 
 - name: configure vimrc for the user
   get_url:
@@ -49,12 +54,17 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
-  when: not stat_user_vimrc.stat.exists
+  when: not stat_user_vimrc.stat.exists and not stat_user_vim_vimrc.stat.exists
 
-- name: check if root's vim config exists
+- name: check if root's vimrc exists
   stat:
     path: "/home/root/.vimrc"
   register: stat_root_vimrc
+
+- name: check if root's vimrc exists inside vim directory
+  stat:
+    path: "/root/.vim/vimrc"
+  register: stat_root_vim_vimrc
 
 - name: configure vimrc for root
   get_url:
@@ -63,7 +73,7 @@
     owner: root
     group: root
     mode: '0644'
-  when: not stat_root_vimrc.stat.exists
+  when: not stat_root_vimrc.stat.exists and not stat_root_vim_vimrc.stat.exists
 
 - name: check if user's git config exists
   stat:
