@@ -33,13 +33,13 @@
     - pass
     - rofi
 
-- name: install ubuntu specific packages
+- name: install ubuntu restricted packages
   apt:
     state: present
     pkg:
     - ubuntu-restricted-addons
     - ubuntu-restricted-extras
-  when: ansible_facts['ansible_distribution'] == "Ubuntu"
+  when: ansible_distribution == "Ubuntu"
 
 - name: remove useless packages from the cache
   apt:
