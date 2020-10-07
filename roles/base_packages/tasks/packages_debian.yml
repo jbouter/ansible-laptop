@@ -24,8 +24,6 @@
     - pwgen
     - wireguard
     - tmux
-    - ubuntu-restricted-addons
-    - ubuntu-restricted-extras
     - vim
     - adb
     - fastboot
@@ -34,6 +32,14 @@
     - fzf
     - pass
     - rofi
+
+- name: install ubuntu restricted packages
+  apt:
+    state: present
+    pkg:
+    - ubuntu-restricted-addons
+    - ubuntu-restricted-extras
+  when: ansible_distribution == "Ubuntu"
 
 - name: remove useless packages from the cache
   apt:

@@ -1,6 +1,6 @@
 ---
 
-- name: install virtualisation packages
+- name: install virtualisation packages for ubuntu
   apt:
     state: present
     pkg:
@@ -8,6 +8,16 @@
     - qemu-kvm
     - libvirt-daemon-system
     - virt-manager
+  when: ansible_distribution == "Ubuntu"
+
+- name: install virtualisation packages for debian
+  apt:
+    state: present
+    pkg:
+    - qemu
+    - libvirt-daemon-system
+    - virt-manager
+  when: ansible_distribution == "Debian"
 
 - name: append user to libvirt group
   user:
