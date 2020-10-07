@@ -11,7 +11,7 @@
   user:
     name: "{{ username }}"
     append: yes
-    groups: adm,cdrom,sudo,dip,plugdev,input,sambashare,docker
+    groups: adm,cdrom,sudo,dip,plugdev,input,docker
   when: ansible_distribution == "Debian"
 
 - name: configure passwordless sudo for apt commands
