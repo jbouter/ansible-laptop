@@ -4,10 +4,10 @@ These playbooks will setup my basic machine to my liking.
 
 Tested on:
 
-* Ubuntu 20.04 & 20.10
-* Fedora 33
-* Debian sid
 * Arch Linux
+* Debian Sid
+* Fedora 33
+* Ubuntu 20.04 & 20.10
 
 ## Preface/Notes
 
@@ -26,7 +26,7 @@ dnf install -y python3-virtualenv
 dnf groupinstall -y "Development Tools"
 ```
 
-### Arch
+### Arch Linux
 
 ```bash
 sudo pacman -S python-pip python-virtualenv base-devel
