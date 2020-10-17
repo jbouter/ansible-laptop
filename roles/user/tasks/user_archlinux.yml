@@ -1,10 +1,16 @@
 ---
 
+- name: create audit group
+  group:
+    name: audit
+    state: present
+    system: yes
+
 - name: append user to groups
   user:
     name: "{{ username }}"
     append: yes
-    groups: wheel,libvirt,input,docker
+    groups: wheel,libvirt,input,docker,audit
 
 - name: configure passwordless sudo and wheel for pacman commands
   copy:

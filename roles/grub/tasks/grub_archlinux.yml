@@ -1,5 +1,16 @@
 ---
 
+- name: default grub configuration
+  copy:
+    src: archlinux_default-grub
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0644'
+    force: no
+  notify:
+    - update grub archlinux
+
 - name: configure unrestricted boot
   replace:
     path: /etc/grub.d/10_linux
