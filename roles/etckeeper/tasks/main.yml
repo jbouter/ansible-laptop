@@ -26,3 +26,7 @@
 - name: install etckeeper for RedHat based systems
   include_tasks: etckeeper_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install etckeeper for Arch Linux based systems
+  include_tasks: etckeeper_archlinux.yml
+  when: ansible_os_family == "Archlinux"
