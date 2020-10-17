@@ -4,9 +4,9 @@ These playbooks will setup my basic machine to my liking.
 
 Tested on:
 
-* Ubuntu 20.04
-* Fedora 32
-
+* Ubuntu 20.10
+* Fedora 33
+* Debian sid
 
 ## Preface/Notes
 
