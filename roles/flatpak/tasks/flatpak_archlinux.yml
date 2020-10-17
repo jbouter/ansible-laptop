@@ -1,0 +1,6 @@
+---
+
+- name: install flatpak
+  pacman:
+    name:
+      - flatpak

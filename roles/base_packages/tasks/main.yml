@@ -7,3 +7,7 @@
 - name: install all requirements for RedHat based systems
   include_tasks: packages_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install all requirements for Arch Linux based systems
+  include_tasks: packages_archlinux.yml
+  when: ansible_os_family == "Archlinux"

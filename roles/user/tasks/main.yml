@@ -10,3 +10,7 @@
 - name: install user for RedHat based systems
   include_tasks: user_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install user for Arch Linux based systems
+  include_tasks: user_archlinux.yml
+  when: ansible_os_family == "Archlinux"

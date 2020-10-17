@@ -29,6 +29,3 @@
       EOF
   notify:
   - update grub debian
-
-
-

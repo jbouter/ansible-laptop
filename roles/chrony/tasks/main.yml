@@ -7,3 +7,7 @@
 - name: install chrony for RedHat based systems
   include_tasks: chrony_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install chrony for Arch Linux based systems
+  include_tasks: chrony_archlinux.yml
+  when: ansible_os_family == "Archlinux"

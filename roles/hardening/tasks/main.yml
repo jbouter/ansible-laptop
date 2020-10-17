@@ -7,3 +7,7 @@
 - name: install hardening for RedHat based systems
   include_tasks: hardening_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install hardening for Arch Linux based systems
+  include_tasks: hardening_archlinux.yml
+  when: ansible_os_family == "Archlinux"

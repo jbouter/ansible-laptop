@@ -7,3 +7,7 @@
 - name: install grub for RedHat based systems
   include_tasks: grub_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install grub for Arch Linux based systems
+  include_tasks: grub_archlinux.yml
+  when: ansible_os_family == "Archlinux"

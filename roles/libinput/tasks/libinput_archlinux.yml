@@ -1,0 +1,11 @@
+---
+
+- name: install libinput package requirements
+  pacman:
+    name:
+      - xdotool
+      - wmctrl
+      - ruby
+      - libinput
+      - base-devel
+    state: present

@@ -1,0 +1,16 @@
+---
+
+- name: clone Google Chrome from aur
+  become: false
+  git:
+    repo: https://aur.archlinux.org/google-chrome.git
+    dest: /tmp/google-chrome
+    version: master
+    update: yes
+
+- name: install Google Chrome using makepkg
+  become: false
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/google-chrome
+    #creates: /usr/bin/yay

@@ -1,0 +1,44 @@
+---
+
+- name: update all packages to the latest version
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: install base packages
+  pacman:
+    state: present
+    name:
+      - htop
+      - atop
+      - iotop
+      - borgbackup
+      - ffmpeg
+      - imagemagick
+      - libreoffice-fresh
+      - pwgen
+      - wireguard-tools
+      - tmux
+      - vim
+      - adb
+      - fastboot
+      - pass
+      - gnupg
+      - fzf
+      - pass
+      - rofi
+
+- name: clone yay from aur
+  become: false
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    version: master
+    update: yes
+
+- name: install yay using makepkg
+  become: false
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/yay
+    creates: /usr/bin/yay

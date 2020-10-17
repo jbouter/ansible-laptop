@@ -1,0 +1,19 @@
+---
+
+- name: append user to groups
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups: wheel,libvirt,input,docker
+
+- name: configure passwordless sudo and wheel for pacman commands
+  copy:
+    dest: /etc/sudoers.d/pacman
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      #Allow members of group sudo to execute pacman commands
+      Cmnd_Alias PACMAN = /usr/bin/pacman *
+
+      %wheel ALL = NOPASSWD: DNF
