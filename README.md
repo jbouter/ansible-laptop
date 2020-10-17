@@ -4,26 +4,35 @@ These playbooks will setup my basic machine to my liking.
 
 Tested on:
 
-* Ubuntu 20.10
+* Arch Linux
+* Debian Sid
 * Fedora 33
-* Debian sid
+* Ubuntu 20.04 & 20.10
 
 ## Preface/Notes
 
-In order to allow this to run, install the following packages
+Before starting, a few things must be configured on the OS.
 
-Ubuntu:
+### Ubuntu/Debian
 
 ```bash
 apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
 ```
 
-Fedora:
+### Fedora
 
 ```bash
 dnf install -y python3-virtualenv
 dnf groupinstall -y "Development Tools"
 ```
+
+### Arch Linux
+
+```bash
+sudo pacman -S python-pip python-virtualenv base-devel
+```
+
+## Setting up the Virtual Environment
 
 Set up the virtual environment as follows:
 
@@ -35,6 +44,8 @@ pip install ansible
 ```
 
 Every time you work with Ansible, source the virtualenv (`source ~/.venvs/ansible/bin/activate`)
+
+## Configuration
 
 Username can be changed from `jeffrey` to whatever you like in `inventory/host_vars/localhost/user.yml`
 GRUB password must be reconfigured by yourself in `inventory/host_Vars/localhost/vault.yml` by creating a new vault:
