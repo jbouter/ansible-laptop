@@ -4,7 +4,7 @@
   systemd:
     name: auditd
     state: restarted
-  when: configure_auditd.changed
+  ignore_errors: True
 
 - name: remove uncommon filesystem kernel modules
   command: "rmmod {{ item }}"

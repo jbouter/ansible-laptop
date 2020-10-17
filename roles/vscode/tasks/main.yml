@@ -8,5 +8,9 @@
   include_tasks: vscode_fedora.yml
   when: ansible_os_family == "RedHat"
 
+- name: install visual studio code for Arch Linux based systems
+  include_tasks: vscode_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
 - name: configure visual studio code
   include_tasks: vscode_configure.yml

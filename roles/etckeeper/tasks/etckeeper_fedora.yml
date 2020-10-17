@@ -1,32 +1,10 @@
 ---
 
-- name: check if root's git config exists
-  stat:
-    path: /root/.gitconfig
-  register: stat_gitconfig
-
-- name: basic git configuration for root user
-  copy:
-    dest: /root/.gitconfig
-    owner: root
-    group: root
-    mode: '0640'
-    content: |
-      [user]
-        name = root
-        email = root@localhost
-      [push]
-        default = simple
-  when: not stat_gitconfig.stat.exists
-
-- name: install git
+- name: install git and etckeeper
   dnf:
-    name: git
-    state: present
-
-- name: install etckeeper"
-  dnf:
-    name: etckeeper
+    name:
+      - git
+      - etckeeper
     state: present
 
 - name: configure etckeeper

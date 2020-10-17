@@ -1,17 +1,15 @@
 ---
 
-
 - name: install git and etckeeper
-  apt:
-    pkg:
+  pacman:
+    name:
       - git
       - etckeeper
     state: present
-    update_cache: yes
 
 - name: configure etckeeper
   copy:
-    src: etckeeper_ubuntu.conf
+    src: etckeeper_archlinux.conf
     dest: /etc/etckeeper/etckeeper.conf
     owner: root
     group: root

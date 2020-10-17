@@ -1,0 +1,40 @@
+---
+
+- include: tmp_fedora.yml
+- include: sysctl.yml
+- include: filesystems.yml
+- include: network.yml
+- include: auditd_fedora.yml
+
+- name: install apparmor
+  pacman:
+    name: apparmor
+    state: present
+
+- name: allow users in audit group to receive auditd notifications
+  replace:
+    path: /etc/audit/auditd.conf
+    regexp: '^log_group \= root'
+    replace: 'log_group = audit'
+
+- name: enable caching of apparmor profiles
+  replace:
+    path: /etc/apparmor/parser.conf
+    regexp: '^#write-cache'
+    replace: 'write-cache'
+
+- name: configure desktop launcher for aa-notify notifcations
+  copy:
+    dest: "/home/{{ username }}/.config/autostart/apparmor-notify.desktop"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+    content: |
+        [Desktop Entry]
+        Type=Application
+        Name=AppArmor Notify
+        Comment=Receive on screen notifications of AppArmor denials
+        TryExec=aa-notify
+        Exec=aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
+        StartupNotify=false
+        NoDisplay=true

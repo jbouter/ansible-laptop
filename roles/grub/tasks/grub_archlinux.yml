@@ -1,12 +1,22 @@
 ---
 
+- name: default grub configuration
+  copy:
+    src: archlinux_default-grub
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - update grub archlinux
+
 - name: configure unrestricted boot
   replace:
     path: /etc/grub.d/10_linux
     regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
     replace: '\1 --unrestricted\3'
   notify:
-    - update grub fedora
+    - update grub archlinux
 
 - name: configure grub edit password
   blockinfile:
@@ -18,4 +28,4 @@
       password_pbkdf2 {{ username }} {{ grub_PBKDF2 }}
       EOF
   notify:
-  - update grub fedora
+  - update grub archlinux

@@ -1,0 +1,6 @@
+---
+
+- name: install visual studio code
+  pacman:
+    name: code
+    state: latest

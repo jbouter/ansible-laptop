@@ -8,5 +8,9 @@
   include_tasks: flatpak_fedora.yml
   when: ansible_os_family == "RedHat"
 
+- name: install flatpak for Arch Linux based systems
+  include_tasks: flatpak_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
 - name: install flatpak packages
   include_tasks: flatpak_packages.yml

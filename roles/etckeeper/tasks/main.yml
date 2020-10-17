@@ -1,5 +1,24 @@
 ---
 
+- name: check if root's git config exists
+  stat:
+    path: /root/.gitconfig
+  register: stat_gitconfig
+
+- name: basic git configuration for root user
+  copy:
+    dest: /root/.gitconfig
+    owner: root
+    group: root
+    mode: '0640'
+    content: |
+      [user]
+        name = root
+        email = root@localhost
+      [push]
+        default = simple
+  when: not stat_gitconfig.stat.exists
+
 - name: install etckeeper for Debian based systems
   include_tasks: etckeeper_debian.yml
   when: ansible_os_family == "Debian"
@@ -7,3 +26,7 @@
 - name: install etckeeper for RedHat based systems
   include_tasks: etckeeper_fedora.yml
   when: ansible_os_family == "RedHat"
+
+- name: install etckeeper for Arch Linux based systems
+  include_tasks: etckeeper_archlinux.yml
+  when: ansible_os_family == "Archlinux"

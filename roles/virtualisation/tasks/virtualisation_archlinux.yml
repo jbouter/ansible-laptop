@@ -1,0 +1,16 @@
+---
+
+- name: install virtualisation packages
+  pacman:
+    state: present
+    name:
+    - qemu
+    - libvirt
+    - virt-manager
+    - virt-installer
+
+- name: append user to libvirt group
+  user:
+    name: "{{ username }}"
+    append: yes
+    groups: libvirt

@@ -1,0 +1,36 @@
+---
+
+- name: install chrony
+  pacman:
+    name: chrony
+    state: present
+
+- name: stop and disable systemd-timesyncd
+  systemd:
+    name: systemd-timesyncd
+    state: stopped
+    enabled: no
+    masked: yes
+
+- name: configure timezone to be Europe/Amsterdam
+  file:
+    src: /usr/share/zoneinfo/Europe/Amsterdam
+    dest: /etc/localtime
+    state: link
+
+- name: configure chronyd service
+  systemd:
+    name: chronyd
+    state: started
+    enabled: yes
+
+- name: configure chrony
+  copy:
+    src: chrony_fedora.conf
+    dest: /etc/chrony.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+  - restart chrony service fedora
+
