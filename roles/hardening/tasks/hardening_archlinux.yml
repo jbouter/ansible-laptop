@@ -14,7 +14,7 @@
 - name: allow users in audit group to receive auditd notifications
   replace:
     path: /etc/audit/auditd.conf
-    regexp: '^log group = root'
+    regexp: '^log group \= root'
     replace: 'log group = audit'
 
 - name: enable caching of apparmor profiles
