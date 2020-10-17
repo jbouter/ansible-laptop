@@ -13,4 +13,4 @@
   command: makepkg --noconfirm -si
   args:
     chdir: /tmp/google-chrome
-    #creates: /usr/bin/yay
+    creates: /usr/bin/google-chrome-stable
