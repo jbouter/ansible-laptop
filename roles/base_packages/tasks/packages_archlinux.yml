@@ -27,6 +27,7 @@
       - fzf
       - pass
       - rofi
+      - ttf-cascadia-code
 
 - name: clone yay from aur
   become: false
