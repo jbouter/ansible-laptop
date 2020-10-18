@@ -1,6 +1,6 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'Ubuntu Mono'",
+    "editor.fontFamily": "'Cascadia Code'",
     "editor.fontSize": 15,
     "git.alwaysSignOff": true,
     "git.autofetch": true,

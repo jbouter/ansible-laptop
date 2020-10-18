@@ -32,6 +32,7 @@
     - fzf
     - pass
     - rofi
+    - fonts-cascadia-code
 
 - name: install ubuntu restricted packages
   apt:

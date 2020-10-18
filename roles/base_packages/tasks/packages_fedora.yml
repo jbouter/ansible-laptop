@@ -40,6 +40,7 @@
       - fzf
       - pass
       - rofi
+      - cascadia-fonts-all
 
 - name: install Development Tools group package
   dnf:
