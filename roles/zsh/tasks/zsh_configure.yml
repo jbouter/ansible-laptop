@@ -1,6 +1,6 @@
 ---
 
-- name: create the antigen directory in /usr/local/share
+- name: ensure /usr/local/share exists
   file:
     path: "{{ item }}"
     state: directory
@@ -10,9 +10,17 @@
   loop:
     - /usr/local
     - /usr/local/share
-    - /usr/local/share/antigen
+
+- name: create the antigen directory
+  file:
+    path: /usr/local/share/antigen
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
 
 - name: clone the custom zsh themes directory
+  become: false
   git:
     repo: https://github.com/jbouter/zsh-themes.git
     dest: /usr/local/share/antigen/zsh-themes
@@ -20,6 +28,7 @@
     update: yes
 
 - name: download and install antigen
+  become: false
   get_url:
     url: https://git.io/antigen
     dest: /usr/local/share/antigen/antigen.zsh
