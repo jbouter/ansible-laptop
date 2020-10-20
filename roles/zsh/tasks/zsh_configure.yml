@@ -32,8 +32,8 @@
   get_url:
     url: https://git.io/antigen
     dest: /usr/local/share/antigen/antigen.zsh
-    owner: root
-    group: root
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: '0644'
 
 - name: configure zsh for user
