@@ -1,0 +1,48 @@
+# The most important bit of this file
+export EDITOR=vim
+
+# Update PATH
+export PATH=$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/sbin:/sbin
+
+# IP addresses
+myip(){
+  curl -s -4 https://ifconfig.co
+  curl -s -6 https://ifconfig.co
+}
+
+# Custom aliases
+alias ls='ls -F --color=auto'
+alias l='ls -F'
+alias ll='ls -l'
+alias la='ls -las'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias mountp='mount | column -t'
+alias duh='du -hsx * 2>/dev/null | sort -hr | head -n 6'
+alias plunt='ss -plunt | column -t'
+alias ip='ip -c'
+alias neofetch='neofetch --ascii_distro fedora --source /home/jeffrey/.local/share/neofetch/merlin.txt'
+
+# Virsh
+alias virsh='virsh -c qemu:///system'
+alias virt-viewer='virt-viewer -c qemu:///system'
+alias virt-install='virt-install --connect qemu:///system'
+
+# custom function to start a new SSH session in a new tmux window
+function t () {
+  tmux new-window -n "$1" "ssh $1"
+}
+
+# Neofetch
+if [ $(id -u) -ge 1000 ]; then
+  neofetch --ascii_distro fedora --disable theme --disable icons --disable terminal --disable CPU --disable GPU --disable memory --disable packages --source /home/jeffrey/.local/share/neofetch/merlin.txt
+fi
+
+# fbd
+# fbd - delete git branch (including remote branches)
+fbd() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" | fzf --multi ) &&
+  git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}

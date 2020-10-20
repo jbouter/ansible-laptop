@@ -28,17 +28,17 @@
     mode: '0644'
 
 - name: configure zsh for user
-  copy:
+  template:
     dest: "/home/{{ username }}/.zshrc"
-    src: zshrc
+    src: zshrc.j2
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
 
 - name: configure zsh for root
-  copy:
+  template:
     dest: "/root/.zshrc"
-    src: zshrc
+    src: zshrc.j2
     owner: root
     group: root
     mode: '0644'

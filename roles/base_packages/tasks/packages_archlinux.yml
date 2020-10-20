@@ -28,6 +28,7 @@
       - pass
       - rofi
       - ttf-cascadia-code
+      - neofetch
 
 - name: clone yay from aur
   become: false
