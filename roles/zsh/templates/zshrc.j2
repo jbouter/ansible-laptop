@@ -23,6 +23,18 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line)
 # Tell Antigen that you're done.
 antigen apply
 
+# Configure Fuzzy Finder
+{% if ansible_os_family == "Debian" %}
+test -f /usr/share/doc/fzf/examples/completion.zsh && source /usr/share/doc/fzf/examples/completion.zsh
+test -f /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/key-bindings.zsh
+{% elif ansible_os_family == "RedHat" %}
+# if using Fedora
+test -f /usr/share/fzf/shell/key-bindings.zsh && source /usr/share/fzf/shell/key-bindings.zsh
+{% elif ansible_os_family == "Archlinux" %}
+test -f /usr/share/fzf/key-bindings.zsh && source /usr/share/fzf/key-bindings.zsh
+test -f /usr/share/fzf/completion.zsh && source /usr/share/fzf/completion.zsh
+{% endif %}
+
 # Source .bash_aliases if present
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases

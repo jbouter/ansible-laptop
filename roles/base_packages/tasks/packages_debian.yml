@@ -33,6 +33,7 @@
     - pass
     - rofi
     - fonts-cascadia-code
+    - neofetch
 
 - name: install ubuntu restricted packages
   apt:
