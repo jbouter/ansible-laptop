@@ -1,0 +1,29 @@
+source /usr/local/share/antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Enable some bundles
+antigen bundle git
+antigen bundle pip
+antigen bundle docker
+antigen bundle command-not-found
+
+# Load the theme.
+antigen bundle /usr/local/share/antigen/zsh-themes debian.zsh-theme --no-local-clone
+
+# Use Syntax Highlighting
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=black,bold'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=black,bold'
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line)
+
+# Tell Antigen that you're done.
+antigen apply
+
+# Source .bash_aliases if present
+if [ -f ~/.bash_aliases ]; then
+  source ~/.bash_aliases
+fi

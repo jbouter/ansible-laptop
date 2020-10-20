@@ -1,0 +1,55 @@
+---
+
+- name: create the antigen directory in /usr/local/share
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - /usr/local
+    - /usr/local/share
+    - /usr/local/share/antigen
+
+- name: clone the custom zsh themes directory
+  become: false
+  git:
+    repo: https://github.com/jbouter/zsh-themes.git
+    dest: /usr/local/share/antigen/zsh-themes
+    version: main
+    update: yes
+
+- name: download and install antigen
+  get_url:
+    url: https://git.io/antigen
+    dest: /usr/local/share/antigen/antigen.zsh
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: configure zsh for user
+  copy:
+    dest: "/home/{{ username }}/.zshrc"
+    src: zshrc
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: configure zsh for root
+  copy:
+    dest: "/root/.zshrc"
+    src: zshrc
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: set zsh as default shell for user
+  user:
+    name: "{{ username }}"
+    shell: /usr/bin/zsh
+
+- name: set zsh as default shell for root
+  user:
+    name: root
+    shell: /usr/bin/zsh
