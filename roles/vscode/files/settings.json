@@ -6,7 +6,9 @@
     "git.autofetch": true,
     "git.postCommitCommand": "sync",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Default Dark+",
+    "explorer.confirmDelete": false,
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "git.enableCommitSigning": true,
     "git.confirmSync": false,
     "editor.rulers": [
