@@ -17,6 +17,8 @@
         email = root@localhost
       [push]
         default = simple
+      [init]
+        defaultBranch = main
   when: not stat_gitconfig.stat.exists
 
 - name: install etckeeper for Debian based systems
