@@ -7,10 +7,19 @@
     - qemu
     - libvirt
     - virt-manager
-    - virt-installer
+    - virt-viewer
+    - dnsmasq
+    - ebtables
+    - dmidecode
 
 - name: append user to libvirt group
   user:
     name: "{{ username }}"
     append: yes
     groups: libvirt
+
+- name: start and enable libvirtd
+  systemd:
+    name: libvirtd
+    state: started
+    enabled: yes

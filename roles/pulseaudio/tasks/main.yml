@@ -1,0 +1,9 @@
+---
+
+- name: fix static sound in pulseaudio configuration
+  replace:
+    path: /etc/pulse/default.pa
+    regexp: "^load-module module-udev-detect$"
+    replace: 'load-module module-udev-detect tsched=0'
+  notify:
+    - restart pulseaudio

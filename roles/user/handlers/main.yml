@@ -1,0 +1,8 @@
+---
+
+- name: install vim repository
+  become: yes
+  become_user: "{{ username }}"
+  command: make install
+  args:
+    chdir: "/home/{{ username }}/.vim"

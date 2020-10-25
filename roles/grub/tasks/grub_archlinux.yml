@@ -1,12 +1,10 @@
 ---
 
 - name: default grub configuration
-  copy:
-    src: archlinux_default-grub
-    dest: /etc/default/grub
-    owner: root
-    group: root
-    mode: '0644'
+  replace:
+    path: /etc/default/grub
+    regexp: "^GRUB_CMDLINE_LINUX_DEFAULT=\".*quiet.*"
+    replace: 'GRUB_CMDLINE_LINUX_DEFAULT="apparmor=1 lsm=lockdown,yama,apparmor"'
   notify:
     - update grub archlinux
 

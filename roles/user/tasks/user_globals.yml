@@ -53,43 +53,33 @@
     group: root
     mode: '0644'
 
-- name: check if user's vimrc exists
-  stat:
-    path: "/home/{{ username }}/.vimrc"
-  register: stat_user_vimrc
-
-- name: check if user's vimrc exists inside vim directory
-  stat:
-    path: "/home/{{ username }}/.vim/vimrc"
-  register: stat_user_vim_vimrc
-
-- name: configure vimrc for the user
-  get_url:
-    url: https://kn0x.org/data/vimrc
+- name: ensure user vimrc has been removed
+  file:
     dest: "/home/{{ username }}/.vimrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-  when: not stat_user_vimrc.stat.exists and not stat_user_vim_vimrc.stat.exists
+    state: absent
 
-- name: check if root's vimrc exists
-  stat:
-    path: "/home/root/.vimrc"
-  register: stat_root_vimrc
+- name: clone vim repository to user
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/roaldnefs/.vim.git
+    dest: "/home/{{ username }}/.vim"
+    version: main
+  notify:
+    - install vim repository
 
-- name: check if root's vimrc exists inside vim directory
-  stat:
-    path: "/root/.vim/vimrc"
-  register: stat_root_vim_vimrc
+- name: ensure root vimrc has been removed
+  file:
+    dest: /root/.vimrc
+    state: absent
 
-- name: configure vimrc for root
-  get_url:
-    url: https://kn0x.org/data/vimrc
-    dest: "/root/.vimrc"
+- name: configure vim for root
+  file:
+    src: "/home/{{ username }}/.vim"
+    dest: /root/.vim
     owner: root
     group: root
-    mode: '0644'
-  when: not stat_root_vimrc.stat.exists and not stat_root_vim_vimrc.stat.exists
+    state: link
 
 - name: check if user's git config exists
   stat:

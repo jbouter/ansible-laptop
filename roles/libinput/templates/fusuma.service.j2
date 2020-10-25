@@ -1,0 +1,20 @@
+[Unit]
+Description=Fusuma
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User={{ username }}
+Group={{ username }}
+Environment="DISPLAY=:0"
+{% if ansible_distribution == 'Archlinux' %}
+ExecStart=/usr/bin/fusuma
+{% else %}
+ExecStart=/usr/local/bin/fusuma
+{% endif %}
+Type=simple
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

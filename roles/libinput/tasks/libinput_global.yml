@@ -20,26 +20,20 @@
     mode: '0755'
 
 - name: configure fusuma for user
-  get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma-config.yml
+  copy:
+    src: fusuma-config.yml
     dest: "/home/{{ username }}/.config/fusuma/config.yml"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
 
 - name: create fusuma service
-  get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/fusuma.service
+  template:
+    src: "fusuma.service.j2"
     dest: /etc/systemd/system/fusuma.service
     owner: root
     group: root
-    mode: '0755'
-
-- name: configure correct user in service file
-  replace:
-    path: /etc/systemd/system/fusuma.service
-    regexp: 'jeffrey'
-    replace: "{{ username }}"
+    mode: '0644'
 
 - name: start and enable fusuma service
   systemd:
@@ -58,8 +52,8 @@
     mode: '0755'
 
 - name: place libinput quirks
-  get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/local-overrides.quirks
+  copy:
+    src: local-overrides.quirks
     dest: /etc/libinput/local-overrides.quirks
     owner: root
     group: root
@@ -74,8 +68,8 @@
     mode: '0755'
 
 - name: configure xorg libinput stuff
-  get_url:
-    url: https://raw.githubusercontent.com/jbouter/libinput-magic-mouse/main/10-libinput.conf
+  copy:
+    src: 10-libinput.conf
     dest: /etc/X11/xorg.conf.d/10-libinput.conf
     owner: root
     group: root

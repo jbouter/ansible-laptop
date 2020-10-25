@@ -1,0 +1,9 @@
+---
+
+- name: restart pulseaudio
+  systemd:
+    state: restarted
+    name: pulseaudio
+    scope: user
+  become: yes
+  become_user: "{{ username }}"

@@ -29,9 +29,11 @@
       - rofi
       - ttf-cascadia-code
       - neofetch
+      - fprintd
 
 - name: clone yay from aur
-  become: false
+  become: yes
+  become_user: "{{ username }}"
   git:
     repo: https://aur.archlinux.org/yay.git
     dest: /tmp/yay
@@ -39,8 +41,15 @@
     update: yes
 
 - name: install yay using makepkg
-  become: false
+  become: yes
+  become_user: "{{ username }}"
   command: makepkg --noconfirm -si
   args:
     chdir: /tmp/yay
     creates: /usr/bin/yay
+
+- name: start and enable fprintd
+  systemd:
+    name: fprintd
+    state: started
+    enabled: True
