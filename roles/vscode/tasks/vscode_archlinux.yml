@@ -1,6 +1,18 @@
 ---
 
-- name: install visual studio code
-  pacman:
-    name: code
-    state: latest
+- name: clone visual studio code from aur
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://aur.archlinux.org/visual-studio-code-bin.git
+    dest: /tmp/visual-studio-code-bin
+    version: master
+    update: yes
+
+- name: install visual studio code using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/visual-studio-code-bin
+    creates: /usr/bin/code

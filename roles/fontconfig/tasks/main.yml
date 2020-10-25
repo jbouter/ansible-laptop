@@ -1,0 +1,5 @@
+---
+
+- name: install fontconfig for Arch Linux based systems
+  include_tasks: fontconfig_archlinux.yml
+  when: ansible_os_family == "Archlinux"

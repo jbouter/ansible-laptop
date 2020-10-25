@@ -1,0 +1,25 @@
+---
+
+- name: enable sub-pixel-rgb font hinting
+  file:
+    src: /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
+    dest: /etc/fonts/conf.d/10-sub-pixel-rgb.conf
+    owner: root
+    group: root
+    state: link
+
+- name: create fontconfig directory for user
+  file:
+    dest: "/home/{{ username }}/.config/fontconfig"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+    state: directory
+
+- name: configure fontconfig for user
+  copy:
+    dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
+    src: fonts_arch.conf
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'

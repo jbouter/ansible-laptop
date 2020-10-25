@@ -22,4 +22,4 @@
       #Allow members of group sudo to execute pacman commands
       Cmnd_Alias PACMAN = /usr/bin/pacman *
 
-      %wheel ALL = NOPASSWD: DNF
+      %wheel ALL = NOPASSWD: PACMAN

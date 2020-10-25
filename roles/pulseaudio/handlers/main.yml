@@ -1,0 +1,6 @@
+---
+
+- name: restart pulseaudio
+  command: systemctl --user restart pulseaudio.service
+  become: yes
+  become_user: "{{ username }}"

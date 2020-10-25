@@ -6,9 +6,12 @@
 - include: network.yml
 - include: auditd_fedora.yml
 
-- name: install apparmor
+- name: install apparmor and aa-notify dependencies
   pacman:
-    name: apparmor
+    name:
+      - apparmor
+      - python-psutil
+      - python-notify2
     state: present
 
 - name: allow users in audit group to receive auditd notifications
