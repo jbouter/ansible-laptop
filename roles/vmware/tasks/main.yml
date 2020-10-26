@@ -1,7 +1,7 @@
 ---
 
 - name: install vmware horizon client for debian and rhel based systems
-  include_tasks: horizon_installation.yml
+  include_tasks: horizon_debian_fedora.yml
   when: ansible_os_family == "Debian" or ansible_os_family == "RedHat"
 
 - name: install vmware horizon client for Arch Linux based systems
