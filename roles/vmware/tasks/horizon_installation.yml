@@ -3,7 +3,7 @@
 - name: check if vmware view agent is installed
   stat:
     path: /usr/bin/vmware-view
-  register: stat_vmware-view
+  register: stat_vmware_view
 
 - name: ensure /tmp is mounted with exec permissions
   mount:
