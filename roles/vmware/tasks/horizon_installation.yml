@@ -1,16 +1,23 @@
 ---
 
+- name: check if vmware view agent is installed
+  stat:
+    path: /usr/bin/vmware-view
+  register: stat_vmware-view
+
 - name: ensure /tmp is mounted with exec permissions
   mount:
     path: /tmp
     opts: exec
     state: remounted
+  when: not stat_vmware-view.stat.exists
 
 - name: download the vmware horizon client installer
   get_url:
     url: https://download3.vmware.com/software/view/viewclients/CART21FQ2/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle
     dest: /tmp/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle
     mode: '0755'
+  when: not stat_vmware-view.stat.exists
 
 - name: install vmware horizon client
   command: >-
@@ -24,8 +31,12 @@
     --set-setting vmware-horizon-serialportclient serialportEnable no
     --set-setting vmware-horizon-mmr mmrEnable no
     --set-setting vmware-horizon-media-provider mediaproviderEnable no
+  args:
+    creates: /usr/bin/vmware-view
+  when: not stat_vmware-view.stat.exists
 
 - name: ensure /tmp is mounted with original permissions
   mount:
     path: /tmp
     state: remounted
+  when: not stat_vmware-view.stat.exists
