@@ -1,0 +1,45 @@
+---
+
+- name: check if vmware view agent is installed
+  stat:
+    path: /usr/bin/vmware-view
+  register: stat_vmware_view
+
+- name: ensure /tmp is mounted with exec permissions
+  mount:
+    path: /tmp
+    opts: exec
+    state: remounted
+  when: not stat_vmware_view.stat.exists
+
+- name: download the vmware horizon client installer
+  get_url:
+    url: https://download3.vmware.com/software/view/viewclients/CART21FQ2/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle
+    dest: /tmp/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle
+    mode: '0755'
+  when: not stat_vmware_view.stat.exists
+
+- name: install vmware horizon client
+  command: >-
+    /usr/bin/env TERM=dumb VMWARE_EULAS_AGREED=yes
+    /tmp/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle --console --ignore-errors --required --eulas-agreed
+    --set-setting vmware-horizon-html5mmr html5mmrEnable yes
+    --set-setting vmware-horizon-integrated-printing vmipEnable yes
+    --set-setting vmware-horizon-usb usbEnable no
+    --set-setting vmware-horizon-smartcard smartcardEnable no
+    --set-setting vmware-horizon-rtav rtavEnable yes
+    --set-setting vmware-horizon-tsdr tsdrEnable no
+    --set-setting vmware-horizon-scannerclient scannerEnable no
+    --set-setting vmware-horizon-serialportclient serialportEnable no
+    --set-setting vmware-horizon-mmr mmrEnable yes
+    --set-setting vmware-horizon-media-provider mediaproviderEnable no
+    --set-setting vmware-horizon-virtual-printing tpEnable no
+  args:
+    creates: /usr/bin/vmware-view
+  when: not stat_vmware_view.stat.exists
+
+- name: ensure /tmp is mounted with original permissions
+  mount:
+    path: /tmp
+    state: remounted
+  when: not stat_vmware_view.stat.exists

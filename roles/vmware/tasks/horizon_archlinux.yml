@@ -1,0 +1,18 @@
+---
+
+- name: clone vmware horizon client from aur
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://aur.archlinux.org/vmware-horizon-client.git
+    dest: /tmp/vmware-horizon-client
+    version: master
+    update: yes
+
+- name: install vmware horizon client using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/vmware-horizon-client
+    creates: /usr/bin/vmware-view
