@@ -30,6 +30,8 @@
       - ttf-cascadia-code
       - neofetch
       - fprintd
+      - bluez
+      - bluez-utils
 
 - name: clone yay from aur
   become: yes
@@ -51,5 +53,11 @@
 - name: start and enable fprintd
   systemd:
     name: fprintd
+    state: started
+    enabled: True
+
+- name: start and enable the bluetooth daemon
+  systemd:
+    name: bluetooth
     state: started
     enabled: True
