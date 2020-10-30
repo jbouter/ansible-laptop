@@ -1,0 +1,50 @@
+---
+
+- name: configure gnome cursor theme
+  dconf:
+    key: "/org/gnome/desktop/interface/cursor-theme"
+    state: present
+    value: "'Adwaita'"
+
+- name: configure gnome document font name
+  dconf:
+    key: "/org/gnome/desktop/interface/document-font-name"
+    state: present
+    value: "'Sans 10'"
+
+- name: configure gnome font name
+  dconf:
+    key: "/org/gnome/desktop/interface/font-name"
+    state: present
+    value: "'Cantarell 10'"
+
+- name: configure gnome gtk theme
+  dconf:
+    key: "/org/gnome/desktop/interface/gtk-theme"
+    state: present
+    value: "'Adwaita'"
+
+- name: configure gnome monospace font
+  dconf:
+    key: "/org/gnome/desktop/interface/monospace-font-name"
+    state: present
+    value: "'Source Code Pro 10'"
+
+- name: configure gnome battery percentage in titlebar
+  dconf:
+    key: "/org/gnome/desktop/interface/show-battery-percentage"
+    state: present
+    value: "true"
+
+- name: configure gnome desktop background
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    state: present
+    value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
+
+- name: configure gnome natural scrolling
+  dconf:
+    key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
+    state: present
+    value: "true"
+

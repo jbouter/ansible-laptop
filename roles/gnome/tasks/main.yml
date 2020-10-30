@@ -7,3 +7,13 @@
 - name: install gnome for RedHat based systems
   include_tasks: gnome_fedora.yml
   when: ansible_os_family == "RedHat"
+
+
+- name: include gnome settings for user
+  include_tasks: gnome_user.yml
+  args:
+    apply:
+      become_user: "{{ username }}"
+      become: yes
+
+
