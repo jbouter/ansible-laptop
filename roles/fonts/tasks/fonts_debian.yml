@@ -12,6 +12,7 @@
     owner: root
     group: root
     mode: '0755'
+    state: directory
   loop:
     - /usr/local/share/fonts
     - /usr/local/share/fonts/source-code-pro
