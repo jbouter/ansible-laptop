@@ -6,6 +6,7 @@
       - gnome-session
       - gnome-shell-common
       - gnome-tweaks
+      - gnome-backgrounds
 
 - name: configure GDM3 to have default look
   alternatives:
