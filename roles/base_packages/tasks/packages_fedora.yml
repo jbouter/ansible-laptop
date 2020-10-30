@@ -40,7 +40,6 @@
       - fzf
       - pass
       - rofi
-      - cascadia-fonts-all
       - neofetch
 
 - name: install Development Tools group package

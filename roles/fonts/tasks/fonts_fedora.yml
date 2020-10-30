@@ -1,0 +1,15 @@
+---
+
+- name: install font packages
+  dnf:
+    name:
+      - cascadia-fonts-all
+      - adobe-source-code-pro-fonts
+
+- name: configure fontconfig for user
+  copy:
+    dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
+    src: fonts_generic.conf
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'

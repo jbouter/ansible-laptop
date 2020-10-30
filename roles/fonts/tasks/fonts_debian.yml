@@ -1,0 +1,28 @@
+---
+
+- name: install base packages
+  apt:
+    state: present
+    pkg:
+      - fonts-cascadia-code
+
+- name: create local fonts directory
+  file:
+    dest: /usr/local/share/fonts
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: download and extract source code pro
+  unarchive:
+    src: https://fonts.google.com/download?family=Source%20Code%20Pro
+    dest: /usr/local/share/fonts/source-code-pro
+    remote_src: yes
+
+- name: configure fontconfig for user
+  copy:
+    dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
+    src: fonts_generic.conf
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'

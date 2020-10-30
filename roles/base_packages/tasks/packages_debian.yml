@@ -9,31 +9,30 @@
   apt:
     state: present
     pkg:
-    - htop
-    - atop
-    - iotop
-    - direnv
-    - borgbackup
-    - ffmpeg
-    - imagemagick
-    - libreoffice-base-core
-    - libreoffice-writer
-    - libreoffice-calc
-    - libreoffice-gnome
-    - libreoffice-gtk3
-    - pwgen
-    - wireguard
-    - tmux
-    - vim
-    - adb
-    - fastboot
-    - pass
-    - gnupg2
-    - fzf
-    - pass
-    - rofi
-    - fonts-cascadia-code
-    - neofetch
+      - htop
+      - atop
+      - iotop
+      - direnv
+      - borgbackup
+      - ffmpeg
+      - imagemagick
+      - libreoffice-base-core
+      - libreoffice-writer
+      - libreoffice-calc
+      - libreoffice-gnome
+      - libreoffice-gtk3
+      - pwgen
+      - wireguard
+      - tmux
+      - vim
+      - adb
+      - fastboot
+      - pass
+      - gnupg2
+      - fzf
+      - pass
+      - rofi
+      - neofetch
 
 - name: install ubuntu restricted packages
   apt:
