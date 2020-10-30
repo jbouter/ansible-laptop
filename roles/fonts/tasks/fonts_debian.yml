@@ -16,7 +16,7 @@
 - name: download and extract source code pro
   unarchive:
     src: https://fonts.google.com/download?family=Source%20Code%20Pro
-    dest: /usr/local/share/fonts/source-code-pro
+    dest: /usr/local/share/fonts
     remote_src: yes
 
 - name: configure fontconfig for user
