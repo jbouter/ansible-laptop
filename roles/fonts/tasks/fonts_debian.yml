@@ -8,15 +8,18 @@
 
 - name: create local fonts directory
   file:
-    dest: /usr/local/share/fonts
+    dest: "{{ item }}"
     owner: root
     group: root
     mode: '0755'
+  loop:
+    - /usr/local/share/fonts
+    - /usr/local/share/fonts/source-code-pro
 
 - name: download and extract source code pro
   unarchive:
     src: https://fonts.google.com/download?family=Source%20Code%20Pro
-    dest: /usr/local/share/fonts
+    dest: /usr/local/share/fonts/source-code-pro
     remote_src: yes
 
 - name: configure fontconfig for user
