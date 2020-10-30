@@ -5,6 +5,7 @@
     state: present
     pkg:
       - fonts-cascadia-code
+      - fonts-cantarell
 
 - name: create local fonts directory
   file:

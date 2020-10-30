@@ -6,6 +6,7 @@
     name:
       - ttf-cascadia-code
       - adobe-source-code-pro-fonts
+      - cantarell-fonts
 
 - name: enable sub-pixel-rgb font hinting
   file:

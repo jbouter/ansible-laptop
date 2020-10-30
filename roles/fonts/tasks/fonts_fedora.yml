@@ -5,6 +5,7 @@
     name:
       - cascadia-fonts-all
       - adobe-source-code-pro-fonts
+      - abattis-cantarell-fonts
 
 - name: configure fontconfig for user
   copy:
