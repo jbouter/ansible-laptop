@@ -15,8 +15,8 @@
     content: |
       #Allow members of group sudo to execute wireguard commands
       Cmnd_Alias WIREGUARD = /usr/bin/wg show, \
-                              /usr/bin/wg-quick up wg0, \
-                              /usr/bin/wg-quick down wg0
+                              /usr/bin/wg-quick up wg[0-9], \
+                              /usr/bin/wg-quick down wg[0-9]
 
       %sudo ALL = NOPASSWD: WIREGUARD
       %wheel ALL = NOPASSWD: WIREGUARD
