@@ -27,7 +27,6 @@
       - fzf
       - pass
       - rofi
-      - ttf-cascadia-code
       - neofetch
       - fprintd
       - bluez

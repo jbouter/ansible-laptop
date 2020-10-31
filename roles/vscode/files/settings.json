@@ -1,6 +1,6 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'Cascadia Code'",
+    "editor.fontFamily": "'Source Code Pro'",
     "editor.fontSize": 15,
     "git.alwaysSignOff": true,
     "git.autofetch": true,

@@ -4,6 +4,7 @@
   roles:
     - etckeeper
     - base_packages
+    - fonts
     - gnome
     - flatpak
     - grub
@@ -17,6 +18,5 @@
     - virtualisation
     - zsh
     - keychron
-    - fontconfig
     - pulseaudio
     - vmware
