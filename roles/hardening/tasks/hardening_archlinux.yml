@@ -40,3 +40,9 @@
         Exec=aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
         StartupNotify=false
         NoDisplay=true
+
+- name: start and enabled apparmor service
+  systemd:
+    name: apparmor
+    state: started
+    enabled: yes
