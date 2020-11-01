@@ -33,6 +33,7 @@
       - bluez
       - bluez-utils
       - python-psutil
+      - reflector
 
 - name: clone yay from aur
   become: yes
@@ -51,6 +52,24 @@
     chdir: /tmp/yay
     creates: /usr/bin/yay
 
+- name: clone informant from aur
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://aur.archlinux.org/informant.git
+    dest: /tmp/informant
+    version: master
+    update: yes
+
+- name: install informant using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/informant
+    creates: /usr/bin/informant
+  notify: "initialise informant"
+
 - name: start and enable fprintd
   systemd:
     name: fprintd
@@ -62,3 +81,46 @@
     name: bluetooth
     state: started
     enabled: True
+
+- name: create config directories
+  file:
+    dest: "{{ item }}"
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+  loop:
+    - /etc/xdg/reflector
+    - /etc/pacman.d/hooks
+
+- name: create the reflector configuration file
+  copy:
+    dest: /etc/xdg/reflector/reflector.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      --save /etc/pacman.d/mirrorlist
+      --country Netherlands
+      --protocol https
+      --latest 5
+  notify: "run the reflector service"
+
+- name: create the pacman hook for reflector
+  copy:
+    dest: /etc/pacman.d/hooks/mirrorupgrade.hook
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      [Trigger]
+      Operation = Upgrade
+      Type = Package
+      Target = pacman-mirrorlist
+
+      [Action]
+      Description = Updating pacman-mirrorlist with reflector and removing pacnew...
+      When = PostTransaction
+      Depends = reflector
+      Exec = /bin/sh -c 'systemctl start reflector.service; if [ -f /etc/pacman.d/mirrorlist.pacnew ]; then rm /etc/pacman.d/mirrorlist.pacnew; fi'
+  notify: "run the reflector service"

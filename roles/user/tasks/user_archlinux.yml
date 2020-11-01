@@ -10,7 +10,7 @@
   user:
     name: "{{ username }}"
     append: yes
-    groups: wheel,libvirt,input,docker,audit,adbusers
+    groups: wheel,libvirt,input,docker,audit,adbusers,informant
 
 - name: configure passwordless sudo and wheel for pacman commands
   copy:
