@@ -33,6 +33,7 @@
       - pass
       - rofi
       - neofetch
+      - python3-psutil
 
 - name: install ubuntu restricted packages
   apt:

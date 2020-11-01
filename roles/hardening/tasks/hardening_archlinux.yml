@@ -10,7 +10,6 @@
   pacman:
     name:
       - apparmor
-      - python-psutil
       - python-notify2
     state: present
 
