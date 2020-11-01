@@ -15,13 +15,13 @@
     enabled: no
 
 - name: configure automatic iptables saving on stop
-  regexp:
+  replace:
     path: /etc/sysconfig/iptables-config
     regexp: "^IPTABLES_SAVE_ON_STOP=\"no\""
     replace: "IPTABLES_SAVE_ON_STOP=\"yes\""
 
 - name: configure automatic iptables saving on restart
-  regexp:
+  replace:
     path: /etc/sysconfig/iptables-config
     regexp: "^IPTABLES_SAVE_ON_RESTART=\"no\""
     replace: "IPTABLES_SAVE_ON_RESTART=\"yes\""
