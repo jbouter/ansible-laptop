@@ -22,6 +22,7 @@
       - vim
       - adb
       - fastboot
+      - android-udev
       - pass
       - gnupg
       - fzf
