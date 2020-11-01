@@ -1,0 +1,10 @@
+---
+
+- name: run the reflector service
+  systemd:
+    name: reflector
+    state: started
+    daemon_reload: yes
+
+- name: initialise informant
+  command: informant read --all
