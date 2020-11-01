@@ -75,7 +75,7 @@
     ip_version: ipv4
   notify: "run firewall handler"
 
-- name: INPUT - allow new, established and related for ICMP ipv4
+- name: INPUT - allow new, established and related for ICMP ipv6
   iptables:
     chain: INPUT
     ctstate: NEW,ESTABLISHED,RELATED
