@@ -1,12 +1,10 @@
 ---
 
 - name: install iptables packages
-  dnf:
+  pacman:
     state: present
     name:
       - iptables
-      - iptables-services
-      - iptables-utils
 
 - name: start and enable iptables
   systemd:
