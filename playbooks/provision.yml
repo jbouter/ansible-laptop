@@ -4,6 +4,7 @@
   roles:
     - etckeeper
     - base_packages
+    - firewall
     - fonts
     - gnome
     - flatpak

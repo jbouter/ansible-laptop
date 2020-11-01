@@ -1,0 +1,19 @@
+---
+
+- name: install iptables packages
+  pacman:
+    state: present
+    name:
+      - iptables
+
+- name: start and enable iptables
+  systemd:
+    name: iptables
+    state: started
+    enabled: yes
+
+- name: start and enable ip6tables
+  systemd:
+    name: ip6tables
+    state: started
+    enabled: yes
