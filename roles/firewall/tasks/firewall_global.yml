@@ -75,6 +75,7 @@
   loop:
     - tcp
     - udp
+  notify: "run firewall handler"
 
 #
 # Set the default policies of our chains to DROP
