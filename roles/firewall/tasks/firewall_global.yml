@@ -71,6 +71,7 @@
     jump: ACCEPT
     protocol: "{{ item }}"
     destination_port: "1716"
+    ctstate: NEW
   loop:
     - tcp
     - udp
