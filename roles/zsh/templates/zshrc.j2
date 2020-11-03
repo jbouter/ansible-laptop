@@ -12,14 +12,6 @@ antigen bundle command-not-found
 # Load the theme.
 antigen bundle /usr/local/share/antigen/zsh-themes debian.zsh-theme --no-local-clone
 
-# Use Syntax Highlighting
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line)
-
 # Tell Antigen that you're done.
 antigen apply
 
