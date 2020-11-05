@@ -6,6 +6,7 @@
     pkg:
       - fonts-cascadia-code
       - fonts-cantarell
+      - fonts-hack-ttf
 
 - name: create local fonts directory
   file:

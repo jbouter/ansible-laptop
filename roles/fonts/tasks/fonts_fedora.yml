@@ -7,6 +7,23 @@
       - adobe-source-code-pro-fonts
       - abattis-cantarell-fonts
 
+- name: create local fonts directory
+  file:
+    dest: "{{ item }}"
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+  loop:
+    - /usr/local/share/fonts
+    - /usr/local/share/fonts/hack
+
+- name: download and extract hack
+  unarchive:
+    src: https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+    dest: /usr/local/share/fonts/hack
+    remote_src: yes
+
 - name: configure fontconfig for user
   copy:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"

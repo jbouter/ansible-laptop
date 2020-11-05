@@ -28,7 +28,7 @@
   dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
     state: present
-    value: "'Source Code Pro 10'"
+    value: "'Hack 10'"
 
 - name: configure gnome battery percentage in titlebar
   dconf:
