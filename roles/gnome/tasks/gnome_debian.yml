@@ -7,12 +7,10 @@
       - gnome-shell-common
       - gnome-tweaks
       - gnome-backgrounds
-      - adwaita-icon-theme-full
 
-- name: install adwaita packages
+- name: install adwaita packages on Ubuntu
   apt:
-    pkg:
-      - adwaita-icon-theme-full
+    name: adwaita-icon-theme-full
   when: ansible_distribution == "Ubuntu"
 
 - name: configure GDM3 to have default look
