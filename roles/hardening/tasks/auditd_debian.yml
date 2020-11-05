@@ -20,7 +20,7 @@
   systemd:
     name: auditd
     state: started
-    enabled: true
+    enabled: yes
   ignore_errors: yes
 
 - name: configure auditd logrotation

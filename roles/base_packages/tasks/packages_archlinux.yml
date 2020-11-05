@@ -34,6 +34,8 @@
       - bluez-utils
       - python-psutil
       - reflector
+      - openbsd-netcat
+      - cups
 
 - name: clone yay from aur
   become: yes
@@ -74,13 +76,19 @@
   systemd:
     name: fprintd
     state: started
-    enabled: True
+    enabled: yes
 
 - name: start and enable the bluetooth daemon
   systemd:
     name: bluetooth
     state: started
-    enabled: True
+    enabled: yes
+
+- name: start and enable the cups daemon
+  systemd:
+    name: org.cups.cupsd.service
+    state: started
+    enabled: yes
 
 - name: create config directories
   file:

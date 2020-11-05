@@ -15,4 +15,4 @@
   systemd:
     name: auditd
     state: started
-    enabled: true
+    enabled: yes
