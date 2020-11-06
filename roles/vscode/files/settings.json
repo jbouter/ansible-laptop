@@ -9,6 +9,7 @@
     "workbench.colorTheme": "Default Light+",
     "explorer.confirmDelete": false,
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "terminal.integrated.fontFamily": "'Hack'",
     "git.enableCommitSigning": true,
     "git.confirmSync": false,
     "editor.rulers": [
