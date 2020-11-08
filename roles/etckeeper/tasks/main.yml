@@ -32,3 +32,12 @@
 - name: install etckeeper for Arch Linux based systems
   include_tasks: etckeeper_archlinux.yml
   when: ansible_os_family == "Archlinux"
+
+- name: check if etckeeper has been initialised yet
+  stat:
+    path: /etc/.git
+  register: stat_etc_gitdir
+
+- name: initialise etckeeper
+  command: etckeeper init
+  when: not stat_etc_gitdir.stat.exists
