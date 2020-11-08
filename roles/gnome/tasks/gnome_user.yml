@@ -52,13 +52,13 @@
   dconf:
     key: "/org/gnome/desktop/wm.keybindings/switch-applications"
     state: present
-    value: "[]"
+    value: '[]'
 
 - name: disable default gnome alt-tab backward behavior
   dconf:
     key: "/org/gnome/desktop/wm.keybindings/switch-applications-backward"
     state: present
-    value: "[]"
+    value: '[]'
 
 - name: configure windows/kde like alt-tab behavior
   dconf:
