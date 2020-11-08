@@ -1,12 +1,12 @@
 ---
 
 - name: update all packages to the latest version
-  pacman:
+  community.general.pacman:
     update_cache: yes
     upgrade: yes
 
 - name: install base packages
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - htop

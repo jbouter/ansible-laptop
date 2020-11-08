@@ -1,6 +1,6 @@
 ---
 
 - name: install zsh
-  pacman:
+  community.general.pacman:
     name: zsh
     state: present

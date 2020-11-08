@@ -52,6 +52,6 @@
     autoremove: yes
 
 - name: configure vim to be the default editor systemd wide
-  alternatives:
+  community.general.alternatives:
     name: editor
     path: /usr/bin/vim.basic

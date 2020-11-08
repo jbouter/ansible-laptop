@@ -1,7 +1,7 @@
 ---
 
 - name: install font packages
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - ttf-cascadia-code
