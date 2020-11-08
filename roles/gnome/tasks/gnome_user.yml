@@ -62,3 +62,8 @@
   dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
     value: "['<Alt><Shift>Tab', '<Super><Shift>Tab']"
+
+- name: configure favourite apps
+  dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['google-chrome.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
