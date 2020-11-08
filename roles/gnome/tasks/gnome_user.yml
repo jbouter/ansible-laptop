@@ -1,52 +1,52 @@
 ---
 
 - name: configure cursor theme
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/cursor-theme"
     value: "'Adwaita'"
 
 - name: configure document font name
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/document-font-name"
     value: "'Sans 10'"
 
 - name: configure font name
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/font-name"
     value: "'Cantarell 10'"
 
 - name: configure gtk theme
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
     value: "'Adwaita'"
 
 - name: configure monospace font
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
     value: "'Hack 10'"
 
 - name: configure battery percentage in titlebar
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
 
 - name: configure desktop background
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
 
 - name: configure natural scrolling
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
     value: "true"
 
 - name: enable night light
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
     value: "true"
 
 - name: disable default gnome alt-tab behavior
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/{{ item }}"
     value: "@as []"
   loop:
@@ -54,16 +54,16 @@
     - switch-applications-backward
 
 - name: configure windows/kde like alt-tab behavior
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-windows"
     value: "['<Alt>Tab', '<Super>Tab']"
 
 - name: configure windows/kde like alt-tab backward behavior
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
     value: "['<Alt><Shift>Tab', '<Super><Shift>Tab']"
 
 - name: configure favourite apps
-  dconf:
+  community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
     value: "['google-chrome.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"

@@ -7,7 +7,7 @@
 - include: auditd_fedora.yml
 
 - name: install apparmor and aa-notify dependencies
-  pacman:
+  community.general.pacman:
     name:
       - apparmor
       - python-notify2

@@ -1,7 +1,7 @@
 ---
 
 - name: install libinput package requirements
-  pacman:
+  community.general.pacman:
     name:
       - xdotool
       - wmctrl

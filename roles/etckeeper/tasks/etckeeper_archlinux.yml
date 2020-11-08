@@ -1,7 +1,7 @@
 ---
 
 - name: install git and etckeeper
-  pacman:
+  community.general.pacman:
     name:
       - git
       - etckeeper

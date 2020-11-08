@@ -14,7 +14,7 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: configure GDM3 to have default look
-  alternatives:
+  community.general.alternatives:
     name: gdm3-theme.gresource
     path: /usr/share/gnome-shell/gnome-shell-theme.gresource
   when: ansible_distribution == "Ubuntu"
