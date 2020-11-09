@@ -1,6 +1,11 @@
 # The most important bit of this file
 export EDITOR=vim
 
+# Automaticall start tmux
+if [[ -n "$PS1" ]] && [[ -n "$GNOME_TERMINAL_SCREEN" ]] && [[ -z "$TMUX" ]]; then
+  tmux attach-session -t workspace | tmux new-session -s workspace
+fi
+
 # Update PATH
 export PATH=$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/sbin:/sbin
 
