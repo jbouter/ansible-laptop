@@ -8,6 +8,7 @@
       - adobe-source-code-pro-fonts
       - cantarell-fonts
       - ttf-hack
+      - ttf-liberation
 
 - name: enable sub-pixel-rgb font hinting
   file:
