@@ -36,6 +36,7 @@
       - reflector
       - openbsd-netcat
       - cups
+      - pavucontrol
 
 - name: clone yay from aur
   become: yes

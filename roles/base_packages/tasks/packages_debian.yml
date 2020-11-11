@@ -34,6 +34,7 @@
       - rofi
       - neofetch
       - python3-psutil
+      - pavucontrol
 
 - name: install ubuntu restricted packages
   apt:
