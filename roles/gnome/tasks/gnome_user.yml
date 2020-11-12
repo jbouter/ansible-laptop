@@ -15,6 +15,16 @@
     key: "/org/gnome/desktop/interface/font-name"
     value: "'Cantarell 10'"
 
+- name: configure font anti-aliasing
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/xsettings/antialiasing"
+    value: "'rgba'"
+
+- name: configure font hinting
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/xsettings/hinting"
+    value: "'slight'"
+
 - name: configure gtk theme
   community.general.dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
