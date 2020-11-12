@@ -43,6 +43,7 @@
       - neofetch
       - python3-psutil
       - pavucontrol
+      - openssl
 
 - name: install Development Tools group package
   dnf:
