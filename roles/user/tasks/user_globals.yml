@@ -21,13 +21,60 @@
       %sudo ALL = NOPASSWD: WIREGUARD
       %wheel ALL = NOPASSWD: WIREGUARD
 
-- name: configure bashrc for the user
+- name: configure passwordless sudo for fwupdmgr commands
+  copy:
+    dest: /etc/sudoers.d/fwupd
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      #Allow members of group sudo to execute wireguard commands
+      Cmnd_Alias FWUPD = /usr/bin/fwupdmgr update, \
+                         /usr/bin/fwupdmgr upgrade
+
+      %sudo ALL = NOPASSWD: FWUPD
+      %wheel ALL = NOPASSWD: FWUPD
+
+- name: configure passwordless sudo for flatpak commands
+  copy:
+    dest: /etc/sudoers.d/flatpak
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      #Allow members of group sudo to execute wireguard commands
+      Cmnd_Alias FLATPAK = /usr/bin/flatpak update, \
+                           /usr/bin/flatpak install *, \
+                           /usr/bin/flatpak uninstall *
+
+      %sudo ALL = NOPASSWD: FLATPAK
+      %wheel ALL = NOPASSWD: FLATPAK
+
+- name: install bash completion for git
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+    dest: /etc/bash_completion.d/git-completion.bash
+    mode: '0640'
+    owner: root
+    group: root
+
+- name: configure bashrc for the user on Debian
   template:
-    src: bashrc.j2
+    src: bashrc_debian.j2
     dest: "/home/{{ username }}/.bashrc"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
+  when: ansible_os_family == "Debian"
+
+- name: configure bashrc for the user on RHEL/Arch
+  template:
+    src: bashrc_rhel.j2
+    dest: "/home/{{ username }}/.bashrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Archlinux"
 
 - name: configure bash_aliases for the user
   copy:
@@ -37,13 +84,23 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: configure bashrc for root
+- name: configure bashrc for root on Debian
   template:
-    src: bashrc.j2
+    src: bashrc_debian.j2
     dest: "/root/.bashrc"
     owner: root
     group: root
     mode: '0644'
+  when: ansible_os_family == "Debian"
+
+- name: configure bashrc for root on RHEL/Arch
+  template:
+    src: bashrc_rhel.j2
+    dest: "/root/.bashrc"
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Archlinux"
 
 - name: configure bash_aliases for root
   copy:

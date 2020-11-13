@@ -1,0 +1,56 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+# Configure the editor
+export EDITOR=vim
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Configure Fuzzy Finder
+{% if ansible_os_family == "RedHat" %}
+test -f /usr/share/fzf/shell/key-bindings.bash && source /usr/share/fzf/shell/key-bindings.bash
+{% elif ansible_os_family == "Archlinux" %}
+test -f /usr/share/fzf/key-bindings.bash && source /usr/share/fzf/key-bindings.bash
+test -f /usr/share/fzf/completion.bash && source /usr/share/fzf/completion.bash
+{% endif %}
+
+__git_status() {
+    STATUS=$(git status 2>/dev/null |
+    awk '
+    /^On branch / {printf($3)}
+    /^You are currently rebasing/ {printf("rebasing %s", $6)}
+    /^Initial commit/ {printf(" (init)")}
+    /^Untracked files/ {printf("|+")}
+    /^Changes not staged / {printf("|?")}
+    /^Changes to be committed/ {printf("|*")}
+    /^Your branch of ahead of/ {printf("|^")}
+    ')
+    if [ -n "$STATUS" ]; then
+      echo -ne "($STATUS)"
+    fi
+}
+
+PS1="[\u@\h \W\[\033[01;33m\]$(__git_status)\[\033[00m\]]\\$ "
