@@ -74,8 +74,8 @@ __git_status() {
 
 # Prompt
 export PROMPT_DIRTRIM=2
-PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(__git_status)\[\033[00m\]\$ '
-#PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}[\u@\h \W\[\033[01;33m\]$(__git_status)\[\033[00m\]]\$ '
+#PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(__git_status)\[\033[00m\]\$ '
+PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}[\u@\h \W\[\033[01;33m\]$(__git_status)\[\033[00m\]]\$ '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -109,7 +109,6 @@ alias l='ls -CF'
 test -f /usr/share/doc/fzf/examples/completion.bash && source /usr/share/doc/fzf/examples/completion.bash
 test -f /usr/share/doc/fzf/examples/key-bindings.bash && source /usr/share/doc/fzf/examples/key-bindings.bash
 {% elif ansible_os_family == "RedHat" %}
-# if using Fedora
 test -f /usr/share/fzf/shell/key-bindings.bash && source /usr/share/fzf/shell/key-bindings.bash
 {% elif ansible_os_family == "Archlinux" %}
 test -f /usr/share/fzf/key-bindings.bash && source /usr/share/fzf/key-bindings.bash
