@@ -1,19 +1,5 @@
-# The most important bit of this file
-export EDITOR=vim
-
-# Automaticall start tmux
-if [[ -n "$PS1" ]] && [[ -n "$GNOME_TERMINAL_SCREEN" ]] && [[ -z "$TMUX" ]]; then
-  tmux attach-session -t workspace | tmux new-session -s workspace
-fi
-
 # Update PATH
 export PATH=$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/sbin:/sbin
-
-# IP addresses
-myip(){
-  curl -s -4 https://ifconfig.co
-  curl -s -6 https://ifconfig.co
-}
 
 # Custom aliases
 alias ls='ls -F --color=auto'
@@ -22,9 +8,7 @@ alias ll='ls -l'
 alias la='ls -las'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-alias mountp='mount | column -t'
 alias duh='du -hsx * 2>/dev/null | sort -hr | head -n 6'
-alias plunt='ss -plunt | column -t'
 alias ip='ip -c'
 alias neofetch='neofetch --ascii_distro fedora --source /home/jeffrey/.local/share/neofetch/merlin.txt'
 
