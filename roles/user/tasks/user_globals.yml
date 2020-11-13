@@ -60,21 +60,11 @@
 
 - name: configure bashrc for the user on Debian
   template:
-    src: bashrc_debian.j2
+    src: bashrc.j2
     dest: "/home/{{ username }}/.bashrc"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
-  when: ansible_os_family == "Debian"
-
-- name: configure bashrc for the user on RHEL/Arch
-  template:
-    src: bashrc_rhel.j2
-    dest: "/home/{{ username }}/.bashrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-  when: ansible_os_family == "RedHat" or ansible_os_family == "Archlinux"
 
 - name: configure bash_aliases for the user
   copy:
@@ -84,23 +74,14 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: configure bashrc for root on Debian
+- name: configure bashrc for root
   template:
-    src: bashrc_debian.j2
+    src: bashrc.j2
     dest: "/root/.bashrc"
     owner: root
     group: root
     mode: '0644'
   when: ansible_os_family == "Debian"
-
-- name: configure bashrc for root on RHEL/Arch
-  template:
-    src: bashrc_rhel.j2
-    dest: "/root/.bashrc"
-    owner: root
-    group: root
-    mode: '0644'
-  when: ansible_os_family == "RedHat" or ansible_os_family == "Archlinux"
 
 - name: configure bash_aliases for root
   copy:
