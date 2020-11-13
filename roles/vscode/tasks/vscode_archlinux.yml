@@ -1,5 +1,10 @@
 ---
 
+- name: check if visual studio code is installed
+  stat:
+    path: /usr/bin/code
+  register: stat_vscode
+
 - name: clone visual studio code from aur
   become: yes
   become_user: "{{ username }}"
@@ -8,6 +13,7 @@
     dest: /tmp/visual-studio-code-bin
     version: master
     update: yes
+  when: not stat_vscode.stat.exists
 
 - name: install visual studio code using makepkg
   become: yes
@@ -16,3 +22,15 @@
   args:
     chdir: /tmp/visual-studio-code-bin
     creates: /usr/bin/code
+  when: not stat_vscode.stat.exists
+
+- name: check if visual studio code installation was succesful
+  stat:
+    path: /usr/bin/code
+  register: stat_vscodeinstalled
+
+- name: remove vscode cloned repository
+  file:
+    path: /tmp/visual-studio-code-bin
+    state: absent
+  when: stat_vscodeinstalled.stat.exists

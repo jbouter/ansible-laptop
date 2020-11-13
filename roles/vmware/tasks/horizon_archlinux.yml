@@ -1,5 +1,10 @@
 ---
 
+- name: check if vmware horizon client is installed
+  stat:
+    path: /usr/bin/vmware-view
+  register: stat_horizonclient
+
 - name: clone vmware horizon client from aur
   become: yes
   become_user: "{{ username }}"
@@ -8,6 +13,7 @@
     dest: /tmp/vmware-horizon-client
     version: master
     update: yes
+  when: not stat_horizonclient.stat.exists
 
 - name: install vmware horizon client using makepkg
   become: yes
@@ -16,3 +22,15 @@
   args:
     chdir: /tmp/vmware-horizon-client
     creates: /usr/bin/vmware-view
+  when: not stat_horizonclient.stat.exists
+
+- name: check if vmware horizon client installation was succesful
+  stat:
+    path: /usr/bin/vmware-view
+  register: stat_vmwarehorizoninstalled
+
+- name: remove vmware horizon client cloned repository
+  file:
+    path: /tmp/vmware-horizon-client
+    state: absent
+  when: stat_vmwarehorizoninstalled.stat.exists
