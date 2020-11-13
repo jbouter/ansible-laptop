@@ -10,7 +10,6 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias duh='du -hsx * 2>/dev/null | sort -hr | head -n 6'
 alias ip='ip -c'
-alias neofetch='neofetch --ascii_distro fedora --source /home/jeffrey/.local/share/neofetch/merlin.txt'
 
 # Virsh
 alias virsh='virsh -c qemu:///system'
@@ -21,11 +20,6 @@ alias virt-install='virt-install --connect qemu:///system'
 function t () {
   tmux new-window -n "$1" "ssh $1"
 }
-
-# Neofetch
-if [ $(id -u) -ge 1000 ]; then
-  neofetch --ascii_distro fedora --disable theme --disable icons --disable terminal --disable CPU --disable GPU --disable memory --disable packages --source /home/jeffrey/.local/share/neofetch/merlin.txt
-fi
 
 # fbd
 # fbd - delete git branch (including remote branches)

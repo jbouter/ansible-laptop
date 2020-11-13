@@ -170,14 +170,6 @@
     - "/home/{{ username }}/.local/share"
     - "/home/{{ username }}/.local/share/neofetch"
 
-- name: configure neofetch merlin theme
-  copy:
-    src: neofetch_merlin
-    dest: "/home/{{ username }}/.local/share/neofetch/merlin.txt"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-
 - name: install passmenu for user
   copy:
     src: passmenu
