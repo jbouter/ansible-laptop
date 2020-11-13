@@ -30,7 +30,8 @@
     content: |
       #Allow members of group sudo to execute wireguard commands
       Cmnd_Alias FWUPD = /usr/bin/fwupdmgr update, \
-                         /usr/bin/fwupdmgr upgrade
+                         /usr/bin/fwupdmgr upgrade, \
+                         /usr/bin/fwupdmgr refresh
 
       %sudo ALL = NOPASSWD: FWUPD
       %wheel ALL = NOPASSWD: FWUPD
