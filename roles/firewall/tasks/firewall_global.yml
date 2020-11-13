@@ -116,7 +116,20 @@
     chain: INPUT
     jump: ACCEPT
     protocol: "{{ item }}"
-    destination_port: "1716"
+    destination_port: "1714:1764"
+    ctstate: NEW
+    ip_version: ipv4
+  loop:
+    - tcp
+    - udp
+  notify: "run firewall handler"
+
+- name: OUTPUT - allow traffic to KDE/GS connect TCP/UDP
+  iptables:
+    chain: OUTPUT
+    jump: ACCEPT
+    protocol: "{{ item }}"
+    source_port: "1714:1764"
     ctstate: NEW
     ip_version: ipv4
   loop:
