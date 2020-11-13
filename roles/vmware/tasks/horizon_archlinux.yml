@@ -1,5 +1,40 @@
 ---
 
+- name: check if vmware keymaps is installed
+  stat:
+    path: /usr/lib/vmware/xkeymap
+  register: stat_vmware_keymaps
+
+- name: clone vmware keymaps from aur
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://aur.archlinux.org/vmware-keymaps.git
+    dest: /tmp/vmware-keymaps
+    version: master
+    update: yes
+  when: not stat_vmware_keymaps.stat.exists
+
+- name: install vmware keymaps using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/vmware-keymaps
+    creates: /usr/lib/vmware/xkeymap
+  when: not stat_vmware_keymaps.stat.exists
+
+- name: check if vmware keymaps installation was succesful
+  stat:
+    path: /usr/lib/vmware/xkeymap
+  register: stat_vmwarekeymapsinstalled
+
+- name: remove vmware keymaps cloned repository
+  file:
+    path: /tmp/vmware-keymaps
+    state: absent
+  when: stat_vmwarekeymapsinstalled.stat.exists
+
 - name: check if vmware horizon client is installed
   stat:
     path: /usr/bin/vmware-view
