@@ -1,0 +1,46 @@
+{% if ansible_distribution == "Fedora" and ansible_distribution_major_version == "33" %}
+# Use NTS
+server time.cloudflare.com iburst nts
+server nts.sth1.ntp.se iburst nts
+server nts.sth2.ntp.se iburst nts
+
+# Configure NTS dumpdir
+ntsdumpdir /var/lib/chrony
+{% else %}
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+pool 0.nl.pool.ntp.org iburst maxsources 4
+pool 1.nl.pool.ntp.org iburst maxsources 4
+pool 2.nl.pool.ntp.org iburst maxsources 4
+pool 3.nl.pool.ntp.org iburst maxsources 4
+{% endif %}
+
+{% if ansible_os_family == "RedHat" or ansible_os_family == "Archlinux" %}
+# Record the rate at which the system clock gains/losses time.
+driftfile /var/lib/chrony/drift
+
+# Specify file containing keys for NTP authentication.
+keyfile /etc/chrony.keys
+{% elif ansible_os_family == "Debian" %}
+# Record the rate at which the system clock gains/losses time.
+driftfile /var/lib/chrony/chrony.drift
+
+# Specify file containing keys for NTP authentication.
+keyfile /etc/chrony/chrony.keys
+{% endif %}
+
+# Allow the system clock to be stepped in the first three updates
+# if its offset is larger than 1 second.
+makestep 1.0 3
+
+# Stop bad estimates upsetting machine clock.
+maxupdateskew 100.0
+
+# Enable kernel synchronization of the real-time clock (RTC).
+rtcsync
+
+# Get TAI-UTC offset and leap seconds from the system tz database.
+leapsectz right/UTC
+
+# Specify directory for log files.
+logdir /var/log/chrony

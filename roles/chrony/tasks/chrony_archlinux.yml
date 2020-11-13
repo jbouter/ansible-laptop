@@ -25,8 +25,8 @@
     enabled: yes
 
 - name: configure chrony
-  copy:
-    src: chrony_fedora.conf
+  template:
+    src: chrony.conf.j2
     dest: /etc/chrony.conf
     owner: root
     group: root
