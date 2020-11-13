@@ -18,15 +18,9 @@
     dest: /etc/localtime
     state: link
 
-- name: configure chronyd service
-  systemd:
-    name: chronyd
-    state: started
-    enabled: yes
-
 - name: configure chrony
-  copy:
-    src: chrony_fedora.conf
+  template:
+    src: chrony.conf.j2
     dest: /etc/chrony.conf
     owner: root
     group: root
@@ -34,3 +28,8 @@
   notify:
   - restart chrony service fedora
 
+- name: configure chronyd service
+  systemd:
+    name: chronyd
+    state: started
+    enabled: yes

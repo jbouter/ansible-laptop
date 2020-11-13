@@ -27,11 +27,11 @@
   ignore_errors: yes
 
 - name: configure chrony
-  copy:
-    src: chrony_debian.conf
+  template:
+    src: chrony.conf.j2
     dest: /etc/chrony/chrony.conf
     owner: root
     group: root
     mode: '0644'
   notify:
-    - restart chrony service debian
+  - restart chrony service debian
