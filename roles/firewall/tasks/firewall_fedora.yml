@@ -17,14 +17,14 @@
 - name: configure automatic iptables saving on stop
   replace:
     path: /etc/sysconfig/iptables-config
-    regexp: "^IPTABLES_SAVE_ON_STOP=\"no\""
-    replace: "IPTABLES_SAVE_ON_STOP=\"yes\""
+    regexp: "^IPTABLES_SAVE_ON_STOP=\"yes\""
+    replace: "IPTABLES_SAVE_ON_STOP=\"no\""
 
 - name: configure automatic iptables saving on restart
   replace:
     path: /etc/sysconfig/iptables-config
-    regexp: "^IPTABLES_SAVE_ON_RESTART=\"no\""
-    replace: "IPTABLES_SAVE_ON_RESTART=\"yes\""
+    regexp: "^IPTABLES_SAVE_ON_RESTART=\"yes\""
+    replace: "IPTABLES_SAVE_ON_RESTART=\"no\""
 
 - name: start and enable iptables
   systemd:
