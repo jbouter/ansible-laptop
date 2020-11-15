@@ -1,0 +1,9 @@
+---
+
+- name: configure tab completion for virt-viewer
+  copy:
+    dest: /etc/bash_completion.d/virt-viewer
+    src: virt-viewer
+    owner: root
+    group: root
+    mode: '0644'
