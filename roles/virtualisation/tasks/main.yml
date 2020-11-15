@@ -11,3 +11,6 @@
 - name: install virtualisation for Arch Linux based systems
   include_tasks: virtualisation_archlinux.yml
   when: ansible_os_family == "Archlinux"
+
+- name: include common virtualisation options
+  include_tasks: virtualisation_common.yml
