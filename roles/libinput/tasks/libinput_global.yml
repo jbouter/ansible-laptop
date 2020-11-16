@@ -1,44 +1,25 @@
 ---
 
-- name: install ruby gems required by fusuma
-  gem:
-    name: "{{ item }}"
-    state: present
-    user_install: no
-  loop:
-    - fusuma
-    - fusuma-plugin-wmctrl
-    - fusuma-plugin-keypress
-    - fusuma-plugin-sendkey
-
-- name: create fusuma configuration directory for user
+- name: create touchegg configuration directory for user
   file:
-    name: "/home/{{ username }}/.config/fusuma"
+    name: "/home/{{ username }}/.config/touchegg"
     state: directory
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0755'
 
-- name: configure fusuma for user
+- name: configure touchegg for user
   copy:
-    src: fusuma-config.yml
-    dest: "/home/{{ username }}/.config/fusuma/config.yml"
+    src: touchegg.conf
+    dest: "/home/{{ username }}/.config/touchegg/touchegg.conf"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
 
-- name: create fusuma service
-  template:
-    src: "fusuma.service.j2"
-    dest: /etc/systemd/system/fusuma.service
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: start and enable fusuma service
+- name: start and enable touchegg service
   systemd:
     daemon_reload: yes
-    name: fusuma
+    name: touchegg
     enabled: yes
     state: started
   ignore_errors: yes
