@@ -5,19 +5,12 @@
     name:
       - xdotool
       - wmctrl
-      - ruby
-      - libevdev-devel
-      - ruby-devel
       - libinput
       - libinput-utils
     state: present
 
-- name: install development tools
+- name: install touchegg
   dnf:
-    name: '@Development Tools'
+    name: 'https://github.com/JoseExposito/touchegg/releases/download/2.0.2/touchegg-2.0.2-1.x86_64.rpm'
     state: present
-
-- name: install development libraries
-  dnf:
-    name: '@Development Libraries'
-    state: present
+    disable_gpg_check: yes

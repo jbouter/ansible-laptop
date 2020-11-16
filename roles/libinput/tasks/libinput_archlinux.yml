@@ -5,7 +5,40 @@
     name:
       - xdotool
       - wmctrl
-      - ruby
       - libinput
-      - base-devel
     state: present
+
+- name: check if touchegg is installed
+  stat:
+    path: /usr/bin/touchegg
+  register: stat_touchegg
+
+- name: clone touchegg from aur
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://aur.archlinux.org/touchegg.git
+    dest: /tmp/touchegg
+    version: master
+    update: yes
+  when: not stat_touchegg.stat.exists
+
+- name: install touchegg using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/touchegg
+    creates: /usr/bin/toucheg
+  when: not stat_touchegg.stat.exists
+
+- name: check if touchegg installation was succesful
+  stat:
+    path: /usr/bin/touchegg
+  register: stat_touchegginstalled
+
+- name: remove touchegg cloned repository
+  file:
+    path: /tmp/touchegg
+    state: absent
+  when: stat_toucheginstalled.stat.exists
