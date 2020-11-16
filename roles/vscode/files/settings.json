@@ -1,14 +1,13 @@
 {
     "workbench.startupEditor": "newUntitledFile",
     "editor.fontFamily": "'Cascadia Code'",
+    "terminal.integrated.fontFamily": "'Hack'",
     "editor.fontSize": 15,
     "git.alwaysSignOff": true,
     "git.autofetch": true,
     "git.postCommitCommand": "sync",
     "window.menuBarVisibility": "toggle",
-    "workbench.colorTheme": "Default Light+",
-    "explorer.confirmDelete": false,
-    "terminal.integrated.fontFamily": "'Hack'",
+    "window.autoDetectColorScheme": true,
     "git.enableCommitSigning": true,
     "git.confirmSync": false,
     "editor.rulers": [
@@ -32,6 +31,7 @@
         }
     },
     "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true
 }
