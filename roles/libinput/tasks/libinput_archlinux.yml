@@ -29,7 +29,7 @@
   command: makepkg --noconfirm -si
   args:
     chdir: /tmp/touchegg
-    creates: /usr/bin/toucheg
+    creates: /usr/bin/touchegg
   when: not stat_touchegg.stat.exists
 
 - name: check if touchegg installation was succesful
@@ -41,4 +41,4 @@
   file:
     path: /tmp/touchegg
     state: absent
-  when: stat_toucheginstalled.stat.exists
+  when: stat_touchegginstalled.stat.exists
