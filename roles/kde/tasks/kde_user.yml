@@ -1,0 +1,68 @@
+---
+
+- name: ensure all required directories exist
+  file:
+    path: "/home/{{ username }}/{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0750'
+  loop:
+    - .gnupg
+    - .config/autostart-scripts
+    - .config/plasma-workspace
+    - .config/plasma-workspace/shutdown
+    - .config/plasma-workspace/env
+
+- name: configure kde pinentry for gpg + kwallet
+  copy:
+    dest: "/home/{{ username }}/.gnupg/gpg-agent.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0640'
+    content: |
+        pinentry-program /usr/bin/pinentry-kwallet
+
+- name: add ssh key passphrase to kwallet during autostart
+  copy:
+    dest: "/home/{{ username }}/.config/autostart-scripts/ssh-add.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0750'
+    content: |
+        #!/usr/bin/env bash
+        sleep 10
+        SSH_ASKPASS=/usr/bin/ksshaskpass
+        export SSH_ASKPASS
+        ssh-add ~/.ssh/id_ed25519
+
+- name: configure ssh agent to stop on shutdown
+  copy:
+    dest: "/home/{{ username }}/.config/plasma-workspace/shutdown/ssh-agent-shutdown.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0750'
+    content: |
+        #!/usr/bin/env bash
+        [ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
+
+- name: configure ssh agent to start on login
+  copy:
+    dest: "/home/{{ username }}/.config/plasma-workspace/env/ssh-agent-startup.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0750'
+    content: |
+        #!/usr/bin/env bash
+        [ -n "$SSH_AGENT_PID" ] || eval "$(ssh-agent -s)"
+        SSH_ASKPASS=/usr/bin/ksshaskpass
+        export SSH_ASKPASS
+
+- name: configure ssh askpass in profile.d
+  copy:
+    dest: /etc/profile.d/ksshaskpass.sh
+    owner: root
+    group: root
+    mode: '0750'
+    content: |
+        #!/usr/bin/env bash
+        SSH_ASKPASS=/usr/bin/ksshaskpass

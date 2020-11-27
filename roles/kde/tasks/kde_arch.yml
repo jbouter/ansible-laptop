@@ -1,0 +1,42 @@
+---
+
+- name: install KDE packages
+  pacman:
+    name:
+      - latte-dock
+    state: present
+
+- name: check if kwalletcli is installed
+  stat:
+    path: /usr/bin/kwalletcli
+  register: stat_kwalletcli
+
+- name: clone visual studio code from aur
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: https://aur.archlinux.org/kwalletcli.git
+    dest: /tmp/kwalletcli
+    version: master
+    update: yes
+  when: not stat_kwalletcli.stat.exists
+
+- name: install kwalletcli using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/kwalletcli
+    creates: /usr/bin/kwalletcli
+  when: not stat_kwalletcli.stat.exists
+
+- name: check if kwalletcli installation was succesful
+  stat:
+    path: /usr/bin/kwalletcli
+  register: stat_kwalletcliinstalled
+
+- name: remove kwalletcli cloned repository
+  file:
+    path: /tmp/kwalletcli
+    state: absent
+  when: stat_kwalletcliinstalled.stat.exists
