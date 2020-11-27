@@ -6,6 +6,8 @@
       - cascadia-fonts-all
       - adobe-source-code-pro-fonts
       - abattis-cantarell-fonts
+      - open-sans-fonts
+      - google-roboto-mono-fonts
 
 - name: create local fonts directory
   file:

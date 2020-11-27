@@ -3,17 +3,17 @@
 - name: configure cursor theme
   community.general.dconf:
     key: "/org/gnome/desktop/interface/cursor-theme"
-    value: "'Adwaita'"
+    value: "'Suru'"
 
 - name: configure document font name
   community.general.dconf:
     key: "/org/gnome/desktop/interface/document-font-name"
-    value: "'Sans 10'"
+    value: "'Open Sans 9'"
 
 - name: configure font name
   community.general.dconf:
     key: "/org/gnome/desktop/interface/font-name"
-    value: "'Cantarell 10'"
+    value: "'Open Sans 9'"
 
 - name: configure font anti-aliasing
   community.general.dconf:
@@ -33,7 +33,7 @@
 - name: configure monospace font
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'Hack 10'"
+    value: "'Roboto Mono 10'"
 
 - name: configure battery percentage in titlebar
   community.general.dconf:
