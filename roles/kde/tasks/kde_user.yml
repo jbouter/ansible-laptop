@@ -67,3 +67,5 @@
     content: |
         #!/usr/bin/env bash
         SSH_ASKPASS=/usr/bin/ksshaskpass
+  become_user: root
+  become: yes
