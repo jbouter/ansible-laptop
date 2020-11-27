@@ -8,7 +8,7 @@
     - qemu-kvm
     - libvirt-daemon-system
     - virt-manager
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "KDE neon"
 
 - name: install virtualisation packages for debian
   apt:
