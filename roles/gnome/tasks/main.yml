@@ -8,6 +8,9 @@
   include_tasks: gnome_fedora.yml
   when: ansible_os_family == "RedHat"
 
+- name: install gnome for Archlinux based systems
+  include_tasks: gnome_archlinux.yml
+  when: ansible_os_family == "Archlinux"
 
 - name: include gnome settings for user
   include_tasks: gnome_user.yml

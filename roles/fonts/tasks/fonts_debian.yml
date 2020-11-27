@@ -7,6 +7,7 @@
       - fonts-cascadia-code
       - fonts-cantarell
       - fonts-hack-ttf
+      - fonts-open-sans
 
 - name: create local fonts directory
   file:
@@ -18,11 +19,18 @@
   loop:
     - /usr/local/share/fonts
     - /usr/local/share/fonts/source-code-pro
+    - /usr/local/share/fonts/roboto-mono
 
 - name: download and extract source code pro
   unarchive:
     src: https://fonts.google.com/download?family=Source%20Code%20Pro
     dest: /usr/local/share/fonts/source-code-pro
+    remote_src: yes
+
+- name: download and extract roboto mono
+  unarchive:
+    src: https://fonts.google.com/download?family=Roboto%20Mono
+    dest: /usr/local/share/fonts/roboto-mono
     remote_src: yes
 
 - name: configure fontconfig for user

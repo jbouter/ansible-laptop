@@ -1,0 +1,8 @@
+---
+
+- name: install KDE packages
+  apt:
+    state: present
+    pkg:
+      - latte-dock
+      - kwalletcli

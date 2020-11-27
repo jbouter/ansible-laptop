@@ -8,6 +8,11 @@
       - gnome-tweaks
       - gnome-backgrounds
 
+- name: install suru on Debian
+  apt:
+    name: suru-icon-theme
+  when: ansible_distribution == "Debian"
+
 - name: install adwaita packages on Ubuntu
   apt:
     name: adwaita-icon-theme-full

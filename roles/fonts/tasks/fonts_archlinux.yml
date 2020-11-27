@@ -9,6 +9,8 @@
       - cantarell-fonts
       - ttf-hack
       - ttf-liberation
+      - ttf-opensans
+      - ttf-roboto-mono
 
 - name: enable sub-pixel-rgb font hinting
   file:

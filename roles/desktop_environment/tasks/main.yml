@@ -1,0 +1,22 @@
+---
+
+- name: Getting process IDs of the kde process
+  community.general.pids:
+      name: /usr/bin/kded5
+  register: pids_of_kde
+
+- name: Getting process IDs of the gnome process
+  community.general.pids:
+      name: /usr/bin/gnome-shell
+  register: pids_of_gnome
+
+- name: include the KDE role
+  include_role:
+    name: kde
+  when: pids_of_kde.pids.0 is defined
+
+- name: include the GNOME role
+  include_role:
+    name: gnome
+  when: pids_of_gnome.pids.0 is defined
+

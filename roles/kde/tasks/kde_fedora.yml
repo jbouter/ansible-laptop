@@ -1,0 +1,8 @@
+---
+
+- name: install KDE packages
+  dnf:
+    name:
+      - latte-dock
+      - kwalletcli
+    state: present

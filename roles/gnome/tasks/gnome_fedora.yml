@@ -2,5 +2,7 @@
 
 - name: install GNOME packages
   dnf:
-    name: gnome-tweaks
+    name: 
+      - gnome-tweaks
+      - suru-icon-theme
     state: present
