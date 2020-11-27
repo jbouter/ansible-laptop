@@ -8,6 +8,7 @@ Tested on:
 * Debian Sid
 * Fedora 33
 * Ubuntu 20.04 & 20.10
+* KDE Neon
 
 ## Preface/Notes
 
