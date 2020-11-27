@@ -1,7 +1,8 @@
 # README
 
 These playbooks will setup my basic machine to my liking. 
-Supports both KDE and GNOME, and will detect which is being used at runtime
+
+Supports both KDE and GNOME, and will detect which is being used at runtime.
 
 Tested on:
 
