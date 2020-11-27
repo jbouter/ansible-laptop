@@ -45,6 +45,16 @@
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
 
+- name: configure tap to click touchpad
+  community.general.dconf:
+    key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+    value: "true"
+
+- name: configure two finger scrolling
+  community.general.dconf:
+    key: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled"
+    value: "true"
+
 - name: configure natural scrolling
   community.general.dconf:
     key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
@@ -86,7 +96,7 @@
 - name: configure passmenu keyboard shortcut custom keybindings
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 
 - name: configure passmenu keyboard shortcut binding
   community.general.dconf:
@@ -102,3 +112,18 @@
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
     value: "'passmenu'"
+
+- name: configure gnome-terminal keyboard shortcut binding
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
+    value: "'<Primary><Alt>t'"
+
+- name: configure gnome-terminal keyboard shortcut command
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command"
+    value: "'gnome-terminal'"
+
+- name: configure gnome-terminal keyboard shortcut name
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name"
+    value: "'gnome-terminal'"
