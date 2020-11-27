@@ -63,6 +63,11 @@
     - switch-applications
     - switch-applications-backward
 
+- name: configure middle-click minimise for windows
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/preferences/action-middle-click-titlebar"
+    value: "'minimize'"
+
 - name: configure windows/kde like alt-tab behavior
   community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-windows"
