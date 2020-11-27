@@ -6,7 +6,7 @@
     - base_packages
     - firewall
     - fonts
-    - gnome
+    - desktop_environment
     - flatpak
     - grub
     - nextcloud
