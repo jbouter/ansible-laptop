@@ -15,10 +15,14 @@
     content: |
       #Allow members of group sudo to execute dnf commands
       Cmnd_Alias DNF = /usr/bin/dnf update, \
+                  /usr/bin/dnf update -y, \
                   /usr/bin/dnf upgrade, \
+                  /usr/bin/dnf upgrade -y, \
                   /usr/bin/dnf install *, \
                   /usr/bin/dnf remove *, \
                   /usr/bin/dnf search *, \
-                  /usr/bin/dnf info * \
+                  /usr/bin/dnf info *, \
+                  /usr/bin/dnf groupinstall *, \
+                  /usr/bin/dnf groupremove *, \
 
       %wheel ALL = NOPASSWD: DNF
