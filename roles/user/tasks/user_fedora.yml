@@ -23,6 +23,6 @@
                   /usr/bin/dnf search *, \
                   /usr/bin/dnf info *, \
                   /usr/bin/dnf groupinstall *, \
-                  /usr/bin/dnf groupremove *, \
+                  /usr/bin/dnf groupremove * \
 
       %wheel ALL = NOPASSWD: DNF
