@@ -8,6 +8,7 @@
       - abattis-cantarell-fonts
       - open-sans-fonts
       - google-roboto-mono-fonts
+      - fira-code-fonts
 
 - name: create local fonts directory
   file:

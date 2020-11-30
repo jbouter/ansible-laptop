@@ -11,6 +11,7 @@
       - ttf-liberation
       - ttf-opensans
       - ttf-roboto-mono
+      - ttf-fira-code
 
 - name: enable sub-pixel-rgb font hinting
   file:
