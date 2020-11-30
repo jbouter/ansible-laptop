@@ -1,26 +1,13 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'Cascadia Code'",
-    "terminal.integrated.fontFamily": "'Hack'",
-    "editor.fontSize": 15,
+    "editor.fontFamily": "'Fira Code'",
     "git.alwaysSignOff": true,
     "git.autofetch": true,
     "git.postCommitCommand": "sync",
     "window.menuBarVisibility": "toggle",
-    "window.autoDetectColorScheme": true,
     "git.enableCommitSigning": true,
     "git.confirmSync": false,
-    "editor.rulers": [
-        {
-            "column": 80,
-            "color": "#ff00FF"
-        },
-        100,
-        {
-            "column": "120",
-            "color": "#ff0000"
-        }
-    ],
+    "editor.rulers": [80, 100, 120],
     "[yaml]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2,
@@ -31,7 +18,12 @@
         }
     },
     "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false,
     "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "explorer.confirmDelete": false,
+    "terminal.integrated.fontFamily": "'Hack'",
+    "window.autoDetectColorScheme": true,
+    "editor.fontLigatures": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Default Light+"
 }

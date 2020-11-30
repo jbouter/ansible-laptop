@@ -8,6 +8,7 @@
       - fonts-cantarell
       - fonts-hack-ttf
       - fonts-open-sans
+      - fonts-firacode
 
 - name: create local fonts directory
   file:
