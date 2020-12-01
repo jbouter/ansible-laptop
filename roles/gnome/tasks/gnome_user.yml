@@ -33,7 +33,7 @@
 - name: configure monospace font
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'Hack 10'"
+    value: "'Roboto Mono 10'"
 
 - name: configure battery percentage in titlebar
   community.general.dconf:

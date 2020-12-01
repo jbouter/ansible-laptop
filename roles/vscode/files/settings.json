@@ -21,9 +21,9 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "explorer.confirmDelete": false,
-    "terminal.integrated.fontFamily": "'Hack'",
+    "terminal.integrated.fontFamily": "'Roboto Mono'",
     "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Default Light+"
+    "workbench.colorTheme": "Solarized Light"
 }
