@@ -87,7 +87,7 @@
 
 - name: start and enable the cups daemon
   systemd:
-    name: org.cups.cupsd.service
+    name: cups
     state: started
     enabled: yes
 
