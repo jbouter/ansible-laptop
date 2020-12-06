@@ -22,13 +22,13 @@
     mode: '0440'
     content: |
       #Allow members of group sudo to execute apt commands
-      Cmnd_Alias APT = /usr/bin/apt update, \
-                 /usr/bin/apt full-upgrade, \
-                 /usr/bin/apt full-upgrade -y, \
-                 /usr/bin/apt install *, \
-                 /usr/bin/apt remove *, \
-                 /usr/bin/apt purge *, \
-                 /usr/bin/apt autoremove, \
-                 /usr/bin/apt autoremove -y \
+      Cmnd_Alias APT = /usr/sbin/apt update, \
+                 /usr/sbin/apt full-upgrade, \
+                 /usr/sbin/apt full-upgrade -y, \
+                 /usr/sbin/apt install *, \
+                 /usr/sbin/apt remove *, \
+                 /usr/sbin/apt purge *, \
+                 /usr/sbin/apt autoremove, \
+                 /usr/sbin/apt autoremove -y \
 
       %sudo ALL = NOPASSWD: APT
