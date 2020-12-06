@@ -38,6 +38,7 @@
       - cups
       - pavucontrol
       - resolvconf
+      - earlyoom
 
 - name: clone yay from aur
   become: yes
@@ -134,3 +135,9 @@
       Depends = reflector
       Exec = /bin/sh -c 'systemctl start reflector.service; if [ -f /etc/pacman.d/mirrorlist.pacnew ]; then rm /etc/pacman.d/mirrorlist.pacnew; fi'
   notify: "run the reflector service"
+
+- name: start & enable service earlyoom
+  systemd:
+    name: earlyoom
+    state: started
+    enabled: yes

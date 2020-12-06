@@ -36,6 +36,7 @@
       - python3-psutil
       - pavucontrol
       - resolvconf
+      - earlyoom
 
 - name: install ubuntu restricted packages
   apt:
@@ -57,3 +58,9 @@
   community.general.alternatives:
     name: editor
     path: /usr/bin/vim.basic
+
+- name: start & enable service earlyoom
+  systemd:
+    name: earlyoom
+    state: started
+    enabled: yes

@@ -45,9 +45,15 @@
       - pavucontrol
       - openssl
       - resolvconf
+      - earlyoom
 
 - name: install Development Tools group package
   dnf:
     name: '@Development tools'
     state: present
 
+- name: start & enable service earlyoom
+  systemd:
+    name: earlyoom
+    state: started
+    enabled: yes
