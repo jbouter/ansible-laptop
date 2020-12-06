@@ -35,6 +35,7 @@
       - neofetch
       - python3-psutil
       - pavucontrol
+      - resolvconf
 
 - name: install ubuntu restricted packages
   apt:

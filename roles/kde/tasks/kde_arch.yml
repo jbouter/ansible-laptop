@@ -2,9 +2,11 @@
 
 - name: install KDE packages
   pacman:
+    state: present
     name:
       - latte-dock
-    state: present
+      - kmail
+      - korganizer
 
 - name: check if kwalletcli is installed
   stat:

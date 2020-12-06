@@ -2,7 +2,9 @@
 
 - name: install KDE packages
   dnf:
+    state: present
     name:
       - latte-dock
       - kwalletcli
-    state: present
+      - kmail
+      - korganizer

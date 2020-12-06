@@ -44,6 +44,7 @@
       - python3-psutil
       - pavucontrol
       - openssl
+      - resolvconf
 
 - name: install Development Tools group package
   dnf:

@@ -37,6 +37,7 @@
       - openbsd-netcat
       - cups
       - pavucontrol
+      - resolvconf
 
 - name: clone yay from aur
   become: yes
