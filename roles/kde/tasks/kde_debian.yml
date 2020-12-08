@@ -5,6 +5,7 @@
     state: present
     pkg:
       - latte-dock
+      - pinentry-qt
       - kwalletcli
       - kmail
       - korganizer
