@@ -25,6 +25,17 @@
     regexp: '^#write-cache'
     replace: 'write-cache'
 
+- name: ensure user config directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+  loop:
+    - "/home/{{ username }}/.config"
+    - "/home/{{ username }}/.config/autostart"
+
 - name: configure desktop launcher for aa-notify notifcations
   copy:
     dest: "/home/{{ username }}/.config/autostart/apparmor-notify.desktop"
