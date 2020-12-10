@@ -38,9 +38,6 @@
       - nextcloud-client
       - nextcloud-client-nautilus
       - fzf
-      - pass
-      - rofi
-      - neofetch
       - python3-psutil
       - pavucontrol
       - openssl

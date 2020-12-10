@@ -26,9 +26,6 @@
       - pass
       - gnupg
       - fzf
-      - pass
-      - rofi
-      - neofetch
       - fprintd
       - bluez
       - bluez-utils

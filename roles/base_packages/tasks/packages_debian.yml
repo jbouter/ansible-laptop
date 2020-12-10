@@ -30,9 +30,6 @@
       - pass
       - gnupg2
       - fzf
-      - pass
-      - rofi
-      - neofetch
       - python3-psutil
       - pavucontrol
       - resolvconf

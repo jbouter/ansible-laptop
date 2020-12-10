@@ -18,6 +18,7 @@
     - com.microsoft.Teams
     - com.spotify.Client
     - org.telegram.desktop
+    - com.bitwarden.desktop
 
 - name: install gnome specific flatpaks from flathub
   community.general.flatpak:

@@ -75,6 +75,14 @@
     group: "{{ username }}"
     mode: '0644'
 
+- name: configure profile for the user
+  copy:
+    src: profile
+    dest: "/home/{{ username }}/.profile"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
 - name: configure bashrc for root
   template:
     src: bashrc.j2
@@ -88,6 +96,14 @@
   copy:
     src: bash_aliases
     dest: "/root/.bash_aliases"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: configure profile for root
+  copy:
+    src: profile
+    dest: "/root/.profile"
     owner: root
     group: root
     mode: '0644'
@@ -134,29 +150,6 @@
     mode: '0644'
   when: not stat_user_gitconfig.stat.exists
 
-- name: check if user rofi configuration dir exists
-  stat:
-    path: "/home/{{ username }}/.config/rofi"
-  register: stat_user_rofi_configdir
-
-- name: create rofi config directory
-  file:
-    path: "/home/{{ username }}/.config/rofi"
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0775'
-  when: not stat_user_rofi_configdir.stat.exists
-
-- name: configure rofi for user
-  copy:
-    src: rofi_config.rasi
-    dest: "/home/{{ username }}/.config/rofi/config.rasi"
-    force: no
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
-
 - name: configure local directories for user
   file:
     path: "{{ item }}"
@@ -169,12 +162,3 @@
     - "/home/{{ username }}/.local/bin"
     - "/home/{{ username }}/.local/share"
     - "/home/{{ username }}/.local/share/neofetch"
-
-- name: install passmenu for user
-  copy:
-    src: passmenu
-    dest: "/home/{{ username }}/.local/bin/passmenu"
-    force: no
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0755'
