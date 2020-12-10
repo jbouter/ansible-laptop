@@ -12,7 +12,6 @@
     - nextcloud
     - hardening
     - chrony
-    - user
     - chrome
     - libinput
     - vscode
@@ -20,3 +19,4 @@
     - keychron
     - pulseaudio
     - vmware
+    - user
