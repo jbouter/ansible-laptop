@@ -1,5 +1,12 @@
 ---
 
+- name: ensure security limits.d directory exists
+  file:
+    path: /etc/security/limits.d
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: configure Security Limits Hard Core
   copy:
     dest: /etc/security/limits.d/cis_hard_core.conf
