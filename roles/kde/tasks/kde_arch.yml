@@ -42,3 +42,22 @@
     path: /tmp/kwalletcli
     state: absent
   when: stat_kwalletcliinstalled.stat.exists
+
+- name: create sddm config dir
+  file:
+    path: /etc/sddm.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: configure sddm to use the breeze theme
+  copy:
+    dest: /etc/sddm.conf.d/breeze.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+        [Theme]
+        Current=breeze
+        CursorTheme=breeze
