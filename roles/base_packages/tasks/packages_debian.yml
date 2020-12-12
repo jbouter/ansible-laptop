@@ -27,7 +27,6 @@
       - vim
       - adb
       - fastboot
-      - pass
       - gnupg2
       - fzf
       - python3-psutil

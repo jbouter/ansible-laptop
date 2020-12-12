@@ -33,7 +33,6 @@
       - vim
       - adb
       - fastboot
-      - pass
       - gnupg2
       - nextcloud-client
       - nextcloud-client-nautilus

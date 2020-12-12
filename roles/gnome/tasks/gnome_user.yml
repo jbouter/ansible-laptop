@@ -108,26 +108,6 @@
     key: "/org/gnome/settings-daemon/plugins/media-keys/area-screenshot"
     value: "['<Shift><Alt>dollar']"
 
-- name: configure passmenu keyboard shortcut custom keybindings
-  community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
-
-- name: configure passmenu keyboard shortcut binding
-  community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
-    value: "'<Primary><Alt>p'"
-
-- name: configure passmenu keyboard shortcut command
-  community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-    value: "'~/.local/bin/passmenu'"
-
-- name: configure passmenu keyboard shortcut name
-  community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
-    value: "'passmenu'"
-
 - name: configure gnome-terminal keyboard shortcut binding
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
