@@ -25,5 +25,5 @@
     "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Solarized Light"
+    "workbench.colorTheme": "Default Dark+"
 }
