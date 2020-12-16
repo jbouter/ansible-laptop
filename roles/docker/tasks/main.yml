@@ -10,3 +10,4 @@
 
 - name: Generic Docker configuration
   include_tasks: docker_configuration.yml
+  when: ansible_os_family != "RedHat"
