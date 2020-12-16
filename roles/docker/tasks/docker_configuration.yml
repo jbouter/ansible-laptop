@@ -1,0 +1,60 @@
+---
+
+- name: Print docker_daemon fact
+  debug:
+    var: docker_daemon
+
+- name: Create a dockeruser group
+  group:
+    name: dockeruser
+    state: present
+    system: yes
+  notify: restart docker service
+
+- name: Add a dockeruser under which to run containers
+  user:
+    name: dockeruser
+    group: dockeruser
+    system: yes
+    home: /var/lib/dockeruser
+    shell: /bin/sh
+  notify: restart docker service
+
+- name: Configure subuid for dockeruser
+  lineinfile:
+    path: /etc/subuid
+    regexp: '^dockeruser:[0-9]+:[0-9]+$'
+    line: 'dockeruser:100000:65536'
+    create: yes
+  notify: restart docker service
+
+- name: Configure subgid for dockeruserdocker
+  lineinfile:
+    path: /etc/subgid
+    regexp: '^dockeruser:[0-9]+:[0-9]+$'
+    line: 'dockeruser:100000:65536'
+    create: yes
+  notify: restart docker service
+
+- name: Create /etc/docker
+  file:
+    path: /etc/docker
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Write daemon.json
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart docker service
+
+- name: Enable and start docker
+  systemd:
+    name: "{{ docker_daemon }}"
+    state: started
+    enabled: yes

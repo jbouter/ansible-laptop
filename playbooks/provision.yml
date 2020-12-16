@@ -20,4 +20,5 @@
     - pulseaudio
     - vmware
     - zsh
+    - docker
     - user

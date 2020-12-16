@@ -1,0 +1,14 @@
+---
+
+- name: set docker_daemon fact to docker for Debian
+  set_fact: docker_daemon="docker"
+  when: ansible_os_family == "Debian"
+
+- name: set docker_daemon fact to docker for Archlinux
+  set_fact: docker_daemon="dockerd"
+  when: ansible_os_family == "ArchLinux"
+
+- name: restart docker service
+  systemd:
+    name: "{{ docker_daemon }}"
+    state: restarted
