@@ -60,4 +60,4 @@
     content: |
         [Theme]
         Current=breeze
-        CursorTheme=breeze
+        CursorTheme=breeze_cursors
