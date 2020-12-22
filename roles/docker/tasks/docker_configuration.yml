@@ -26,6 +26,9 @@
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
     create: yes
+    owner: root
+    group: root
+    mode: '0644'
   notify: restart docker service
 
 - name: Configure subgid for dockeruserdocker
@@ -34,6 +37,9 @@
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
     create: yes
+    owner: root
+    group: root
+    mode: '0644'
   notify: restart docker service
 
 - name: Create /etc/docker
