@@ -35,6 +35,7 @@
       - pavucontrol
       - resolvconf
       - earlyoom
+      - yamllint
 
 - name: clone yay from aur
   become: yes

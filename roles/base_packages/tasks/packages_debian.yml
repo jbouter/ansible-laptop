@@ -33,6 +33,7 @@
       - pavucontrol
       - resolvconf
       - earlyoom
+      - yamllint
 
 - name: install ubuntu restricted packages
   apt:

@@ -42,6 +42,7 @@
       - openssl
       - resolvconf
       - earlyoom
+      - yamllint
 
 - name: install Development Tools group package
   dnf:
