@@ -36,6 +36,8 @@
       - resolvconf
       - earlyoom
       - yamllint
+      - aspell-en
+      - hunspell-en_GB
 
 - name: clone yay from aur
   become: yes
