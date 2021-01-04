@@ -44,8 +44,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: set zsh as default shell for user
-  user:
-    name: "{{ username }}"
-    shell: /usr/bin/zsh
-
+#- name: set zsh as default shell for user
+#  user:
+#    name: "{{ username }}"
+#    shell: /usr/bin/zsh
