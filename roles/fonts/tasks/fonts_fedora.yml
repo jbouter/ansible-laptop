@@ -1,6 +1,6 @@
 ---
 
-- name: install font packages
+- name: Install font packages
   dnf:
     name:
       - cascadia-fonts-all
@@ -10,7 +10,7 @@
       - google-roboto-mono-fonts
       - fira-code-fonts
 
-- name: create local fonts directory
+- name: Create local fonts directory
   file:
     dest: "{{ item }}"
     owner: root
@@ -20,14 +20,23 @@
   loop:
     - /usr/local/share/fonts
     - /usr/local/share/fonts/hack
+    - /usr/local/share/fonts/iosevka-term-curly
 
-- name: download and extract hack
+- name: Download and extract hack
   unarchive:
-    src: https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+    src: "https://github.com/source-foundry/Hack/releases\
+          /download/v3.003/Hack-v3.003-ttf.zip"
     dest: /usr/local/share/fonts/hack
     remote_src: yes
 
-- name: configure fontconfig for user
+- name: Download and extract Iosevka Term Curly
+  unarchive:
+    src: "https://github.com/be5invis/Iosevka/releases/\
+          download/v4.4.0/ttf-iosevka-term-curly-4.4.0.zip"
+    dest: /usr/local/share/fonts/iosevka-term-curly
+    remote_src: yes
+
+- name: Configure fontconfig for user
   copy:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
     src: fonts_generic.conf
