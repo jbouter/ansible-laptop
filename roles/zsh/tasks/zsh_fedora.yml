@@ -1,6 +1,6 @@
 ---
 
-- name: install zsh
+- name: Install zsh
   dnf:
     name: zsh
     state: present

@@ -1,11 +1,11 @@
 ---
 
-- name: check if vmware keymaps is installed
+- name: Check if vmware keymaps is installed
   stat:
     path: /usr/lib/vmware/xkeymap
   register: stat_vmware_keymaps
 
-- name: clone vmware keymaps from aur
+- name: Clone vmware keymaps from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -15,7 +15,7 @@
     update: yes
   when: not stat_vmware_keymaps.stat.exists
 
-- name: install vmware keymaps using makepkg
+- name: Install vmware keymaps using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -24,23 +24,23 @@
     creates: /usr/lib/vmware/xkeymap
   when: not stat_vmware_keymaps.stat.exists
 
-- name: check if vmware keymaps installation was succesful
+- name: Check if vmware keymaps installation was succesful
   stat:
     path: /usr/lib/vmware/xkeymap
   register: stat_vmwarekeymapsinstalled
 
-- name: remove vmware keymaps cloned repository
+- name: Remove vmware keymaps cloned repository
   file:
     path: /tmp/vmware-keymaps
     state: absent
   when: stat_vmwarekeymapsinstalled.stat.exists
 
-- name: check if vmware horizon client is installed
+- name: Check if vmware horizon client is installed
   stat:
     path: /usr/bin/vmware-view
   register: stat_horizonclient
 
-- name: clone vmware horizon client from aur
+- name: Clone vmware horizon client from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -50,7 +50,7 @@
     update: yes
   when: not stat_horizonclient.stat.exists
 
-- name: install vmware horizon client using makepkg
+- name: Install vmware horizon client using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -59,12 +59,12 @@
     creates: /usr/bin/vmware-view
   when: not stat_horizonclient.stat.exists
 
-- name: check if vmware horizon client installation was succesful
+- name: Check if vmware horizon client installation was succesful
   stat:
     path: /usr/bin/vmware-view
   register: stat_vmwarehorizoninstalled
 
-- name: remove vmware horizon client cloned repository
+- name: Remove vmware horizon client cloned repository
   file:
     path: /tmp/vmware-horizon-client
     state: absent

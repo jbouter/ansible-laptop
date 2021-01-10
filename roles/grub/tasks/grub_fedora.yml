@@ -1,14 +1,14 @@
 ---
 
-- name: configure unrestricted boot
+- name: Configure unrestricted boot
   replace:
     path: /etc/grub.d/10_linux
     regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
     replace: '\1 --unrestricted\3'
   notify:
-    - update grub fedora
+    - Update grub fedora
 
-- name: configure grub edit password
+- name: Configure grub edit password
   blockinfile:
     path: /etc/grub.d/00_header
     insertafter: EOF
@@ -18,4 +18,4 @@
       password_pbkdf2 {{ username }} {{ grub_PBKDF2 }}
       EOF
   notify:
-  - update grub fedora
+    - Update grub fedora

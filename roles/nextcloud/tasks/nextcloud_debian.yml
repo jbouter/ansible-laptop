@@ -1,23 +1,23 @@
 ---
 
-- name: add nextcloud repository key
+- name: Add nextcloud repository key
   apt_key:
     keyserver: keyserver.ubuntu.com
     id: 1FCD77DD0DBEF5699AD2610160EE47FBAD3DD469
 
-- name: configure nextcloud repository for ubuntu
+- name: Configure nextcloud repository for ubuntu
   apt_repository:
     repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu {{ ansible_distribution_release }} main
   when: ansible_distribution == "Ubuntu"
 
-- name: configure nextcloud repository for debian
+- name: Configure nextcloud repository for debian
   apt_repository:
     repo: deb http://ppa.launchpad.net/nextcloud-devs/client/ubuntu focal main
   when: ansible_distribution == "Debian" or ansible_distribution == "KDE neon"
 
-- name: install nextcloud packages
+- name: Install nextcloud packages
   apt:
     update_cache: yes
     state: present
     pkg:
-    - nextcloud-client
+      - nextcloud-client

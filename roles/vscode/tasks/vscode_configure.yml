@@ -1,11 +1,11 @@
 ---
 
-- name: check if user vscode configuration dir exists
+- name: Check if user vscode configuration dir exists
   stat:
     path: "/home/{{ username }}/.config/Code/User"
   register: stat_user_vscode_config
 
-- name: create vscode config directory
+- name: Create vscode config directory
   file:
     path: "{{ item }}"
     state: directory
@@ -17,7 +17,7 @@
     - "/home/{{ username }}/.config/Code/User"
   when: not stat_user_vscode_config.stat.exists
 
-- name: configure vscode for user
+- name: Configure vscode for user
   copy:
     src: settings.json
     dest: "/home/{{ username }}/.config/Code/User/settings.json"

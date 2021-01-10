@@ -1,13 +1,9 @@
 ---
 
-- name: install nextcloud for Debian based systems
+- name: Install nextcloud for Debian based systems
   include_tasks: nextcloud_debian.yml
   when: ansible_os_family == "Debian"
 
-#- name: install nextcloud for RedHat based systems
-#  include_tasks: nextcloud_fedora.yml
-#  when: ansible_os_family == "RedHat"
-
-- name: install nextcloud for Arch Linux based systems
+- name: Install nextcloud for Arch Linux based systems
   include_tasks: nextcloud_archlinux.yml
   when: ansible_os_family == "Archlinux"

@@ -1,12 +1,12 @@
 ---
 
-- name: create "docker" group
+- name: Create "docker" group
   group:
     name: docker
     state: present
     system: yes
 
-- name: configure passwordless sudo for wireguard commands
+- name: Configure passwordless sudo for wireguard commands
   copy:
     dest: /etc/sudoers.d/wireguard
     owner: root
@@ -21,7 +21,7 @@
       %sudo ALL = NOPASSWD: WIREGUARD
       %wheel ALL = NOPASSWD: WIREGUARD
 
-- name: configure passwordless sudo for fwupdmgr commands
+- name: Configure passwordless sudo for fwupdmgr commands
   copy:
     dest: /etc/sudoers.d/fwupd
     owner: root
@@ -36,7 +36,7 @@
       %sudo ALL = NOPASSWD: FWUPD
       %wheel ALL = NOPASSWD: FWUPD
 
-- name: configure passwordless sudo for flatpak commands
+- name: Configure passwordless sudo for flatpak commands
   copy:
     dest: /etc/sudoers.d/flatpak
     owner: root
@@ -51,7 +51,7 @@
       %sudo ALL = NOPASSWD: FLATPAK
       %wheel ALL = NOPASSWD: FLATPAK
 
-- name: install bash completion for git
+- name: Install bash completion for git
   get_url:
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
     dest: /etc/bash_completion.d/git-completion.bash
@@ -59,7 +59,7 @@
     owner: root
     group: root
 
-- name: configure bashrc for the user on Debian
+- name: Configure bashrc for the user on Debian
   template:
     src: bashrc.j2
     dest: "/home/{{ username }}/.bashrc"
@@ -67,7 +67,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: configure bash_aliases for the user
+- name: Configure bash_aliases for the user
   copy:
     src: bash_aliases
     dest: "/home/{{ username }}/.bash_aliases"
@@ -75,7 +75,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: configure profile for the user
+- name: Configure profile for the user
   copy:
     src: profile
     dest: "/home/{{ username }}/.profile"
@@ -83,7 +83,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: configure bashrc for root
+- name: Configure bashrc for root
   template:
     src: bashrc.j2
     dest: "/root/.bashrc"
@@ -92,7 +92,7 @@
     mode: '0644'
   when: ansible_os_family == "Debian"
 
-- name: configure bash_aliases for root
+- name: Configure bash_aliases for root
   copy:
     src: bash_aliases
     dest: "/root/.bash_aliases"
@@ -100,7 +100,7 @@
     group: root
     mode: '0644'
 
-- name: configure profile for root
+- name: Configure profile for root
   copy:
     src: profile
     dest: "/root/.profile"
@@ -108,12 +108,12 @@
     group: root
     mode: '0644'
 
-- name: ensure user vimrc has been removed
+- name: Ensure user vimrc has been removed
   file:
     dest: "/home/{{ username }}/.vimrc"
     state: absent
 
-- name: clone vim repository to user
+- name: Clone vim repository to user
   become: yes
   become_user: "{{ username }}"
   git:
@@ -121,14 +121,14 @@
     dest: "/home/{{ username }}/.vim"
     version: main
   notify:
-    - install vim repository
+    - Install vim repository
 
-- name: ensure root vimrc has been removed
+- name: Ensure root vimrc has been removed
   file:
     dest: /root/.vimrc
     state: absent
 
-- name: configure vim for root
+- name: Configure vim for root
   file:
     src: "/home/{{ username }}/.vim"
     dest: /root/.vim
@@ -136,12 +136,12 @@
     group: root
     state: link
 
-- name: check if user's git config exists
+- name: Check if user's git config exists
   stat:
     path: "/home/{{ username }}/.gitconfig"
   register: stat_user_gitconfig
 
-- name: configure git for user
+- name: Configure git for user
   template:
     src: gitconfig.j2
     dest: "/home/{{ username }}/.gitconfig"
@@ -150,7 +150,7 @@
     mode: '0644'
   when: not stat_user_gitconfig.stat.exists
 
-- name: configure local directories for user
+- name: Configure local directories for user
   file:
     path: "{{ item }}"
     state: directory

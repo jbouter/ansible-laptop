@@ -1,7 +1,6 @@
 ---
 
-
-- name: install git and etckeeper
+- name: Install git and etckeeper
   apt:
     pkg:
       - git
@@ -9,7 +8,7 @@
     state: present
     update_cache: yes
 
-- name: configure etckeeper
+- name: Configure etckeeper
   copy:
     src: etckeeper_ubuntu.conf
     dest: /etc/etckeeper/etckeeper.conf

@@ -1,13 +1,13 @@
 ---
 
-- name: install git and etckeeper
+- name: Install git and etckeeper
   dnf:
     name:
       - git
       - etckeeper
     state: present
 
-- name: configure etckeeper
+- name: Configure etckeeper
   copy:
     src: etckeeper_fedora.conf
     dest: /etc/etckeeper/etckeeper.conf

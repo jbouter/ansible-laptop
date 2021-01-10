@@ -1,11 +1,11 @@
 ---
 
-- name: import the visual studio code gpg key
+- name: Import the visual studio code gpg key
   rpm_key:
     state: present
     key: https://packages.microsoft.com/keys/microsoft.asc
 
-- name: configure the visual studio code yum repository
+- name: Configure the visual studio code yum repository
   yum_repository:
     name: vscode
     description: Visual Studio Code
@@ -13,7 +13,7 @@
     gpgcheck: yes
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
-- name: install visual studio code
+- name: Install visual studio code
   dnf:
     name: code
     state: latest

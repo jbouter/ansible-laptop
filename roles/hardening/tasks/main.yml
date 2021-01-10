@@ -1,13 +1,13 @@
 ---
 
-- name: install hardening for Debian based systems
+- name: Install hardening for Debian based systems
   include_tasks: hardening_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: install hardening for RedHat based systems
+- name: Install hardening for RedHat based systems
   include_tasks: hardening_fedora.yml
   when: ansible_os_family == "RedHat"
 
-- name: install hardening for Arch Linux based systems
+- name: Install hardening for Arch Linux based systems
   include_tasks: hardening_archlinux.yml
   when: ansible_os_family == "Archlinux"

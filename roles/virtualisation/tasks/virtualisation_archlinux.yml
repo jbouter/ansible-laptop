@@ -1,24 +1,24 @@
 ---
 
-- name: install virtualisation packages
+- name: Install virtualisation packages
   community.general.pacman:
     state: present
     name:
-    - qemu
-    - libvirt
-    - virt-manager
-    - virt-viewer
-    - dnsmasq
-    - ebtables
-    - dmidecode
+      - qemu
+      - libvirt
+      - virt-manager
+      - virt-viewer
+      - dnsmasq
+      - ebtables
+      - dmidecode
 
-- name: append user to libvirt group
+- name: Append user to libvirt group
   user:
     name: "{{ username }}"
     append: yes
     groups: libvirt
 
-- name: start and enable libvirtd
+- name: Start and enable libvirtd
   systemd:
     name: libvirtd
     state: started

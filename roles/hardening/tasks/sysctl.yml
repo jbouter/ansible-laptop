@@ -1,6 +1,6 @@
 ---
 
-- name: ensure security limits.d directory exists
+- name: Ensure security limits.d directory exists
   file:
     path: /etc/security/limits.d
     state: directory
@@ -8,7 +8,7 @@
     group: root
     mode: '0755'
 
-- name: configure Security Limits Hard Core
+- name: Configure Security Limits Hard Core
   copy:
     dest: /etc/security/limits.d/cis_hard_core.conf
     owner: root
@@ -16,7 +16,7 @@
     mode: '0644'
     content: '* hard core 0'
 
-- name: configure sysctl SUID dumpable
+- name: Configure sysctl SUID dumpable
   copy:
     dest: /etc/sysctl.d/20-cis_suid_dumpable.conf
     owner: root
@@ -24,9 +24,9 @@
     mode: '0644'
     content: 'fs.suid_dumpable = 0'
   notify:
-  - apply sysctl SUID dumpable
+    - Apply sysctl SUID dumpable
 
-- name: configure sysctl Address Space Layout Randomisation
+- name: Configure sysctl Address Space Layout Randomisation
   copy:
     dest: /etc/sysctl.d/20-cis_aslr.conf
     owner: root
@@ -34,4 +34,4 @@
     mode: '0644'
     content: 'kernel.randomize_va_space = 2'
   notify:
-  - apply sysctl Address Space Layout Randomisation
+    - Apply sysctl Address Space Layout Randomisation

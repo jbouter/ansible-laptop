@@ -1,6 +1,6 @@
 ---
 
-- name: install KDE packages
+- name: Install KDE packages
   pacman:
     state: present
     name:
@@ -8,12 +8,12 @@
       - kmail
       - korganizer
 
-- name: check if kwalletcli is installed
+- name: Check if kwalletcli is installed
   stat:
     path: /usr/bin/kwalletcli
   register: stat_kwalletcli
 
-- name: clone visual studio code from aur
+- name: Clone visual studio code from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -23,7 +23,7 @@
     update: yes
   when: not stat_kwalletcli.stat.exists
 
-- name: install kwalletcli using makepkg
+- name: Install kwalletcli using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -32,18 +32,18 @@
     creates: /usr/bin/kwalletcli
   when: not stat_kwalletcli.stat.exists
 
-- name: check if kwalletcli installation was succesful
+- name: Check if kwalletcli installation was succesful
   stat:
     path: /usr/bin/kwalletcli
   register: stat_kwalletcliinstalled
 
-- name: remove kwalletcli cloned repository
+- name: Remove kwalletcli cloned repository
   file:
     path: /tmp/kwalletcli
     state: absent
   when: stat_kwalletcliinstalled.stat.exists
 
-- name: create sddm config dir
+- name: Create sddm config dir
   file:
     path: /etc/sddm.conf.d
     state: directory
@@ -51,7 +51,7 @@
     group: root
     mode: '0755'
 
-- name: configure sddm to use the breeze theme
+- name: Configure sddm to use the breeze theme
   copy:
     dest: /etc/sddm.conf.d/breeze.conf
     owner: root

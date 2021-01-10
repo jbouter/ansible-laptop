@@ -1,31 +1,31 @@
 ---
 
-- name: save iptables ipv4 rules for debian
+- name: Save iptables ipv4 rules for debian
   command: iptables-save -f /etc/iptables/rules.v4
   listen: "run firewall handler"
   when: ansible_os_family == "Debian"
 
-- name: save iptables ipv6 rules for debian
+- name: Save iptables ipv6 rules for debian
   command: ip6tables-save -f /etc/iptables/rules.v6
   listen: "run firewall handler"
   when: ansible_os_family == "Debian"
 
-- name: save iptables ipv4 rules for fedora
+- name: Save iptables ipv4 rules for fedora
   command: iptables-save -f /etc/sysconfig/iptables
   listen: "run firewall handler"
   when: ansible_os_family == "RedHat"
 
-- name: save iptables ipv6 rules for fedora
+- name: Save iptables ipv6 rules for fedora
   command: ip6tables-save -f /etc/sysconfig/ip6tables
   listen: "run firewall handler"
   when: ansible_os_family == "RedHat"
 
-- name: save iptables ipv4 rules for arch
+- name: Save iptables ipv4 rules for arch
   command: iptables-save -f /etc/iptables/iptables.rules
   listen: "run firewall handler"
   when: ansible_os_family == "Archlinux"
 
-- name: save iptables ipv6 rules for arch
+- name: Save iptables ipv6 rules for arch
   command: ip6tables-save -f /etc/iptables/ip6tables.rules
   listen: "run firewall handler"
   when: ansible_os_family == "Archlinux"

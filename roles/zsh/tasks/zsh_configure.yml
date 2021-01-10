@@ -1,6 +1,6 @@
 ---
 
-- name: ensure /usr/local/share exists
+- name: Ensure /usr/local/share exists
   file:
     path: "{{ item }}"
     state: directory
@@ -11,7 +11,7 @@
     - /usr/local
     - /usr/local/share
 
-- name: create the antigen directory
+- name: Create the antigen directory
   file:
     path: /usr/local/share/antigen
     state: directory
@@ -19,7 +19,7 @@
     group: "{{ username }}"
     mode: '0755'
 
-- name: clone the custom zsh themes directory
+- name: Clone the custom zsh themes directory
   become: false
   git:
     repo: https://github.com/jbouter/zsh-themes.git
@@ -27,7 +27,7 @@
     version: main
     update: yes
 
-- name: download and install antigen
+- name: Download and install antigen
   become: false
   get_url:
     url: https://git.io/antigen
@@ -36,7 +36,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: configure zsh for user
+- name: Configure zsh for user
   template:
     dest: "/home/{{ username }}/.zshrc"
     src: zshrc.j2
@@ -44,7 +44,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-#- name: set zsh as default shell for user
+# - name: set zsh as default shell for user
 #  user:
 #    name: "{{ username }}"
 #    shell: /usr/bin/zsh

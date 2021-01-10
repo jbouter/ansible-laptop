@@ -10,20 +10,20 @@
       name: /usr/bin/gnome-shell
   register: pids_of_gnome
 
-- name: set desktop_environment fact to KDE
+- name: Set desktop_environment fact to KDE
   set_fact: desktop_environment="kde"
   when: pids_of_kde.pids.0 is defined
 
-- name: set desktop_environment fact to GNOME
+- name: Set desktop_environment fact to GNOME
   set_fact: desktop_environment="gnome"
   when: pids_of_gnome.pids.0 is defined
 
-- name: include the KDE role
+- name: Include the KDE role
   include_role:
     name: kde
   when: desktop_environment == "kde"
 
-- name: include the GNOME role
+- name: Include the GNOME role
   include_role:
     name: gnome
   when: desktop_environment == "gnome"

@@ -1,13 +1,13 @@
 ---
 
-- name: add the flathub remote
+- name: Add the flathub remote
   community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: system
 
-- name: install generic flatpaks from flathub
+- name: Install generic flatpaks from flathub
   community.general.flatpak:
     name: "{{ item }}"
     state: present
@@ -20,7 +20,7 @@
     - org.telegram.desktop
     - com.bitwarden.desktop
 
-- name: install gnome specific flatpaks from flathub
+- name: Install gnome specific flatpaks from flathub
   community.general.flatpak:
     name: "{{ item }}"
     state: present
@@ -31,7 +31,7 @@
     - com.transmissionbt.Transmission
   when: desktop_environment == "gnome"
 
-- name: install kde specific flatpaks from flathub
+- name: Install kde specific flatpaks from flathub
   community.general.flatpak:
     name: "{{ item }}"
     state: present

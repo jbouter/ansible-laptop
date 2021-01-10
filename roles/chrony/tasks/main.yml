@@ -1,13 +1,13 @@
 ---
 
-- name: install chrony for Debian based systems
+- name: Install chrony for Debian based systems
   include_tasks: chrony_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: install chrony for RedHat based systems
+- name: Install chrony for RedHat based systems
   include_tasks: chrony_fedora.yml
   when: ansible_os_family == "RedHat"
 
-- name: install chrony for Arch Linux based systems
+- name: Install chrony for Arch Linux based systems
   include_tasks: chrony_archlinux.yml
   when: ansible_os_family == "Archlinux"

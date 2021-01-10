@@ -1,6 +1,6 @@
 ---
 
-- name: install iptables packages
+- name: Install iptables packages
   apt:
     state: present
     pkg:
@@ -8,7 +8,7 @@
       - iptables-persistent
       - netfilter-persistent
 
-- name: start and enable netfilter-persistent
+- name: Start and enable netfilter-persistent
   systemd:
     name: netfilter-persistent
     state: started

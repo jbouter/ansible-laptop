@@ -1,11 +1,11 @@
 ---
 
-- name: update all packages to the latest version
+- name: Update all packages to the latest version
   community.general.pacman:
     update_cache: yes
     upgrade: yes
 
-- name: install base packages
+- name: Install base packages
   community.general.pacman:
     state: present
     name:
@@ -39,7 +39,7 @@
       - aspell-en
       - hunspell-en_GB
 
-- name: clone yay from aur
+- name: Clone yay from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -48,7 +48,7 @@
     version: master
     update: yes
 
-- name: install yay using makepkg
+- name: Install yay using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -56,7 +56,7 @@
     chdir: /tmp/yay
     creates: /usr/bin/yay
 
-- name: clone informant from aur
+- name: Clone informant from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -65,34 +65,34 @@
     version: master
     update: yes
 
-- name: install informant using makepkg
+- name: Install informant using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
   args:
     chdir: /tmp/informant
     creates: /usr/bin/informant
-  notify: "initialise informant"
+  notify: "Initialise informant"
 
-- name: start and enable fprintd
+- name: Start and enable fprintd
   systemd:
     name: fprintd
     state: started
     enabled: yes
 
-- name: start and enable the bluetooth daemon
+- name: Start and enable the bluetooth daemon
   systemd:
     name: bluetooth
     state: started
     enabled: yes
 
-- name: start and enable the cups daemon
+- name: Start and enable the cups daemon
   systemd:
     name: cups
     state: started
     enabled: yes
 
-- name: create config directories
+- name: Create config directories
   file:
     dest: "{{ item }}"
     owner: root
@@ -103,7 +103,7 @@
     - /etc/xdg/reflector
     - /etc/pacman.d/hooks
 
-- name: create the reflector configuration file
+- name: Create the reflector configuration file
   copy:
     dest: /etc/xdg/reflector/reflector.conf
     owner: root
@@ -114,9 +114,9 @@
       --country Netherlands
       --protocol https
       --latest 5
-  notify: "run the reflector service"
+  notify: "Run the reflector service"
 
-- name: create the pacman hook for reflector
+- name: Create the pacman hook for reflector
   copy:
     dest: /etc/pacman.d/hooks/mirrorupgrade.hook
     owner: root
@@ -135,7 +135,7 @@
       Exec = /bin/sh -c 'systemctl start reflector.service; if [ -f /etc/pacman.d/mirrorlist.pacnew ]; then rm /etc/pacman.d/mirrorlist.pacnew; fi'
   notify: "run the reflector service"
 
-- name: start & enable service earlyoom
+- name: Start & enable service earlyoom
   systemd:
     name: earlyoom
     state: started

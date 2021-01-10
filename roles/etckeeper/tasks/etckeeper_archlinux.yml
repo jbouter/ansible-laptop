@@ -1,13 +1,13 @@
 ---
 
-- name: install git and etckeeper
+- name: Install git and etckeeper
   community.general.pacman:
     name:
       - git
       - etckeeper
     state: present
 
-- name: configure etckeeper
+- name: Configure etckeeper
   copy:
     src: etckeeper_archlinux.conf
     dest: /etc/etckeeper/etckeeper.conf

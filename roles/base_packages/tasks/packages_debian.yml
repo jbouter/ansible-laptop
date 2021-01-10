@@ -1,11 +1,11 @@
 ---
 
-- name: update all packages to the latest version
+- name: Update all packages to the latest version
   apt:
     upgrade: dist
     update_cache: yes
 
-- name: install base packages
+- name: Install base packages
   apt:
     state: present
     pkg:
@@ -35,7 +35,7 @@
       - earlyoom
       - yamllint
 
-- name: install ubuntu restricted packages
+- name: Install ubuntu restricted packages
   apt:
     state: present
     pkg:
@@ -43,20 +43,20 @@
     - ubuntu-restricted-extras
   when: ansible_distribution == "Ubuntu"
 
-- name: remove useless packages from the cache
+- name: Remove useless packages from the cache
   apt:
     autoclean: yes
 
-- name: remove dependencies that are no longer required
+- name: Remove dependencies that are no longer required
   apt:
     autoremove: yes
 
-- name: configure vim to be the default editor systemd wide
+- name: Configure vim to be the default editor systemd wide
   community.general.alternatives:
     name: editor
     path: /usr/bin/vim.basic
 
-- name: start & enable service earlyoom
+- name: Start & enable service earlyoom
   systemd:
     name: earlyoom
     state: started

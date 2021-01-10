@@ -1,10 +1,10 @@
 ---
 
-- name: update grub debian
+- name: Update grub debian
   command: update-grub
 
-- name: update grub fedora
+- name: Update grub fedora
   command: grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"
 
-- name: update grub archlinux
+- name: Update grub archlinux
   command: grub-mkconfig -o /boot/grub/grub.cfg

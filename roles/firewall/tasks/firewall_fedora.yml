@@ -1,6 +1,6 @@
 ---
 
-- name: install iptables packages
+- name: Install iptables packages
   dnf:
     state: present
     name:
@@ -8,31 +8,31 @@
       - iptables-services
       - iptables-utils
 
-- name: stop and disable firewalld
+- name: Stop and disable firewalld
   systemd:
     name: firewalld
     state: stopped
     enabled: no
 
-- name: configure automatic iptables saving on stop
+- name: Configure automatic iptables saving on stop
   replace:
     path: /etc/sysconfig/iptables-config
     regexp: "^IPTABLES_SAVE_ON_STOP=\"yes\""
     replace: "IPTABLES_SAVE_ON_STOP=\"no\""
 
-- name: configure automatic iptables saving on restart
+- name: Configure automatic iptables saving on restart
   replace:
     path: /etc/sysconfig/iptables-config
     regexp: "^IPTABLES_SAVE_ON_RESTART=\"yes\""
     replace: "IPTABLES_SAVE_ON_RESTART=\"no\""
 
-- name: start and enable iptables
+- name: Start and enable iptables
   systemd:
     name: iptables
     state: started
     enabled: yes
 
-- name: start and enable ip6tables
+- name: Start and enable ip6tables
   systemd:
     name: ip6tables
     state: started
