@@ -1,6 +1,6 @@
 ---
 
-- name: install vim repository
+- name: Install vim repository
   become: yes
   become_user: "{{ username }}"
   command: make install

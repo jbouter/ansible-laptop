@@ -1,6 +1,6 @@
 ---
 
-- name: install zsh
+- name: Install zsh
   apt:
     name: zsh
     state: present

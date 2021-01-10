@@ -1,21 +1,20 @@
 ---
 
-- name: install KDE for Debian based systems
+- name: Install KDE for Debian based systems
   include_tasks: kde_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: install kde for RedHat based systems
+- name: Install kde for RedHat based systems
   include_tasks: kde_fedora.yml
   when: ansible_os_family == "RedHat"
 
-- name: install kde for Arch based systems
+- name: Install kde for Arch based systems
   include_tasks: kde_arch.yml
   when: ansible_os_family == "Archlinux"
 
-- name: include kde settings for user
+- name: Include kde settings for user
   include_tasks: kde_user.yml
   args:
     apply:
       become_user: "{{ username }}"
       become: yes
-

@@ -1,6 +1,6 @@
 ---
 
-- name: set systemd tmp.mount file
+- name: Set systemd tmp.mount file
   copy:
     src: debian_tmp.mount
     dest: /etc/systemd/system/tmp.mount
@@ -8,14 +8,14 @@
     group: root
     mode: '0644'
 
-- name: reload systemd daemon
+- name: Reload systemd daemon
   systemd:
     daemon_reload: yes
 
-- name: enable tmp.mount to be started on next boot
+- name: Enable tmp.mount to be started on next boot
   systemd:
     name: tmp.mount
     enabled: yes
     masked: no
   notify:
-  - manually remount /tmp with noexec permissions
+    - Manually remount /tmp with noexec permissions

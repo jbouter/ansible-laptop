@@ -1,11 +1,11 @@
 ---
 
-- name: check if suru icon theme is installed
+- name: Check if suru icon theme is installed
   stat:
     path: /usr/share/icons/Suru
   register: stat_suru
 
-- name: clone suru icon theme from aur
+- name: Clone suru icon theme from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -15,7 +15,7 @@
     update: yes
   when: not stat_suru.stat.exists
 
-- name: install suru icon theme using makepkg
+- name: Install suru icon theme using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -24,12 +24,12 @@
     creates: /usr/share/icons/Suru
   when: not stat_suru.stat.exists
 
-- name: check if suru icon theme installation was succesful
+- name: Check if suru icon theme installation was succesful
   stat:
     path: /usr/share/icons/Suru
   register: stat_suruinstalled
 
-- name: remove suru icon theme cloned repository
+- name: Remove suru icon theme cloned repository
   file:
     path: /tmp/suru-icon-theme-git
     state: absent

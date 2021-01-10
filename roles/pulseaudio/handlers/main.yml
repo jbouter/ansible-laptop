@@ -1,6 +1,6 @@
 ---
 
-- name: restart pulseaudio
+- name: Restart pulseaudio
   systemd:
     state: restarted
     name: pulseaudio

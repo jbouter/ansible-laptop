@@ -1,13 +1,13 @@
 ---
 
-- name: install libinput package requirements
+- name: Install libinput package requirements
   apt:
     pkg:
-    - build-essential
-    - libinput-tools
-    - ruby
-    - wmctrl
+      - build-essential
+      - libinput-tools
+      - ruby
+      - wmctrl
 
-- name: install touchegg
+- name: Install touchegg
   apt:
     deb: 'https://github.com/JoseExposito/touchegg/releases/download/2.0.3/touchegg_2.0.3_amd64.deb'

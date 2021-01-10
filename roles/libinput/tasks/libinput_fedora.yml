@@ -1,6 +1,6 @@
 ---
 
-- name: install libinput package requirements
+- name: Install libinput package requirements
   dnf:
     name:
       - xdotool
@@ -9,7 +9,7 @@
       - libinput-utils
     state: present
 
-- name: install touchegg
+- name: Install touchegg
   dnf:
     name: 'https://github.com/JoseExposito/touchegg/releases/download/2.0.3/touchegg-2.0.3-1.x86_64.rpm'
     state: present

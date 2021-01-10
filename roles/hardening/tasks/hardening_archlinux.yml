@@ -6,26 +6,26 @@
 - include: network.yml
 - include: auditd_fedora.yml
 
-- name: install apparmor and aa-notify dependencies
+- name: Install apparmor and aa-notify dependencies
   community.general.pacman:
     name:
       - apparmor
       - python-notify2
     state: present
 
-- name: allow users in audit group to receive auditd notifications
+- name: Allow users in audit group to receive auditd notifications
   replace:
     path: /etc/audit/auditd.conf
     regexp: '^log_group \= root'
     replace: 'log_group = audit'
 
-- name: enable caching of apparmor profiles
+- name: Enable caching of apparmor profiles
   replace:
     path: /etc/apparmor/parser.conf
     regexp: '^#write-cache'
     replace: 'write-cache'
 
-- name: ensure user config directories exist
+- name: Ensure user config directories exist
   file:
     path: "{{ item }}"
     state: directory
@@ -36,7 +36,7 @@
     - "/home/{{ username }}/.config"
     - "/home/{{ username }}/.config/autostart"
 
-- name: configure desktop launcher for aa-notify notifcations
+- name: Configure desktop launcher for aa-notify notifcations
   copy:
     dest: "/home/{{ username }}/.config/autostart/apparmor-notify.desktop"
     owner: "{{ username }}"
@@ -52,7 +52,7 @@
         StartupNotify=false
         NoDisplay=true
 
-- name: start and enabled apparmor service
+- name: Start and enabled apparmor service
   systemd:
     name: apparmor
     state: started

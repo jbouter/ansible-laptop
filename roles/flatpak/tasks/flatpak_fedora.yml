@@ -1,6 +1,6 @@
 ---
 
-- name: install flatpak
+- name: Install flatpak
   dnf:
     name:
       - flatpak-libs

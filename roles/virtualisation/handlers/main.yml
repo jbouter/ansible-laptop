@@ -1,6 +1,6 @@
 ---
 
-- name: restart and enable libvirtd on fedora
+- name: Restart and enable libvirtd on fedora
   systemd:
     name: libvirtd
     state: restarted

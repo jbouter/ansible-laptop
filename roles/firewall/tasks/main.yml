@@ -1,16 +1,16 @@
 ---
 
-- name: install firewall packages for Debian based systems
+- name: Install firewall packages for Debian based systems
   include_tasks: firewall_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: install firewall packages for RedHat based systems
+- name: Install firewall packages for RedHat based systems
   include_tasks: firewall_fedora.yml
   when: ansible_os_family == "RedHat"
 
-- name: install firewall packages for Arch Linux based systems
+- name: Install firewall packages for Arch Linux based systems
   include_tasks: firewall_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
-- name: configure firewall
+- name: Configure firewall
   include_tasks: firewall_global.yml

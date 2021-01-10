@@ -1,11 +1,12 @@
 ---
 
-- name: configure keychron keyboard to be used with apple mode
+- name: Configure keychron keyboard to be used with apple mode
   copy:
     dest: /etc/modprobe.d/hid_apple.conf
     owner: root
     group: root
     mode: '0644'
     content: |
-      # For Keychron keyboard -- https://wiki.archlinux.org/index.php/Apple_Keyboard
+      # For Keychron keyboard
+      # https://wiki.archlinux.org/index.php/Apple_Keyboard
       options hid_apple swap_opt_cmd=1

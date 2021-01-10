@@ -1,18 +1,18 @@
 ---
 
-- name: install iptables packages
+- name: Install iptables packages
   community.general.pacman:
     state: present
     name:
       - iptables
 
-- name: start and enable iptables
+- name: Start and enable iptables
   systemd:
     name: iptables
     state: started
     enabled: yes
 
-- name: start and enable ip6tables
+- name: Start and enable ip6tables
   systemd:
     name: ip6tables
     state: started

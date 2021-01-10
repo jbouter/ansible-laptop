@@ -1,23 +1,23 @@
 ---
 
-- name: add Google Chrome repository key
+- name: Add Google Chrome repository key
   apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
     state: present
 
-- name: check if Google Chrome apt repository exists
+- name: Check if Google Chrome apt repository exists
   stat:
     path: /etc/apt/sources.list.d/google-chrome.list
   register: gchrome_stat_result
 
-- name: configure Google Chrome repository
+- name: Configure Google Chrome repository
   apt_repository:
     filename: google-chrome
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
   when:
     - not gchrome_stat_result.stat.exists
 
-- name: install Google Chrome package
+- name: Install Google Chrome package
   apt:
     update_cache: yes
     state: present

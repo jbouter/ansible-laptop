@@ -1,16 +1,16 @@
 ---
 
-- name: install flatpak for Debian based systems
+- name: Install flatpak for Debian based systems
   include_tasks: flatpak_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: install flatpak for RedHat based systems
+- name: Install flatpak for RedHat based systems
   include_tasks: flatpak_fedora.yml
   when: ansible_os_family == "RedHat"
 
-- name: install flatpak for Arch Linux based systems
+- name: Install flatpak for Arch Linux based systems
   include_tasks: flatpak_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
-- name: install flatpak packages
+- name: Install flatpak packages
   include_tasks: flatpak_packages.yml

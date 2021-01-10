@@ -1,12 +1,12 @@
 ---
 
-- name: append user to groups
+- name: Append user to groups
   user:
     name: "{{ username }}"
     append: yes
     groups: wheel,libvirt,input,docker
 
-- name: configure passwordless sudo and wheel for dnf commands
+- name: Configure passwordless sudo and wheel for dnf commands
   copy:
     dest: /etc/sudoers.d/dnf
     owner: root

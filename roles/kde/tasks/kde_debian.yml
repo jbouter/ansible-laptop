@@ -1,6 +1,6 @@
 ---
 
-- name: install KDE packages
+- name: Install KDE packages
   apt:
     state: present
     pkg:

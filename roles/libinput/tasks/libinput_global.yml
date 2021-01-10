@@ -1,6 +1,6 @@
 ---
 
-- name: create touchegg configuration directory for user
+- name: Create touchegg configuration directory for user
   file:
     name: "/home/{{ username }}/.config/touchegg"
     state: directory
@@ -8,7 +8,7 @@
     group: "{{ username }}"
     mode: '0755'
 
-- name: configure touchegg for user
+- name: Configure touchegg for user
   copy:
     src: touchegg.conf
     dest: "/home/{{ username }}/.config/touchegg/touchegg.conf"
@@ -16,7 +16,7 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: start and enable touchegg service
+- name: Start and enable touchegg service
   systemd:
     daemon_reload: yes
     name: touchegg
@@ -24,7 +24,7 @@
     state: started
   ignore_errors: yes
 
-- name: create libinput directory
+- name: Create libinput directory
   file:
     name: /etc/libinput
     state: directory
@@ -32,7 +32,7 @@
     group: root
     mode: '0755'
 
-- name: place libinput quirks
+- name: Place libinput quirks
   copy:
     src: local-overrides.quirks
     dest: /etc/libinput/local-overrides.quirks
@@ -40,7 +40,7 @@
     group: root
     mode: '0644'
 
-- name: create xorg configuration directory
+- name: Create xorg configuration directory
   file:
     name: /etc/X11/xorg.conf.d
     state: directory
@@ -48,7 +48,7 @@
     group: root
     mode: '0755'
 
-- name: configure xorg libinput stuff
+- name: Configure xorg libinput stuff
   copy:
     src: 10-libinput.conf
     dest: /etc/X11/xorg.conf.d/10-libinput.conf

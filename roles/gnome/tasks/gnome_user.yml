@@ -1,71 +1,71 @@
 ---
 
-- name: configure cursor theme
+- name: Configure cursor theme
   community.general.dconf:
     key: "/org/gnome/desktop/interface/cursor-theme"
     value: "'Suru'"
 
-- name: configure document font name
+- name: Configure document font name
   community.general.dconf:
     key: "/org/gnome/desktop/interface/document-font-name"
     value: "'Open Sans 10'"
 
-- name: configure font name
+- name: Configure font name
   community.general.dconf:
     key: "/org/gnome/desktop/interface/font-name"
     value: "'Cantarell 10'"
 
-- name: configure font anti-aliasing
+- name: Configure font anti-aliasing
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/xsettings/antialiasing"
     value: "'rgba'"
 
-- name: configure font hinting
+- name: Configure font hinting
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/xsettings/hinting"
     value: "'slight'"
 
-- name: configure gtk theme
+- name: Configure gtk theme
   community.general.dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
     value: "'Adwaita'"
 
-- name: configure monospace font
+- name: Configure monospace font
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
     value: "'Hack 10'"
 
-- name: configure battery percentage in titlebar
+- name: Configure battery percentage in titlebar
   community.general.dconf:
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
 
-- name: configure desktop background
+- name: Configure desktop background
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
 
-- name: configure tap to click touchpad
+- name: Configure tap to click touchpad
   community.general.dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
     value: "true"
 
-- name: configure two finger scrolling
+- name: Configure two finger scrolling
   community.general.dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled"
     value: "true"
 
-- name: configure natural scrolling
+- name: Configure natural scrolling
   community.general.dconf:
     key: "/org/gnome/desktop/peripherals/mouse/natural-scroll"
     value: "true"
 
-- name: enable night light
+- name: Enable night light
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
     value: "true"
 
-- name: disable default gnome alt-tab behavior
+- name: Disable default gnome alt-tab behavior
   community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/{{ item }}"
     value: "@as []"
@@ -73,52 +73,52 @@
     - switch-applications
     - switch-applications-backward
 
-- name: configure middle-click minimise for windows
+- name: Configure middle-click minimise for windows
   community.general.dconf:
     key: "/org/gnome/desktop/wm/preferences/action-middle-click-titlebar"
     value: "'minimize'"
 
-- name: configure windows/kde like alt-tab behavior
+- name: Configure windows/kde like alt-tab behavior
   community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-windows"
     value: "['<Alt>Tab', '<Super>Tab']"
 
-- name: configure windows/kde like alt-tab backward behavior
+- name: Configure windows/kde like alt-tab backward behavior
   community.general.dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
     value: "['<Alt><Shift>Tab', '<Super><Shift>Tab']"
 
-- name: configure favourite apps
+- name: Configure favourite apps
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
     value: "['google-chrome.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
 
-- name: configure screenshot keyboard shortcut
+- name: Configure screenshot keyboard shortcut
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/screenshot"
     value: "['<Shift><Alt>numbersign']"
 
-- name: configure screenshot current window keyboard shortcut
+- name: Configure screenshot current window keyboard shortcut
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/window-screenshot"
     value: "['<Shift><Alt>at']"
 
-- name: configure screenshot area keyboard shortcut
+- name: Configure screenshot area keyboard shortcut
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/area-screenshot"
     value: "['<Shift><Alt>dollar']"
 
-- name: configure gnome-terminal keyboard shortcut binding
+- name: Configure gnome-terminal keyboard shortcut binding
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
     value: "'<Primary><Alt>t'"
 
-- name: configure gnome-terminal keyboard shortcut command
+- name: Configure gnome-terminal keyboard shortcut command
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command"
     value: "'gnome-terminal'"
 
-- name: configure gnome-terminal keyboard shortcut name
+- name: Configure gnome-terminal keyboard shortcut name
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name"
     value: "'gnome-terminal'"

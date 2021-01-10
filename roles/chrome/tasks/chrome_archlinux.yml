@@ -1,11 +1,11 @@
 ---
 
-- name: check if google chrome is installed
+- name: Check if google chrome is installed
   stat:
     path: /usr/bin/google-chrome-stable
   register: stat_chrome
 
-- name: clone Google Chrome from aur
+- name: Clone Google Chrome from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -15,7 +15,7 @@
     update: yes
   when: not stat_chrome.stat.exists
 
-- name: install Google Chrome using makepkg
+- name: Install Google Chrome using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -24,12 +24,12 @@
     creates: /usr/bin/google-chrome-stable
   when: not stat_chrome.stat.exists
 
-- name: check if google chrome installation was succesful
+- name: Check if google chrome installation was succesful
   stat:
     path: /usr/bin/code
   register: stat_chromeinstalled
 
-- name: remove google chrome cloned repository
+- name: Remove google chrome cloned repository
   file:
     path: /tmp/google-chrome
     state: absent

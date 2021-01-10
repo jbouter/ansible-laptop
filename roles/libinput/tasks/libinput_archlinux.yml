@@ -1,6 +1,6 @@
 ---
 
-- name: install libinput package requirements
+- name: Install libinput package requirements
   community.general.pacman:
     name:
       - xdotool
@@ -8,12 +8,12 @@
       - libinput
     state: present
 
-- name: check if touchegg is installed
+- name: Check if touchegg is installed
   stat:
     path: /usr/bin/touchegg
   register: stat_touchegg
 
-- name: clone touchegg from aur
+- name: Clone touchegg from aur
   become: yes
   become_user: "{{ username }}"
   git:
@@ -23,7 +23,7 @@
     update: yes
   when: not stat_touchegg.stat.exists
 
-- name: install touchegg using makepkg
+- name: Install touchegg using makepkg
   become: yes
   become_user: "{{ username }}"
   command: makepkg --noconfirm -si
@@ -32,12 +32,12 @@
     creates: /usr/bin/touchegg
   when: not stat_touchegg.stat.exists
 
-- name: check if touchegg installation was succesful
+- name: Check if touchegg installation was succesful
   stat:
     path: /usr/bin/touchegg
   register: stat_touchegginstalled
 
-- name: remove touchegg cloned repository
+- name: Remove touchegg cloned repository
   file:
     path: /tmp/touchegg
     state: absent

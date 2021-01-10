@@ -14,7 +14,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - allow all localhost traffic to itself ipv4
   iptables:
@@ -23,7 +23,7 @@
     destination: "127.0.0.1/32"
     jump: ACCEPT
     ip_version: ipv4
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - allow all localhost traffic to itself ipv6
   iptables:
@@ -32,7 +32,7 @@
     destination: "::1/128"
     jump: ACCEPT
     ip_version: ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - drop local range ipv4
   iptables:
@@ -40,7 +40,7 @@
     source: "127.0.0.0/8"
     jump: DROP
     ip_version: ipv4
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - allow established and related for TCP and UDP ipv4
   iptables:
@@ -52,7 +52,7 @@
   loop:
     - tcp
     - udp
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - allow established and related for TCP and UDP ipv6
   iptables:
@@ -64,7 +64,7 @@
   loop:
     - tcp
     - udp
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - allow new, established and related for ICMP ipv4
   iptables:
@@ -73,7 +73,7 @@
     jump: ACCEPT
     protocol: icmp
     ip_version: ipv4
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: INPUT - allow new, established and related for ICMP ipv6
   iptables:
@@ -82,7 +82,7 @@
     jump: ACCEPT
     protocol: ipv6-icmp
     ip_version: ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: OUTPUT - allow all loopback traffic
   iptables:
@@ -93,7 +93,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: OUTPUT - allow new and established
   iptables:
@@ -104,7 +104,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 #
 # Allow traffic to KDE Connect
@@ -122,7 +122,7 @@
   loop:
     - tcp
     - udp
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: OUTPUT - allow traffic to KDE/GS connect TCP/UDP
   iptables:
@@ -135,7 +135,7 @@
   loop:
     - tcp
     - udp
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 #
 # Set the default policies of our chains to DROP
@@ -150,7 +150,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: OUTPUT - default policy DROP
   iptables:
@@ -160,7 +160,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: FORWARD - default policy DROP
   iptables:
@@ -170,7 +170,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 
 #
@@ -190,7 +190,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: OUTPUT - log prefix with limit
   iptables:
@@ -203,7 +203,7 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"
 
 - name: FORWARD - log prefix with limit
   iptables:
@@ -216,4 +216,4 @@
   loop:
     - ipv4
     - ipv6
-  notify: "run firewall handler"
+  notify: "Run firewall handler"

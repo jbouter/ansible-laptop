@@ -1,20 +1,20 @@
 ---
 
-- name: append user to groups for ubuntu
+- name: Append user to groups for ubuntu
   user:
     name: "{{ username }}"
     append: yes
     groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,docker
   when: ansible_distribution == "Ubuntu"
 
-- name: append user to groups for debian
+- name: Append user to groups for debian
   user:
     name: "{{ username }}"
     append: yes
     groups: adm,cdrom,sudo,dip,plugdev,input,docker
   when: ansible_distribution == "Debian"
 
-- name: configure passwordless sudo for apt commands
+- name: Configure passwordless sudo for apt commands
   copy:
     dest: /etc/sudoers.d/apt
     owner: root
