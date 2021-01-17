@@ -12,7 +12,6 @@
     - nextcloud
     - hardening
     - chrony
-    - chrome
     - libinput
     - vscode
     - virtualisation
