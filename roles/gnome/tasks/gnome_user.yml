@@ -91,7 +91,7 @@
 - name: Configure favourite apps
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
-    value: "['google-chrome.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
+    value: "['firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
 
 - name: Configure screenshot keyboard shortcut
   community.general.dconf:
