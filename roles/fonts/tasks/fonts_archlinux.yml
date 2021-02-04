@@ -12,6 +12,7 @@
       - ttf-opensans
       - ttf-roboto-mono
       - ttf-fira-code
+      - ttf-ubuntu-font-family
       - noto-fonts-emoji
 
 - name: Enable sub-pixel-rgb font hinting

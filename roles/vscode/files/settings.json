@@ -1,6 +1,6 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'Fira Code'",
+    "editor.fontFamily": "'Ubuntu Mono'",
     "git.alwaysSignOff": true,
     "git.autofetch": true,
     "git.postCommitCommand": "sync",
@@ -21,7 +21,7 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "explorer.confirmDelete": false,
-    "terminal.integrated.fontFamily": "'Roboto Mono'",
+    "terminal.integrated.fontFamily": "'Hack'",
     "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.iconTheme": "material-icon-theme",

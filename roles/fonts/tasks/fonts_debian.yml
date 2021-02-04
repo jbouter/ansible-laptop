@@ -9,6 +9,7 @@
       - fonts-hack-ttf
       - fonts-open-sans
       - fonts-firacode
+      - fonts-ubuntu
 
 - name: Create local fonts directory
   ansible.builtin.file:
