@@ -7,8 +7,9 @@
   ignore_errors: True
 
 - name: Remove uncommon filesystem kernel modules
-  ansible.builtin.command:
-    cmd: "rmmod {{ item }}"
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: absent
   with_items:
     - cramfs
     - freevxfs
@@ -19,8 +20,9 @@
   ignore_errors: yes
 
 - name: Remove uncommon network protocol kernel modules
-  ansible.builtin.command:
-    cmd: "rmmod {{ item }}"
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: absent
   with_items:
     - dccp
     - sctp
