@@ -1,7 +1,7 @@
 ---
 
-- include: tmp_fedora.yml
-- include: sysctl.yml
-- include: filesystems.yml
-- include: network.yml
-- include: auditd_fedora.yml
+- ansible.builtin.include: tmp_fedora.yml
+- ansible.builtin.include: sysctl.yml
+- ansible.builtin.include: filesystems.yml
+- ansible.builtin.include: network.yml
+- ansible.builtin.include: auditd_fedora.yml

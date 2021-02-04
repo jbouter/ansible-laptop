@@ -1,14 +1,14 @@
 ---
 
 - name: Install git and etckeeper
-  dnf:
+  ansible.builtin.dnf:
     name:
       - git
       - etckeeper
     state: present
 
 - name: Configure etckeeper
-  copy:
+  ansible.builtin.copy:
     src: etckeeper_fedora.conf
     dest: /etc/etckeeper/etckeeper.conf
     owner: root

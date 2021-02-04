@@ -1,7 +1,7 @@
 ---
 
 - name: Install font packages
-  dnf:
+  ansible.builtin.dnf:
     name:
       - cascadia-fonts-all
       - adobe-source-code-pro-fonts
@@ -11,7 +11,7 @@
       - fira-code-fonts
 
 - name: Create local fonts directory
-  file:
+  ansible.builtin.file:
     dest: "{{ item }}"
     owner: root
     group: root
@@ -37,7 +37,7 @@
     remote_src: yes
 
 - name: Configure fontconfig for user
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
     src: fonts_generic.conf
     owner: "{{ username }}"

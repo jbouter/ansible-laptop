@@ -1,19 +1,19 @@
 ---
 
 - name: Install gnome for Debian based systems
-  include_tasks: gnome_debian.yml
+  ansible.builtin.include_tasks: gnome_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install gnome for RedHat based systems
-  include_tasks: gnome_fedora.yml
+  ansible.builtin.include_tasks: gnome_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install gnome for Archlinux based systems
-  include_tasks: gnome_archlinux.yml
+  ansible.builtin.include_tasks: gnome_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
 - name: Include gnome settings for user
-  include_tasks: gnome_user.yml
+  ansible.builtin.include_tasks: gnome_user.yml
   args:
     apply:
       become_user: "{{ username }}"

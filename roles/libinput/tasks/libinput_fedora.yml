@@ -1,7 +1,7 @@
 ---
 
 - name: Install libinput package requirements
-  dnf:
+  ansible.builtin.dnf:
     name:
       - xdotool
       - wmctrl
@@ -10,7 +10,7 @@
     state: present
 
 - name: Install touchegg
-  dnf:
+  ansible.builtin.dnf:
     name: 'https://github.com/JoseExposito/touchegg/releases/download/2.0.3/touchegg-2.0.3-1.x86_64.rpm'
     state: present
     disable_gpg_check: yes

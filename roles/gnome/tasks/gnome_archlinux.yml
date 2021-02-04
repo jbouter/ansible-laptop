@@ -1,14 +1,14 @@
 ---
 
 - name: Check if suru icon theme is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/share/icons/Suru
   register: stat_suru
 
 - name: Clone suru icon theme from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/suru-icon-theme-git.git
     dest: /tmp/suru-icon-theme-git
     version: master
@@ -18,19 +18,20 @@
 - name: Install suru icon theme using makepkg
   become: yes
   become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
   args:
     chdir: /tmp/suru-icon-theme-git
     creates: /usr/share/icons/Suru
   when: not stat_suru.stat.exists
 
 - name: Check if suru icon theme installation was succesful
-  stat:
+  ansible.builtin.stat:
     path: /usr/share/icons/Suru
   register: stat_suruinstalled
 
 - name: Remove suru icon theme cloned repository
-  file:
+  ansible.builtin.file:
     path: /tmp/suru-icon-theme-git
     state: absent
   when: stat_suruinstalled.stat.exists

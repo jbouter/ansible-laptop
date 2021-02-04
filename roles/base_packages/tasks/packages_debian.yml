@@ -1,12 +1,12 @@
 ---
 
 - name: Update all packages to the latest version
-  apt:
+  ansible.builtin.apt:
     upgrade: dist
     update_cache: yes
 
 - name: Install base packages
-  apt:
+  ansible.builtin.apt:
     state: present
     pkg:
       - htop
@@ -36,7 +36,7 @@
       - yamllint
 
 - name: Install ubuntu restricted packages
-  apt:
+  ansible.builtin.apt:
     state: present
     pkg:
     - ubuntu-restricted-addons
@@ -44,11 +44,11 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Remove useless packages from the cache
-  apt:
+  ansible.builtin.apt:
     autoclean: yes
 
 - name: Remove dependencies that are no longer required
-  apt:
+  ansible.builtin.apt:
     autoremove: yes
 
 - name: Configure vim to be the default editor systemd wide
@@ -57,7 +57,7 @@
     path: /usr/bin/vim.basic
 
 - name: Start & enable service earlyoom
-  systemd:
+  ansible.builtin.systemd:
     name: earlyoom
     state: started
     enabled: yes

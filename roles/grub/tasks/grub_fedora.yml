@@ -9,7 +9,7 @@
     - Update grub fedora
 
 - name: Configure grub edit password
-  blockinfile:
+  blockinansible.builtin.file:
     path: /etc/grub.d/00_header
     insertafter: EOF
     block: |

@@ -1,13 +1,13 @@
 ---
 
 - name: Install grub for Debian based systems
-  include_tasks: grub_debian.yml
+  ansible.builtin.include_tasks: grub_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install grub for RedHat based systems
-  include_tasks: grub_fedora.yml
+  ansible.builtin.include_tasks: grub_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install grub for Arch Linux based systems
-  include_tasks: grub_archlinux.yml
+  ansible.builtin.include_tasks: grub_archlinux.yml
   when: ansible_os_family == "Archlinux"

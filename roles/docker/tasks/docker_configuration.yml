@@ -21,7 +21,7 @@
   notify: restart docker service
 
 - name: Configure subuid for dockeruser
-  lineinfile:
+  lineinansible.builtin.file:
     path: /etc/subuid
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
@@ -32,7 +32,7 @@
   notify: restart docker service
 
 - name: Configure subgid for dockeruserdocker
-  lineinfile:
+  lineinansible.builtin.file:
     path: /etc/subgid
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
@@ -43,7 +43,7 @@
   notify: restart docker service
 
 - name: Create /etc/docker
-  file:
+  ansible.builtin.file:
     path: /etc/docker
     state: directory
     owner: root
@@ -51,7 +51,7 @@
     mode: '0755'
 
 - name: Write daemon.json
-  copy:
+  ansible.builtin.copy:
     src: daemon.json
     dest: /etc/docker/daemon.json
     owner: root

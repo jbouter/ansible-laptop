@@ -1,12 +1,12 @@
 ---
 
 - name: Check if user vscode configuration dir exists
-  stat:
+  ansible.builtin.stat:
     path: "/home/{{ username }}/.config/Code/User"
   register: stat_user_vscode_config
 
 - name: Create vscode config directory
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ username }}"
@@ -18,7 +18,7 @@
   when: not stat_user_vscode_config.stat.exists
 
 - name: Configure vscode for user
-  copy:
+  ansible.builtin.copy:
     src: settings.json
     dest: "/home/{{ username }}/.config/Code/User/settings.json"
     force: no

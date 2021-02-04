@@ -1,0 +1,12 @@
+---
+
+- name: Install snapd
+  ansible.builtin.dnf:
+    name:
+      - snapd
+
+- name: Create snap symlink to support classic snaps
+  ansible.builtin.ansible.builtin.file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link

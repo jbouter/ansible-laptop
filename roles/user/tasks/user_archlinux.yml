@@ -13,7 +13,7 @@
     groups: wheel,libvirt,input,docker,audit,adbusers,informant
 
 - name: Configure passwordless sudo and wheel for pacman commands
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sudoers.d/pacman
     owner: root
     group: root

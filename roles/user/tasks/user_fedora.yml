@@ -7,7 +7,7 @@
     groups: wheel,libvirt,input,docker
 
 - name: Configure passwordless sudo and wheel for dnf commands
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sudoers.d/dnf
     owner: root
     group: root

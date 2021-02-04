@@ -1,7 +1,7 @@
 ---
 
 - name: ensure all required directories exist
-  file:
+  ansible.builtin.file:
     path: "/home/{{ username }}/{{ item }}"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -15,7 +15,7 @@
     - .config/plasma-workspace/env
 
 - name: configure kde pinentry for gpg + kwallet
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.gnupg/gpg-agent.conf"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -24,7 +24,7 @@
         pinentry-program /usr/bin/pinentry-kwallet
 
 - name: add ssh key passphrase to kwallet during autostart
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/autostart-scripts/ssh-add.sh"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -37,7 +37,7 @@
         ssh-add ~/.ssh/id_ed25519
 
 - name: configure ssh agent to stop on shutdown
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/plasma-workspace/shutdown/ssh-agent-shutdown.sh"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -47,7 +47,7 @@
         [ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
 
 - name: configure ssh agent to start on login
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/plasma-workspace/env/ssh-agent-startup.sh"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -59,7 +59,7 @@
         export SSH_ASKPASS
 
 - name: configure ssh askpass in profile.d
-  copy:
+  ansible.builtin.copy:
     dest: /etc/profile.d/ksshaskpass.sh
     owner: root
     group: root

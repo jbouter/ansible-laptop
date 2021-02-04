@@ -1,7 +1,7 @@
 ---
 
 - name: Configure tab completion for virt-viewer
-  copy:
+  ansible.builtin.copy:
     dest: /etc/bash_completion.d/virt-viewer
     src: virt-viewer
     owner: root

@@ -1,16 +1,16 @@
 ---
 
 - name: Install zsh for Debian based systems
-  include_tasks: zsh_debian.yml
+  ansible.builtin.include_tasks: zsh_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install zsh for RedHat based systems
-  include_tasks: zsh_fedora.yml
+  ansible.builtin.include_tasks: zsh_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install zsh for Arch Linux based systems
-  include_tasks: zsh_archlinux.yml
+  ansible.builtin.include_tasks: zsh_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
 - name: Configure zsh
-  include_tasks: zsh_configure.yml
+  ansible.builtin.include_tasks: zsh_configure.yml

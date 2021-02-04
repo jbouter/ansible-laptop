@@ -1,7 +1,7 @@
 ---
 
 - name: Configure auditd
-  copy:
+  ansible.builtin.copy:
     src: fedora_auditd-rules.d
     dest: /etc/audit/rules.d
     owner: root
@@ -12,7 +12,7 @@
     - Restart auditd service
 
 - name: Enable auditd service
-  systemd:
+  ansible.builtin.systemd:
     name: auditd
     state: started
     enabled: yes

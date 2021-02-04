@@ -1,7 +1,7 @@
 ---
 
 - name: Install flatpak
-  dnf:
+  ansible.builtin.dnf:
     name:
       - flatpak-libs
       - flatpak-session-helper

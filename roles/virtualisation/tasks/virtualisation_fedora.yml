@@ -1,7 +1,7 @@
 ---
 
 - name: Install Virtualization group package
-  dnf:
+  ansible.builtin.dnf:
     name: '@Virtualization'
     state: present
 
@@ -14,7 +14,7 @@
     - Restart and enable libvirtd on fedora
 
 - name: Start and enable libvirtd
-  systemd:
+  ansible.builtin.systemd:
     name: libvirtd
     state: started
     enabled: yes

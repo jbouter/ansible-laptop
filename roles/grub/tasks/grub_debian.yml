@@ -1,7 +1,7 @@
 ---
 
 - name: Default grub configuration
-  copy:
+  ansible.builtin.copy:
     src: debian_default-grub
     dest: /etc/default/grub
     owner: root
@@ -20,7 +20,7 @@
     - Update grub debian
 
 - name: Configure grub edit password
-  blockinfile:
+  blockinansible.builtin.file:
     path: /etc/grub.d/00_header
     insertafter: EOF
     block: |

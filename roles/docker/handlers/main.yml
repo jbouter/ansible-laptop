@@ -9,6 +9,6 @@
   when: ansible_os_family == "ArchLinux"
 
 - name: Restart docker service
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ docker_daemon }}"
     state: restarted

@@ -1,7 +1,7 @@
 ---
 
 - name: Disable uncommon filesystems
-  copy:
+  ansible.builtin.copy:
     dest: "/etc/modprobe.d/{{ item }}.conf"
     owner: root
     group: root

@@ -12,6 +12,6 @@
     filename: vscode
 
 - name: Install visual studio code
-  apt:
+  ansible.builtin.apt:
     name: code
     state: present

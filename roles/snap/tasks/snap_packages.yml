@@ -1,0 +1,11 @@
+---
+
+- name: Install generic snaps from flathub
+  community.general.snap:
+    name:
+      - bitwarden
+      - signal-desktop
+      - spotify
+      - teams
+      - telegram-desktop
+    state: present

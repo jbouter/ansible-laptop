@@ -1,0 +1,11 @@
+---
+
+- name: Parse apparmor files on Archlinux: apparmor dir
+  ansible.builtin.shell:
+    cmd: 'apparmor_parser -r /etc/apparmor.d/*snap-confine*'
+  listen: "Parse apparmor files on Archlinux"
+
+- name: Parse apparmor files on Archlinux: snapd profiles dir
+  ansible.builtin.shell:
+    cmd: 'apparmor_parser -r /var/lib/snapd/apparmor/profiles/snap-confine*'
+  listen: "Parse apparmor files on Archlinux"

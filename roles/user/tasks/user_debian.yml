@@ -15,7 +15,7 @@
   when: ansible_distribution == "Debian"
 
 - name: Configure passwordless sudo for apt commands
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sudoers.d/apt
     owner: root
     group: root

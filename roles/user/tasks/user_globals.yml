@@ -7,7 +7,7 @@
     system: yes
 
 - name: Configure passwordless sudo for wireguard commands
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sudoers.d/wireguard
     owner: root
     group: root
@@ -22,7 +22,7 @@
       %wheel ALL = NOPASSWD: WIREGUARD
 
 - name: Configure passwordless sudo for fwupdmgr commands
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sudoers.d/fwupd
     owner: root
     group: root
@@ -37,7 +37,7 @@
       %wheel ALL = NOPASSWD: FWUPD
 
 - name: Configure passwordless sudo for flatpak commands
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sudoers.d/flatpak
     owner: root
     group: root
@@ -60,7 +60,7 @@
     group: root
 
 - name: Configure bashrc for the user on Debian
-  template:
+  ansible.builtin.template:
     src: bashrc.j2
     dest: "/home/{{ username }}/.bashrc"
     owner: "{{ username }}"
@@ -68,7 +68,7 @@
     mode: '0644'
 
 - name: Configure bash_aliases for the user
-  copy:
+  ansible.builtin.copy:
     src: bash_aliases
     dest: "/home/{{ username }}/.bash_aliases"
     owner: "{{ username }}"
@@ -76,7 +76,7 @@
     mode: '0644'
 
 - name: Configure profile for the user
-  copy:
+  ansible.builtin.copy:
     src: profile
     dest: "/home/{{ username }}/.profile"
     owner: "{{ username }}"
@@ -84,7 +84,7 @@
     mode: '0644'
 
 - name: Configure bashrc for root
-  template:
+  ansible.builtin.template:
     src: bashrc.j2
     dest: "/root/.bashrc"
     owner: root
@@ -93,7 +93,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Configure bash_aliases for root
-  copy:
+  ansible.builtin.copy:
     src: bash_aliases
     dest: "/root/.bash_aliases"
     owner: root
@@ -101,7 +101,7 @@
     mode: '0644'
 
 - name: Configure profile for root
-  copy:
+  ansible.builtin.copy:
     src: profile
     dest: "/root/.profile"
     owner: root
@@ -109,14 +109,14 @@
     mode: '0644'
 
 - name: Ensure user vimrc has been removed
-  file:
+  ansible.builtin.file:
     dest: "/home/{{ username }}/.vimrc"
     state: absent
 
 - name: Clone vim repository to user
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://github.com/roaldnefs/.vim.git
     dest: "/home/{{ username }}/.vim"
     version: main
@@ -124,12 +124,12 @@
     - Install vim repository
 
 - name: Ensure root vimrc has been removed
-  file:
+  ansible.builtin.file:
     dest: /root/.vimrc
     state: absent
 
 - name: Configure vim for root
-  file:
+  ansible.builtin.file:
     src: "/home/{{ username }}/.vim"
     dest: /root/.vim
     owner: root
@@ -137,12 +137,12 @@
     state: link
 
 - name: Check if user's git config exists
-  stat:
+  ansible.builtin.stat:
     path: "/home/{{ username }}/.gitconfig"
   register: stat_user_gitconfig
 
 - name: Configure git for user
-  template:
+  ansible.builtin.template:
     src: gitconfig.j2
     dest: "/home/{{ username }}/.gitconfig"
     owner: "{{ username }}"
@@ -151,7 +151,7 @@
   when: not stat_user_gitconfig.stat.exists
 
 - name: Configure local directories for user
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ username }}"

@@ -19,7 +19,7 @@
     groups: libvirt
 
 - name: Start and enable libvirtd
-  systemd:
+  ansible.builtin.systemd:
     name: libvirtd
     state: started
     enabled: yes

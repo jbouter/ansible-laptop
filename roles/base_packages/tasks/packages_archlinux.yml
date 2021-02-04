@@ -42,7 +42,7 @@
 - name: Clone yay from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/yay.git
     dest: /tmp/yay
     version: master
@@ -51,7 +51,8 @@
 - name: Install yay using makepkg
   become: yes
   become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
   args:
     chdir: /tmp/yay
     creates: /usr/bin/yay
@@ -59,7 +60,7 @@
 - name: Clone informant from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/informant.git
     dest: /tmp/informant
     version: master
@@ -68,32 +69,33 @@
 - name: Install informant using makepkg
   become: yes
   become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
   args:
     chdir: /tmp/informant
     creates: /usr/bin/informant
   notify: "Initialise informant"
 
 - name: Start and enable fprintd
-  systemd:
+  ansible.builtin.systemd:
     name: fprintd
     state: started
     enabled: yes
 
 - name: Start and enable the bluetooth daemon
-  systemd:
+  ansible.builtin.systemd:
     name: bluetooth
     state: started
     enabled: yes
 
 - name: Start and enable the cups daemon
-  systemd:
+  ansible.builtin.systemd:
     name: cups
     state: started
     enabled: yes
 
 - name: Create config directories
-  file:
+  ansible.builtin.file:
     dest: "{{ item }}"
     owner: root
     group: root
@@ -104,7 +106,7 @@
     - /etc/pacman.d/hooks
 
 - name: Create the reflector configuration file
-  copy:
+  ansible.builtin.copy:
     dest: /etc/xdg/reflector/reflector.conf
     owner: root
     group: root
@@ -117,7 +119,7 @@
   notify: "Run the reflector service"
 
 - name: Create the pacman hook for reflector
-  copy:
+  ansible.builtin.copy:
     dest: /etc/pacman.d/hooks/mirrorupgrade.hook
     owner: root
     group: root
@@ -136,7 +138,7 @@
   notify: "run the reflector service"
 
 - name: Start & enable service earlyoom
-  systemd:
+  ansible.builtin.systemd:
     name: earlyoom
     state: started
     enabled: yes

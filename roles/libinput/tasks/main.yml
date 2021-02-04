@@ -1,16 +1,16 @@
 ---
 
 - name: Install libinput for Debian based systems
-  include_tasks: libinput_debian.yml
+  ansible.builtin.include_tasks: libinput_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install libinput for RedHat based systems
-  include_tasks: libinput_fedora.yml
+  ansible.builtin.include_tasks: libinput_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install libinput for Arch Linux based systems
-  include_tasks: libinput_archlinux.yml
+  ansible.builtin.include_tasks: libinput_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
 - name: Install global libinput software and configuration
-  include_tasks: libinput_global.yml
+  ansible.builtin.include_tasks: libinput_global.yml

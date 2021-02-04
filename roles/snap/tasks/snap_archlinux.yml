@@ -1,0 +1,56 @@
+---
+
+- name: Check if snapd is installed
+  ansible.builtin.stat:
+    path: /usr/bin/snap
+  register: stat_snapd
+
+- name: Clone snapd from aur
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/snapd.git
+    dest: /tmp/snapd
+    version: master
+    update: yes
+  when: not stat_snapd.stat.exists
+
+- name: Install snapd using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/snapd
+    creates: /usr/bin/snap
+  when: not stat_snapd.stat.exists
+
+- name: Check if snapd installation was succesful
+  ansible.builtin.stat:
+    path: /usr/bin/snap
+  register: stat_snapdinstalled
+
+- name: Remove snapd cloned repository
+  ansible.builtin.file:
+    path: /tmp/snapd
+    state: absent
+  when: stat_snapdinstalled.stat.exists
+
+- name: Create snap symlink to support classic snaps
+  ansible.builtin.ansible.builtin.file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link
+
+- name: Start and enable snapd apparmor service
+  ansible.builtin.systemd:
+    name: snapd.apparmor.service
+    state: started
+    enabled: yes
+  notify: "Parse apparmor files on Archlinux"
+
+- name: Start and enable the snapd socket
+  ansible.builtin.systemd:
+    name: snapd.socket
+    state: started
+    enabled: yes

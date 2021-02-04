@@ -1,16 +1,16 @@
 ---
 
 - name: Configure user globals
-  include_tasks: user_globals.yml
+  ansible.builtin.include_tasks: user_globals.yml
 
 - name: Install user for Debian based systems
-  include_tasks: user_debian.yml
+  ansible.builtin.include_tasks: user_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install user for RedHat based systems
-  include_tasks: user_fedora.yml
+  ansible.builtin.include_tasks: user_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install user for Arch Linux based systems
-  include_tasks: user_archlinux.yml
+  ansible.builtin.include_tasks: user_archlinux.yml
   when: ansible_os_family == "Archlinux"

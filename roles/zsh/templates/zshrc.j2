@@ -9,11 +9,15 @@ antigen bundle pip
 antigen bundle docker
 antigen bundle command-not-found
 
-# Load the theme.
-antigen bundle /usr/local/share/antigen/zsh-themes robbyrussell-spaceship.zsh-theme --no-local-clone
+# Bundle zsh user stuff
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
 
 # Tell Antigen that you're done.
 antigen apply
+
+# Load the starship prompt
+eval "$(starship init zsh)"
 
 # Configure Fuzzy Finder
 {% if ansible_os_family == "Debian" %}
