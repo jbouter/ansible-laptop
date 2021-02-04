@@ -1,16 +1,13 @@
 ---
 
 - name: Install starship for Debian based systems
-  ansible.builtin.include_tasks: starship_debian.yml
+  ansible.builtin.include_tasks: starship_manual.yml
   when: ansible_os_family == "Debian"
 
 - name: Install starship for RedHat based systems
-  ansible.builtin.include_tasks: starship_fedora.yml
+  ansible.builtin.include_tasks: starship_manual.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install starship for Arch Linux based systems
   ansible.builtin.include_tasks: starship_archlinux.yml
   when: ansible_os_family == "Archlinux"
-
-- name: Configure starship
-  ansible.builtin.include_tasks: starship_configure.yml
