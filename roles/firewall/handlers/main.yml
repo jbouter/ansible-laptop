@@ -15,23 +15,23 @@
 - name: Save iptables ipv4 rules for fedora
   ansible.builtin.command:
     cmd: iptables-save -f /etc/sysconfig/iptables
-  listen: "run firewall handler"
+  listen: "Run firewall handler"
   when: ansible_os_family == "RedHat"
 
 - name: Save iptables ipv6 rules for fedora
   ansible.builtin.command:
     cmd: ip6tables-save -f /etc/sysconfig/ip6tables
-  listen: "run firewall handler"
+  listen: "Run firewall handler"
   when: ansible_os_family == "RedHat"
 
 - name: Save iptables ipv4 rules for arch
   ansible.builtin.command:
     cmd: iptables-save -f /etc/iptables/iptables.rules
-  listen: "run firewall handler"
+  listen: "Run firewall handler"
   when: ansible_os_family == "Archlinux"
 
 - name: Save iptables ipv6 rules for arch
   ansible.builtin.command:
     cmd: ip6tables-save -f /etc/iptables/ip6tables.rules
-  listen: "run firewall handler"
+  listen: "Run firewall handler"
   when: ansible_os_family == "Archlinux"
