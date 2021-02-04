@@ -7,4 +7,5 @@
     daemon_reload: yes
 
 - name: Initialise informant
-  command: informant read --all
+  ansible.builtin.command:
+    cmd: informant read --all
