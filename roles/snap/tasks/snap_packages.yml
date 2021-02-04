@@ -1,6 +1,6 @@
 ---
 
-- name: Install generic snaps from flathub
+- name: Install generic snaps
   community.general.snap:
     name:
       - bitwarden
