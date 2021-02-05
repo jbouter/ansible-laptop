@@ -18,7 +18,7 @@
 - name: Install starship using makepkg
   become: yes
   become_user: "{{ username }}"
- ansible.builtin.command:
+  ansible.builtin.command:
     cmd: makepkg --noconfirm -si
   args:
     chdir: /tmp/starship
