@@ -20,7 +20,7 @@
     - Update grub debian
 
 - name: Configure grub edit password
-  blockinansible.builtin.file:
+  ansible.builtin.blockinfile:
     path: /etc/grub.d/00_header
     insertafter: EOF
     block: |
