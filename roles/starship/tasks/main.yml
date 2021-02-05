@@ -15,7 +15,7 @@
 - name: Ensure config directory exists
   ansible.builtin.file:
     dest: "/home/{{ username }}/.config"
-    mode: directory
+    state: directory
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0750'
