@@ -11,3 +11,19 @@
 - name: Install starship for Arch Linux based systems
   ansible.builtin.include_tasks: starship_archlinux.yml
   when: ansible_os_family == "Archlinux"
+
+- name: Ensure config directory exists
+  ansible.builtin.file:
+    dest: "/home/{{ username }}/.config"
+    mode: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0750'
+
+- name: Configure starship
+  ansible.builtin.copy:
+    src: starship.toml
+    dest: "/home/{{ username }}/.config/starship.toml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0640'
