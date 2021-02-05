@@ -1,7 +1,16 @@
 ---
 
-- ansible.builtin.include: tmp_debian.yml
-- ansible.builtin.include: sysctl.yml
-- ansible.builtin.include: filesystems.yml
-- ansible.builtin.include: network.yml
-- ansible.builtin.include: auditd_debian.yml
+- name: Inlcude tmp hardening
+  ansible.builtin.include: tmp_debian.yml
+
+- name: Include sysctl hardening
+  ansible.builtin.include: sysctl.yml
+
+- name: Include filesystem hardening
+  ansible.builtin.include: filesystems.yml
+
+- name: Include network hardening
+  ansible.builtin.include: network.yml
+
+- name: Include auditd configuration
+  ansible.builtin.include: auditd_debian.yml
