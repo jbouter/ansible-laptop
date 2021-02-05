@@ -1,10 +1,10 @@
 ---
 
-- include: tmp_fedora.yml
-- include: sysctl.yml
-- include: filesystems.yml
-- include: network.yml
-- include: auditd_fedora.yml
+- ansible.builtin.include: tmp_fedora.yml
+- ansible.builtin.include: sysctl.yml
+- ansible.builtin.include: filesystems.yml
+- ansible.builtin.include: network.yml
+- ansible.builtin.include: auditd_fedora.yml
 
 - name: Install apparmor and aa-notify dependencies
   community.general.pacman:
@@ -26,7 +26,7 @@
     replace: 'write-cache'
 
 - name: Ensure user config directories exist
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ username }}"
@@ -37,7 +37,7 @@
     - "/home/{{ username }}/.config/autostart"
 
 - name: Configure desktop launcher for aa-notify notifcations
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/autostart/apparmor-notify.desktop"
     owner: "{{ username }}"
     group: "{{ username }}"

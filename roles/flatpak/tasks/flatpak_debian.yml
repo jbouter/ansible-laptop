@@ -1,7 +1,7 @@
 ---
 
 - name: Install flatpak
-  apt:
+  ansible.builtin.apt:
     pkg:
       - flatpak
       - gnome-software-plugin-flatpak

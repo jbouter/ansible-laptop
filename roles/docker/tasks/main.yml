@@ -1,13 +1,13 @@
 ---
 
 - name: Install docker for Debian based systems
-  include_tasks: docker_debian.yml
+  ansible.builtin.include_tasks: docker_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install docker for Arch Linux based systems
-  include_tasks: docker_archlinux.yml
+  ansible.builtin.include_tasks: docker_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
 - name: Generic Docker configuration
-  include_tasks: docker_configuration.yml
+  ansible.builtin.include_tasks: docker_configuration.yml
   when: ansible_os_family != "RedHat"

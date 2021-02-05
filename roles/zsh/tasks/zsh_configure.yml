@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure /usr/local/share exists
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: root
@@ -12,24 +12,16 @@
     - /usr/local/share
 
 - name: Create the antigen directory
-  file:
+  ansible.builtin.file:
     path: /usr/local/share/antigen
     state: directory
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0755'
 
-- name: Clone the custom zsh themes directory
-  become: false
-  git:
-    repo: https://github.com/jbouter/zsh-themes.git
-    dest: /usr/local/share/antigen/zsh-themes
-    version: main
-    update: yes
-
 - name: Download and install antigen
   become: false
-  get_url:
+  ansible.builtin.get_url:
     url: https://git.io/antigen
     dest: /usr/local/share/antigen/antigen.zsh
     owner: "{{ username }}"
@@ -37,14 +29,14 @@
     mode: '0644'
 
 - name: Configure zsh for user
-  template:
+  ansible.builtin.template:
     dest: "/home/{{ username }}/.zshrc"
     src: zshrc.j2
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
 
-# - name: set zsh as default shell for user
-#  user:
-#    name: "{{ username }}"
-#    shell: /usr/bin/zsh
+- name: Set zsh as default shell for user
+  ansible.builtin.user:
+    name: "{{ username }}"
+    shell: /usr/bin/zsh

@@ -1,7 +1,7 @@
 ---
 
 - name: Install KDE packages
-  dnf:
+  ansible.builtin.dnf:
     state: present
     name:
       - latte-dock

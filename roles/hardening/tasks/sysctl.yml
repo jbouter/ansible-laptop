@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure security limits.d directory exists
-  file:
+  ansible.builtin.file:
     path: /etc/security/limits.d
     state: directory
     owner: root
@@ -9,7 +9,7 @@
     mode: '0755'
 
 - name: Configure Security Limits Hard Core
-  copy:
+  ansible.builtin.copy:
     dest: /etc/security/limits.d/cis_hard_core.conf
     owner: root
     group: root
@@ -17,7 +17,7 @@
     content: '* hard core 0'
 
 - name: Configure sysctl SUID dumpable
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_suid_dumpable.conf
     owner: root
     group: root
@@ -27,7 +27,7 @@
     - Apply sysctl SUID dumpable
 
 - name: Configure sysctl Address Space Layout Randomisation
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_aslr.conf
     owner: root
     group: root

@@ -8,7 +8,7 @@
     state: present
 
 - name: Configure etckeeper
-  copy:
+  ansible.builtin.copy:
     src: etckeeper_archlinux.conf
     dest: /etc/etckeeper/etckeeper.conf
     owner: root

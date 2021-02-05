@@ -1,7 +1,7 @@
 ---
 
 - name: Configure keychron keyboard to be used with apple mode
-  copy:
+  ansible.builtin.copy:
     dest: /etc/modprobe.d/hid_apple.conf
     owner: root
     group: root

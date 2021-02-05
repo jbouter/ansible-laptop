@@ -43,7 +43,7 @@
 - name: Configure desktop background
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri"
-    value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
+    value: "'ansible.builtin.file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
 
 - name: Configure tap to click touchpad
   community.general.dconf:

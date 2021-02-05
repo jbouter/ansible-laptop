@@ -1,5 +1,8 @@
 ---
 
+- name: Set default value for desktop_environment
+  set_fact: desktop_environment="none"
+
 - name: Getting process IDs of the kde process
   community.general.pids:
       name: /usr/bin/kded5

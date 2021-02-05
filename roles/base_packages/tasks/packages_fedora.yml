@@ -1,18 +1,18 @@
 ---
 
 - name: Update all packages to the latest version
-  dnf:
+  ansible.builtin.dnf:
     name: "*"
     state: latest
 
 - name: Install RPMFusion Free
-  dnf:
+  ansible.builtin.dnf:
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
     disable_gpg_check: yes
 
 - name: Install base packages
-  dnf:
+  ansible.builtin.dnf:
     name:
       - htop
       - atop
@@ -45,12 +45,12 @@
       - yamllint
 
 - name: Install Development Tools group package
-  dnf:
+  ansible.builtin.dnf:
     name: '@Development tools'
     state: present
 
 - name: Start & enable service earlyoom
-  systemd:
+  ansible.builtin.systemd:
     name: earlyoom
     state: started
     enabled: yes

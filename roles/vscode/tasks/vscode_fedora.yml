@@ -14,6 +14,6 @@
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 
 - name: Install visual studio code
-  dnf:
+  ansible.builtin.dnf:
     name: code
     state: latest

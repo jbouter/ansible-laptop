@@ -1,7 +1,7 @@
 ---
 
 - name: Install libinput package requirements
-  apt:
+  ansible.builtin.apt:
     pkg:
       - build-essential
       - libinput-tools
@@ -9,5 +9,5 @@
       - wmctrl
 
 - name: Install touchegg
-  apt:
+  ansible.builtin.apt:
     deb: 'https://github.com/JoseExposito/touchegg/releases/download/2.0.3/touchegg_2.0.3_amd64.deb'

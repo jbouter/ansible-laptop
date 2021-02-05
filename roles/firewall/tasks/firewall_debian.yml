@@ -1,7 +1,7 @@
 ---
 
 - name: Install iptables packages
-  apt:
+  ansible.builtin.apt:
     state: present
     pkg:
       - iptables
@@ -9,7 +9,7 @@
       - netfilter-persistent
 
 - name: Start and enable netfilter-persistent
-  systemd:
+  ansible.builtin.systemd:
     name: netfilter-persistent
     state: started
     enabled: yes

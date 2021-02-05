@@ -1,7 +1,7 @@
 ---
 
 - name: Set systemd tmp.mount file
-  copy:
+  ansible.builtin.copy:
     src: debian_tmp.mount
     dest: /etc/systemd/system/tmp.mount
     owner: root
@@ -9,11 +9,11 @@
     mode: '0644'
 
 - name: Reload systemd daemon
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: yes
 
 - name: Enable tmp.mount to be started on next boot
-  systemd:
+  ansible.builtin.systemd:
     name: tmp.mount
     enabled: yes
     masked: no

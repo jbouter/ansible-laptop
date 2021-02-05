@@ -1,7 +1,7 @@
 ---
 
 - name: Install iptables packages
-  dnf:
+  ansible.builtin.dnf:
     state: present
     name:
       - iptables
@@ -9,7 +9,7 @@
       - iptables-utils
 
 - name: Stop and disable firewalld
-  systemd:
+  ansible.builtin.systemd:
     name: firewalld
     state: stopped
     enabled: no
@@ -27,13 +27,13 @@
     replace: "IPTABLES_SAVE_ON_RESTART=\"no\""
 
 - name: Start and enable iptables
-  systemd:
+  ansible.builtin.systemd:
     name: iptables
     state: started
     enabled: yes
 
 - name: Start and enable ip6tables
-  systemd:
+  ansible.builtin.systemd:
     name: ip6tables
     state: started
     enabled: yes

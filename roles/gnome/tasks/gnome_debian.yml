@@ -1,7 +1,7 @@
 ---
 
 - name: Install GNOME packages
-  apt:
+  ansible.builtin.apt:
     pkg:
       - gnome-session
       - gnome-shell-common
@@ -9,12 +9,12 @@
       - gnome-backgrounds
 
 - name: Install suru on Debian
-  apt:
+  ansible.builtin.apt:
     name: suru-icon-theme
   when: ansible_distribution == "Debian"
 
 - name: Install adwaita packages on Ubuntu
-  apt:
+  ansible.builtin.apt:
     name: adwaita-icon-theme-full
   when: ansible_distribution == "Ubuntu"
 

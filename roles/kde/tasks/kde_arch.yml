@@ -9,14 +9,14 @@
       - korganizer
 
 - name: Check if kwalletcli is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/kwalletcli
   register: stat_kwalletcli
 
-- name: Clone visual studio code from aur
+- name: Clone kwalletcli from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/kwalletcli.git
     dest: /tmp/kwalletcli
     version: master
@@ -33,18 +33,18 @@
   when: not stat_kwalletcli.stat.exists
 
 - name: Check if kwalletcli installation was succesful
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/kwalletcli
   register: stat_kwalletcliinstalled
 
 - name: Remove kwalletcli cloned repository
-  file:
+  ansible.builtin.file:
     path: /tmp/kwalletcli
     state: absent
   when: stat_kwalletcliinstalled.stat.exists
 
 - name: Create sddm config dir
-  file:
+  ansible.builtin.file:
     path: /etc/sddm.conf.d
     state: directory
     owner: root
@@ -52,7 +52,7 @@
     mode: '0755'
 
 - name: Configure sddm to use the breeze theme
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sddm.conf.d/breeze.conf
     owner: root
     group: root

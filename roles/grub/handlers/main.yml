@@ -1,10 +1,13 @@
 ---
 
 - name: Update grub debian
-  command: update-grub
+  ansible.builtin.command:
+    cmd: update-grub
 
 - name: Update grub fedora
-  command: grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"
+  ansible.builtin.command:
+    cmd: grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"
 
 - name: Update grub archlinux
-  command: grub-mkconfig -o /boot/grub/grub.cfg
+  ansible.builtin.command:
+    cmd: grub-mkconfig -o /boot/grub/grub.cfg

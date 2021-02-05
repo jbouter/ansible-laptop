@@ -1,7 +1,7 @@
 ---
 
 - name: Disable uncommon network protocols
-  copy:
+  ansible.builtin.copy:
     dest: "/etc/modprobe.d/{{ item }}.conf"
     owner: root
     group: root
@@ -16,7 +16,7 @@
     - Remove uncommon network protocol kernel modules
 
 - name: Configure logging of suspicious packets
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_log_suspicious_packets.conf
     owner: root
     group: root
@@ -28,7 +28,7 @@
     - Apply logging of suspicious packets
 
 - name: Configure ignore ICMP broadcast
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_ignore_icmp_broadcast.conf
     owner: root
     group: root
@@ -38,7 +38,7 @@
     - Apply ignore ICMP broadcast
 
 - name: Configure ignore bogus ICMP
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_ignore_bogus_icmp.conf
     owner: root
     group: root
@@ -48,7 +48,7 @@
     - Apply ignore bogus ICMP
 
 - name: Configure ensure reverse path filtering
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_ensure_reverse_path_filtering.conf
     owner: root
     group: root
@@ -60,7 +60,7 @@
     - Apply ensure reverse path filtering
 
 - name: Configure ensure TCP SYN cookies
-  copy:
+  ansible.builtin.copy:
     dest: /etc/sysctl.d/20-cis_ensure_tcp_syn_cookies.conf
     owner: root
     group: root

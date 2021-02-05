@@ -1,17 +1,13 @@
 ---
 
 - name: Install font packages
-  dnf:
+  ansible.builtin.dnf:
     name:
-      - cascadia-fonts-all
-      - adobe-source-code-pro-fonts
       - abattis-cantarell-fonts
       - open-sans-fonts
-      - google-roboto-mono-fonts
-      - fira-code-fonts
 
 - name: Create local fonts directory
-  file:
+  ansible.builtin.file:
     dest: "{{ item }}"
     owner: root
     group: root
@@ -20,7 +16,6 @@
   loop:
     - /usr/local/share/fonts
     - /usr/local/share/fonts/hack
-    - /usr/local/share/fonts/iosevka-term-curly
 
 - name: Download and extract hack
   unarchive:
@@ -29,15 +24,8 @@
     dest: /usr/local/share/fonts/hack
     remote_src: yes
 
-- name: Download and extract Iosevka Term Curly
-  unarchive:
-    src: "https://github.com/be5invis/Iosevka/releases/\
-          download/v4.4.0/ttf-iosevka-term-curly-4.4.0.zip"
-    dest: /usr/local/share/fonts/iosevka-term-curly
-    remote_src: yes
-
 - name: Configure fontconfig for user
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
     src: fonts_generic.conf
     owner: "{{ username }}"

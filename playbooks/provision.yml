@@ -8,6 +8,7 @@
     - fonts
     - desktop_environment
     - flatpak
+    - snap
     - grub
     - nextcloud
     - hardening
@@ -18,6 +19,7 @@
     - keychron
     - pulseaudio
     - vmware
+    - starship
     - zsh
     - docker
     - user

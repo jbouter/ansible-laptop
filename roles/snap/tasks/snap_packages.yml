@@ -1,0 +1,11 @@
+---
+
+- name: Install generic snaps
+  community.general.snap:
+    name:
+      - bitwarden
+      - signal-desktop
+      - spotify
+      - teams
+      - telegram-desktop
+    state: present

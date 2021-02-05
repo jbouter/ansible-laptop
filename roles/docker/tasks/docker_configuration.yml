@@ -1,27 +1,27 @@
 ---
 
 - name: Print docker_daemon fact
-  debug:
+  ansible.builtin.debug:
     var: docker_daemon
 
 - name: Create a dockeruser group
-  group:
+  ansible.builtin.group:
     name: dockeruser
     state: present
     system: yes
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Add a dockeruser under which to run containers
-  user:
+  ansible.builtin.user:
     name: dockeruser
     group: dockeruser
     system: yes
     home: /var/lib/dockeruser
     shell: /bin/sh
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Configure subuid for dockeruser
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/subuid
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
@@ -29,10 +29,10 @@
     owner: root
     group: root
     mode: '0644'
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Configure subgid for dockeruserdocker
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/subgid
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
@@ -40,10 +40,10 @@
     owner: root
     group: root
     mode: '0644'
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Create /etc/docker
-  file:
+  ansible.builtin.file:
     path: /etc/docker
     state: directory
     owner: root
@@ -51,16 +51,16 @@
     mode: '0755'
 
 - name: Write daemon.json
-  copy:
+  ansible.builtin.copy:
     src: daemon.json
     dest: /etc/docker/daemon.json
     owner: root
     group: root
     mode: '0644'
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Enable and start docker
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ docker_daemon }}"
     state: started
     enabled: yes

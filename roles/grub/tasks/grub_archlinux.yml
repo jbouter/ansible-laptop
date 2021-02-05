@@ -1,7 +1,7 @@
 ---
 
 - name: Default grub configuration
-  replace:
+  ansible.builtin.replace:
     path: /etc/default/grub
     regexp: "^GRUB_CMDLINE_LINUX_DEFAULT=\".*quiet.*"
     replace: 'GRUB_CMDLINE_LINUX_DEFAULT="apparmor=1 lsm=lockdown,yama,apparmor"'
@@ -9,7 +9,7 @@
     - Update grub archlinux
 
 - name: Configure unrestricted boot
-  replace:
+  ansible.builtin.replace:
     path: /etc/grub.d/10_linux
     regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
     replace: '\1 --unrestricted\3'
@@ -17,7 +17,7 @@
     - Update grub archlinux
 
 - name: Configure grub edit password
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: /etc/grub.d/00_header
     insertafter: EOF
     block: |

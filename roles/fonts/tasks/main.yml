@@ -1,7 +1,7 @@
 ---
 
 - name: Create fontconfig directory for user
-  file:
+  ansible.builtin.file:
     dest: "/home/{{ username }}/.config/fontconfig"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -9,13 +9,13 @@
     state: directory
 
 - name: Install fonts for Debian based systems
-  include_tasks: fonts_debian.yml
+  ansible.builtin.include_tasks: fonts_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install fonts for RedHat based systems
-  include_tasks: fonts_fedora.yml
+  ansible.builtin.include_tasks: fonts_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install fonts for Arch Linux based systems
-  include_tasks: fonts_archlinux.yml
+  ansible.builtin.include_tasks: fonts_archlinux.yml
   when: ansible_os_family == "Archlinux"

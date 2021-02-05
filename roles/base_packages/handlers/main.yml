@@ -1,10 +1,11 @@
 ---
 
 - name: Run the reflector service
-  systemd:
+  ansible.builtin.systemd:
     name: reflector
     state: started
     daemon_reload: yes
 
 - name: Initialise informant
-  command: informant read --all
+  ansible.builtin.command:
+    cmd: informant read --all

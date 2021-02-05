@@ -1,14 +1,14 @@
 ---
 
 - name: Check if visual studio code is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/code
   register: stat_vscode
 
 - name: Clone visual studio code from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/visual-studio-code-bin.git
     dest: /tmp/visual-studio-code-bin
     version: master
@@ -25,12 +25,12 @@
   when: not stat_vscode.stat.exists
 
 - name: Check if visual studio code installation was succesful
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/code
   register: stat_vscodeinstalled
 
 - name: Remove vscode cloned repository
-  file:
+  ansible.builtin.file:
     path: /tmp/visual-studio-code-bin
     state: absent
   when: stat_vscodeinstalled.stat.exists

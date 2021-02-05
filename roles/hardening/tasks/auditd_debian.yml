@@ -1,12 +1,12 @@
 ---
 
 - name: Install auditd package
-  apt:
+  ansible.builtin.apt:
     name: auditd
     state: present
 
 - name: Configure auditd
-  copy:
+  ansible.builtin.copy:
     src: debian_auditd-rules.d
     dest: /etc/audit/rules.d
     owner: root
@@ -17,14 +17,14 @@
     - Restart auditd service
 
 - name: Enable auditd service
-  systemd:
+  ansible.builtin.systemd:
     name: auditd
     state: started
     enabled: yes
   ignore_errors: yes
 
 - name: Configure auditd logrotation
-  copy:
+  ansible.builtin.copy:
     dest: /etc/logrotate.d/auditd
     src: debian_auditd-logrotation
     owner: root

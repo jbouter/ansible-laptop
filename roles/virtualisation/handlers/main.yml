@@ -1,6 +1,6 @@
 ---
 
 - name: Restart and enable libvirtd on fedora
-  systemd:
+  ansible.builtin.systemd:
     name: libvirtd
     state: restarted

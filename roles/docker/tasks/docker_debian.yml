@@ -4,14 +4,14 @@
   set_fact: docker_daemon="docker"
 
 - name: Ensure old versions of Docker are not installed
-  apt:
+  ansible.builtin.apt:
     name:
       - docker
       - docker-engine
     state: absent
 
 - name: Ensure dependencies are installed
-  apt:
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - ca-certificates
@@ -34,7 +34,7 @@
     update_cache: true
 
 - name: Install Docker
-  apt:
+  ansible.builtin.apt:
     name:
       - docker-ce
       - docker-ce-cli

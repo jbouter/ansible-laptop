@@ -1,7 +1,7 @@
 ---
 
 - name: Install chrony
-  dnf:
+  ansible.builtin.dnf:
     name: chrony
     state: present
 
@@ -13,7 +13,7 @@
     masked: yes
 
 - name: Configure timezone to be Europe/Amsterdam
-  file:
+  ansible.builtin.file:
     src: /usr/share/zoneinfo/Europe/Amsterdam
     dest: /etc/localtime
     state: link
@@ -25,7 +25,7 @@
     enabled: yes
 
 - name: Configure chrony
-  template:
+  ansible.builtin.template:
     src: chrony.conf.j2
     dest: /etc/chrony.conf
     owner: root

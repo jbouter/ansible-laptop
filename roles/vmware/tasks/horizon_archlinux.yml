@@ -1,14 +1,14 @@
 ---
 
 - name: Check if vmware keymaps is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/lib/vmware/xkeymap
   register: stat_vmware_keymaps
 
 - name: Clone vmware keymaps from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/vmware-keymaps.git
     dest: /tmp/vmware-keymaps
     version: master
@@ -18,32 +18,33 @@
 - name: Install vmware keymaps using makepkg
   become: yes
   become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
   args:
     chdir: /tmp/vmware-keymaps
     creates: /usr/lib/vmware/xkeymap
   when: not stat_vmware_keymaps.stat.exists
 
 - name: Check if vmware keymaps installation was succesful
-  stat:
+  ansible.builtin.stat:
     path: /usr/lib/vmware/xkeymap
   register: stat_vmwarekeymapsinstalled
 
 - name: Remove vmware keymaps cloned repository
-  file:
+  ansible.builtin.file:
     path: /tmp/vmware-keymaps
     state: absent
   when: stat_vmwarekeymapsinstalled.stat.exists
 
 - name: Check if vmware horizon client is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/vmware-view
   register: stat_horizonclient
 
 - name: Clone vmware horizon client from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/vmware-horizon-client.git
     dest: /tmp/vmware-horizon-client
     version: master
@@ -53,19 +54,20 @@
 - name: Install vmware horizon client using makepkg
   become: yes
   become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
   args:
     chdir: /tmp/vmware-horizon-client
     creates: /usr/bin/vmware-view
   when: not stat_horizonclient.stat.exists
 
 - name: Check if vmware horizon client installation was succesful
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/vmware-view
   register: stat_vmwarehorizoninstalled
 
 - name: Remove vmware horizon client cloned repository
-  file:
+  ansible.builtin.file:
     path: /tmp/vmware-horizon-client
     state: absent
   when: stat_vmwarehorizoninstalled.stat.exists

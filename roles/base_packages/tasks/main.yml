@@ -1,13 +1,13 @@
 ---
 
 - name: Install all requirements for Debian based systems
-  include_tasks: packages_debian.yml
+  ansible.builtin.include_tasks: packages_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install all requirements for RedHat based systems
-  include_tasks: packages_fedora.yml
+  ansible.builtin.include_tasks: packages_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install all requirements for Arch Linux based systems
-  include_tasks: packages_archlinux.yml
+  ansible.builtin.include_tasks: packages_archlinux.yml
   when: ansible_os_family == "Archlinux"

@@ -4,18 +4,15 @@
   community.general.pacman:
     state: present
     name:
-      - ttf-cascadia-code
-      - adobe-source-code-pro-fonts
       - cantarell-fonts
       - ttf-hack
       - ttf-liberation
       - ttf-opensans
-      - ttf-roboto-mono
-      - ttf-fira-code
+      - ttf-ubuntu-font-family
       - noto-fonts-emoji
 
 - name: Enable sub-pixel-rgb font hinting
-  file:
+  ansible.builtin.file:
     src: /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
     dest: /etc/fonts/conf.d/10-sub-pixel-rgb.conf
     owner: root
@@ -23,44 +20,9 @@
     state: link
 
 - name: Configure fontconfig for user
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
     src: fonts_arch.conf
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
-
-- name: Check if Iosevka Term Curly is installed
-  stat:
-    path: /usr/share/fonts/TTF/iosevka-term-curly-regular.ttf
-  register: stat_iosevka-term-curly
-
-- name: Clone Iosevka Term Curly from aur
-  become: yes
-  become_user: "{{ username }}"
-  git:
-    repo: https://aur.archlinux.org/ttf-iosevka-term-curly.git
-    dest: /tmp/ttf-iosevka-term-curly
-    version: master
-    update: yes
-  when: not stat_iosevka-term-curly.stat.exists
-
-- name: Install Iosevka Term Curly using makepkg
-  become: yes
-  become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
-  args:
-    chdir: /tmp/ttf-iosevka-term-curly
-    creates: /usr/share/fonts/TTF/iosevka-term-curly-regular.ttf
-  when: not stat_iosevka-term-curly.stat.exists
-
-- name: Check if Iosevka Term Curly installation was succesful
-  stat:
-    path: /usr/share/fonts/TTF/iosevka-term-curly-regular.ttf
-  register: stat_iosevkatermcurlyinstalled
-
-- name: Remove Iosevka Term Curly cloned repository
-  file:
-    path: /tmp/ttf-iosevka-term-curly
-    state: absent
-  when: stat_iosevkatermcurlyinstalled.stat.exists

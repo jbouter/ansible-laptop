@@ -7,13 +7,13 @@
       - iptables
 
 - name: Start and enable iptables
-  systemd:
+  ansible.builtin.systemd:
     name: iptables
     state: started
     enabled: yes
 
 - name: Start and enable ip6tables
-  systemd:
+  ansible.builtin.systemd:
     name: ip6tables
     state: started
     enabled: yes

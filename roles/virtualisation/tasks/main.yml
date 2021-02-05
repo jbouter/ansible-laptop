@@ -1,16 +1,16 @@
 ---
 
 - name: Install virtualisation for Debian based systems
-  include_tasks: virtualisation_debian.yml
+  ansible.builtin.include_tasks: virtualisation_debian.yml
   when: ansible_os_family == "Debian"
 
 - name: Install virtualisation for RedHat based systems
-  include_tasks: virtualisation_fedora.yml
+  ansible.builtin.include_tasks: virtualisation_fedora.yml
   when: ansible_os_family == "RedHat"
 
 - name: Install virtualisation for Arch Linux based systems
-  include_tasks: virtualisation_archlinux.yml
+  ansible.builtin.include_tasks: virtualisation_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
 - name: Include common virtualisation options
-  include_tasks: virtualisation_common.yml
+  ansible.builtin.include_tasks: virtualisation_common.yml

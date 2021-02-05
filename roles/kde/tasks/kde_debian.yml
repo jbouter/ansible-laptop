@@ -1,7 +1,7 @@
 ---
 
 - name: Install KDE packages
-  apt:
+  ansible.builtin.apt:
     state: present
     pkg:
       - latte-dock

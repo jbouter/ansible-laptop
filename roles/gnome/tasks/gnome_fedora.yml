@@ -1,7 +1,7 @@
 ---
 
 - name: Install GNOME packages
-  dnf:
+  ansible.builtin.dnf:
     name: 
       - gnome-tweaks
       - suru-icon-theme

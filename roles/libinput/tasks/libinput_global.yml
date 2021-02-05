@@ -1,7 +1,7 @@
 ---
 
 - name: Create touchegg configuration directory for user
-  file:
+  ansible.builtin.file:
     name: "/home/{{ username }}/.config/touchegg"
     state: directory
     owner: "{{ username }}"
@@ -9,7 +9,7 @@
     mode: '0755'
 
 - name: Configure touchegg for user
-  copy:
+  ansible.builtin.copy:
     src: touchegg.conf
     dest: "/home/{{ username }}/.config/touchegg/touchegg.conf"
     owner: "{{ username }}"
@@ -25,7 +25,7 @@
   ignore_errors: yes
 
 - name: Create libinput directory
-  file:
+  ansible.builtin.file:
     name: /etc/libinput
     state: directory
     owner: root
@@ -33,7 +33,7 @@
     mode: '0755'
 
 - name: Place libinput quirks
-  copy:
+  ansible.builtin.copy:
     src: local-overrides.quirks
     dest: /etc/libinput/local-overrides.quirks
     owner: root
@@ -41,7 +41,7 @@
     mode: '0644'
 
 - name: Create xorg configuration directory
-  file:
+  ansible.builtin.file:
     name: /etc/X11/xorg.conf.d
     state: directory
     owner: root
@@ -49,7 +49,7 @@
     mode: '0755'
 
 - name: Configure xorg libinput stuff
-  copy:
+  ansible.builtin.copy:
     src: 10-libinput.conf
     dest: /etc/X11/xorg.conf.d/10-libinput.conf
     owner: root

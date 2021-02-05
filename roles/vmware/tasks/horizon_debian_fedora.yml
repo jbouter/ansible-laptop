@@ -1,12 +1,12 @@
 ---
 
 - name: Check if vmware view agent is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/vmware-view
   register: stat_vmware_view
 
 - name: Ensure /tmp is mounted with exec permissions
-  mount:
+  ansible.posix.mount:
     path: /tmp
     opts: exec
     state: remounted
@@ -20,7 +20,7 @@
   when: not stat_vmware_view.stat.exists
 
 - name: Install vmware horizon client
-  command: >-
+  ansible.builtin.command: >-
     /usr/bin/env TERM=dumb VMWARE_EULAS_AGREED=yes
     /tmp/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle --console --ignore-errors --required --eulas-agreed
     --set-setting vmware-horizon-html5mmr html5mmrEnable yes
@@ -39,7 +39,7 @@
   when: not stat_vmware_view.stat.exists
 
 - name: Ensure /tmp is mounted with original permissions
-  mount:
+  ansible.posix.mount:
     path: /tmp
     state: remounted
   when: not stat_vmware_view.stat.exists
