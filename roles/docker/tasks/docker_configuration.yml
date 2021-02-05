@@ -9,7 +9,7 @@
     name: dockeruser
     state: present
     system: yes
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Add a dockeruser under which to run containers
   ansible.builtin.user:
@@ -18,7 +18,7 @@
     system: yes
     home: /var/lib/dockeruser
     shell: /bin/sh
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Configure subuid for dockeruser
   ansible.builtin.lineinfile:
@@ -29,7 +29,7 @@
     owner: root
     group: root
     mode: '0644'
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Configure subgid for dockeruserdocker
   ansible.builtin.lineinfile:
@@ -40,7 +40,7 @@
     owner: root
     group: root
     mode: '0644'
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Create /etc/docker
   ansible.builtin.file:
@@ -57,7 +57,7 @@
     owner: root
     group: root
     mode: '0644'
-  notify: restart docker service
+  notify: Restart docker service
 
 - name: Enable and start docker
   ansible.builtin.systemd:
