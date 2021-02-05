@@ -7,3 +7,4 @@
     replace: 'load-module module-udev-detect tsched=0'
   notify:
     - Restart pulseaudio
+  when: desktop_environment != "none"
