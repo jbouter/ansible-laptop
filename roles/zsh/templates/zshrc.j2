@@ -1,3 +1,18 @@
+# Source antigen
+source /usr/local/share/antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Enable some bundles
+antigen bundle command-not-found
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Tell Antigen that you're done.
+antigen apply
+
 # Load the starship prompt
 eval "$(starship init zsh)"
 

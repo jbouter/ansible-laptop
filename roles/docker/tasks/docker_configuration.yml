@@ -1,18 +1,18 @@
 ---
 
 - name: Print docker_daemon fact
-  debug:
+  ansible.builtin.debug:
     var: docker_daemon
 
 - name: Create a dockeruser group
-  group:
+  ansible.builtin.group:
     name: dockeruser
     state: present
     system: yes
   notify: restart docker service
 
 - name: Add a dockeruser under which to run containers
-  user:
+  ansible.builtin.user:
     name: dockeruser
     group: dockeruser
     system: yes
@@ -21,7 +21,7 @@
   notify: restart docker service
 
 - name: Configure subuid for dockeruser
-  lineinansible.builtin.file:
+  ansible.builtin.lineinfile:
     path: /etc/subuid
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
@@ -32,7 +32,7 @@
   notify: restart docker service
 
 - name: Configure subgid for dockeruserdocker
-  lineinansible.builtin.file:
+  ansible.builtin.lineinfile:
     path: /etc/subgid
     regexp: '^dockeruser:[0-9]+:[0-9]+$'
     line: 'dockeruser:100000:65536'
@@ -60,7 +60,7 @@
   notify: restart docker service
 
 - name: Enable and start docker
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ docker_daemon }}"
     state: started
     enabled: yes
