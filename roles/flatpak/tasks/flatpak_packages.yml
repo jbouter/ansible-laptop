@@ -7,6 +7,15 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: system
 
+- name: Install flatpaks from flathub
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+    remote: flathub
+    method: system
+  loop:
+    - com.nextcloud
+
 - name: Install gnome specific flatpaks from flathub
   community.general.flatpak:
     name: "{{ item }}"

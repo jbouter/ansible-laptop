@@ -1,9 +1,0 @@
----
-
-- name: Install nextcloud for Debian based systems
-  ansible.builtin.include_tasks: nextcloud_debian.yml
-  when: ansible_os_family == "Debian"
-
-- name: Install nextcloud for Arch Linux based systems
-  ansible.builtin.include_tasks: nextcloud_archlinux.yml
-  when: ansible_os_family == "Archlinux"
