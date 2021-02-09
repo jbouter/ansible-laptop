@@ -1,16 +1,13 @@
 ---
 
-- name: Set default value for desktop_environment
-  set_fact: desktop_environment="none"
-
 - name: Getting process IDs of the kde process
   community.general.pids:
-      name: /usr/bin/kded5
+    name: /usr/bin/kded5
   register: pids_of_kde
 
 - name: Getting process IDs of the gnome process
   community.general.pids:
-      name: /usr/bin/gnome-shell
+    name: /usr/bin/gnome-shell
   register: pids_of_gnome
 
 - name: Set desktop_environment fact to KDE
@@ -30,4 +27,3 @@
   include_role:
     name: gnome
   when: desktop_environment == "gnome"
-

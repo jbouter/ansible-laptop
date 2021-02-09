@@ -22,6 +22,4 @@
   community.general.alternatives:
     name: gdm3-theme.gresource
     path: /usr/share/gnome-shell/gnome-shell-theme.gresource
-  when: ansible_distribution == "Ubuntu"
-
-
+  when: ansible_distribution == "Ubuntu" and gdm_default_look == "yes"

@@ -22,6 +22,8 @@ Before starting, a few things must be configured on the OS.
 apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
 ```
 
+Specifically for Ubuntu, there's the option to use the stock GDM theme. Do this by specifying `-e gdm_default_look=yes`
+
 ### Fedora
 
 ```bash
