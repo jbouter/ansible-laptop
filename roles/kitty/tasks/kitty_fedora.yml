@@ -1,0 +1,6 @@
+---
+
+- name: Install kitty
+  ansible.builtin.dnf:
+    name: kitty
+    state: present

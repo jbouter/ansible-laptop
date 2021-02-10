@@ -1,0 +1,27 @@
+---
+
+- name: Ensure ~/.config/kitty exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+  loop:
+    - "/home/{{ username }}/.config"
+    - "/home/{{ username }}/.kitty"
+
+- name: Configure kitty
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ username }}/.config/kitty/{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+  loop:
+    - "kitty.conf"
+    - "solarized-light.conf"
+    - "tango-dark.conf"
+    - "fonts.conf"
+    - "tab_bar.conf"
+    - "generic.conf"

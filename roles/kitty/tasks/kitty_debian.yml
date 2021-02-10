@@ -1,0 +1,6 @@
+---
+
+- name: Install kitty
+  ansible.builtin.apt:
+    name: kitty
+    state: present
