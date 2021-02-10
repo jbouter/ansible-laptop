@@ -1,0 +1,16 @@
+---
+
+- name: Install kitty for Debian based systems
+  ansible.builtin.include_tasks: kitty_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Install kitty for RedHat based systems
+  ansible.builtin.include_tasks: kitty_fedora.yml
+  when: ansible_os_family == "RedHat"
+
+- name: Install kitty for Arch Linux based systems
+  ansible.builtin.include_tasks: kitty_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
+- name: Configure kitty
+  ansible.builtin.include_tasks: kitty_configure.yml
