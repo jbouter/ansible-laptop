@@ -1,6 +1,6 @@
 ---
 
-- name: ensure all required directories exist
+- name: Ensure all required directories exist
   ansible.builtin.file:
     path: "/home/{{ username }}/{{ item }}"
     owner: "{{ username }}"
@@ -14,7 +14,7 @@
     - .config/plasma-workspace/shutdown
     - .config/plasma-workspace/env
 
-- name: configure kde pinentry for gpg + kwallet
+- name: Configure kde pinentry for gpg + kwallet
   ansible.builtin.copy:
     dest: "/home/{{ username }}/.gnupg/gpg-agent.conf"
     owner: "{{ username }}"
@@ -23,7 +23,7 @@
     content: |
         pinentry-program /usr/bin/pinentry-kwallet
 
-- name: add ssh key passphrase to kwallet during autostart
+- name: Add ssh key passphrase to kwallet during autostart
   ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/autostart-scripts/ssh-add.sh"
     owner: "{{ username }}"
@@ -36,7 +36,7 @@
         export SSH_ASKPASS
         ssh-add ~/.ssh/id_ed25519
 
-- name: configure ssh agent to stop on shutdown
+- name: Configure ssh agent to stop on shutdown
   ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/plasma-workspace/shutdown/ssh-agent-shutdown.sh"
     owner: "{{ username }}"
@@ -46,7 +46,7 @@
         #!/usr/bin/env bash
         [ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
 
-- name: configure ssh agent to start on login
+- name: Configure ssh agent to start on login
   ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/plasma-workspace/env/ssh-agent-startup.sh"
     owner: "{{ username }}"
@@ -58,7 +58,17 @@
         SSH_ASKPASS=/usr/bin/ksshaskpass
         export SSH_ASKPASS
 
-- name: configure ssh askpass in profile.d
+- name: Configure snap XDG_DATA_DIRS for snaps
+  ansible.builtin.copy:
+    dest: "/home/{{ username }}/.config/plasma-workspace/env/snaps.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0750'
+    content: |
+        #!/usr/bin/env bash
+        export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/snapd/desktop/"
+
+- name: Configure ssh askpass in profile.d
   ansible.builtin.copy:
     dest: /etc/profile.d/ksshaskpass.sh
     owner: root
