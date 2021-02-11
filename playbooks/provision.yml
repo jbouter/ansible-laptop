@@ -7,6 +7,7 @@
     - firewall
     - fonts
     - desktop_environment
+    - chrome
     - flatpak
     - snap
     - grub

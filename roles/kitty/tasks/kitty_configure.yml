@@ -9,7 +9,8 @@
     mode: '0755'
   loop:
     - "/home/{{ username }}/.config"
-    - "/home/{{ username }}/.kitty"
+    - "/home/{{ username }}/.config/kitty"
+    - "/home/{{ username }}/.config/kitty/themes"
 
 - name: Configure kitty
   ansible.builtin.copy:
@@ -20,8 +21,9 @@
     mode: '0644'
   loop:
     - "kitty.conf"
-    - "solarized-light.conf"
-    - "tango-dark.conf"
     - "fonts.conf"
     - "tab_bar.conf"
     - "generic.conf"
+    - "themes/brogrammer.conf"
+    - "themes/solarized-light.conf"
+    - "themes/tango-dark.conf"

@@ -41,6 +41,7 @@
     pkg:
     - ubuntu-restricted-addons
     - ubuntu-restricted-extras
+    - yaru-theme-icon
   when: ansible_distribution == "Ubuntu"
 
 - name: Remove useless packages from the cache
