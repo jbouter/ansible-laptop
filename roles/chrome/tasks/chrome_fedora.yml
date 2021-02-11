@@ -1,0 +1,19 @@
+---
+
+- name: import the google chrome gpg key
+  rpm_key:
+    state: present
+    key: https://dl.google.com/linux/linux_signing_key.pub
+
+- name: configure the Google Chrome yum repository
+  yum_repository:
+    name: google-chrome
+    description: google-chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    gpgcheck: yes
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+
+- name: install Google Chrome
+  dnf:
+    name: google-chrome-stable
+    state: latest
