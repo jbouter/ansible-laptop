@@ -25,5 +25,6 @@
     "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Default Dark+"
+    "workbench.colorTheme": "GitHub Light",
+    "editor.fontSize": 16
 }
