@@ -1,16 +1,27 @@
 ---
 
-- name: Install visual studio code for Debian based systems
-  ansible.builtin.include_tasks: vscode_debian.yml
-  when: ansible_os_family == "Debian"
+- name: Check if user vscode configuration dir exists
+  ansible.builtin.stat:
+    path: "/home/{{ username }}/.config/Code/User"
+  register: stat_user_vscode_config
 
-- name: Install visual studio code for RedHat based systems
-  ansible.builtin.include_tasks: vscode_fedora.yml
-  when: ansible_os_family == "RedHat"
+- name: Create vscode config directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0775'
+  loop:
+    - "/home/{{ username }}/.config/Code"
+    - "/home/{{ username }}/.config/Code/User"
+  when: not stat_user_vscode_config.stat.exists
 
-- name: Install visual studio code for Arch Linux based systems
-  ansible.builtin.include_tasks: vscode_archlinux.yml
-  when: ansible_os_family == "Archlinux"
-
-- name: Configure visual studio code
-  ansible.builtin.include_tasks: vscode_configure.yml
+- name: Configure vscode for user
+  ansible.builtin.copy:
+    src: settings.json
+    dest: "/home/{{ username }}/.config/Code/User/settings.json"
+    force: no
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0664'
