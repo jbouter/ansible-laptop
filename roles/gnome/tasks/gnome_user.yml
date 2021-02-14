@@ -10,10 +10,29 @@
     key: "/org/gnome/desktop/interface/document-font-name"
     value: "'Open Sans 10'"
 
-- name: Configure font name
+- name: Configure font name (not Ubuntu)
   community.general.dconf:
     key: "/org/gnome/desktop/interface/font-name"
     value: "'Cantarell 10'"
+  when: ansible_distribution != "Ubuntu"
+
+- name: Configure monospace font (not Ubuntu)
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/monospace-font-name"
+    value: "'Hack 10'"
+  when: ansible_distribution != "Ubuntu"
+
+- name: Configure font name (Ubuntu)
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/font-name"
+    value: "'Ubuntu 10'"
+  when: ansible_distribution == "Ubuntu"
+
+- name: Configure monospace font (Ubuntu)
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/monospace-font-name"
+    value: "'Ubuntu Mono 12'"
+  when: ansible_distribution == "Ubuntu"
 
 - name: Configure font anti-aliasing
   community.general.dconf:
@@ -25,25 +44,10 @@
     key: "/org/gnome/settings-daemon/plugins/xsettings/hinting"
     value: "'slight'"
 
-- name: Configure gtk theme
-  community.general.dconf:
-    key: "/org/gnome/desktop/interface/gtk-theme"
-    value: "'Adwaita'"
-
-- name: Configure monospace font
-  community.general.dconf:
-    key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'Hack 10'"
-
 - name: Configure battery percentage in titlebar
   community.general.dconf:
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
-
-- name: Configure desktop background
-  community.general.dconf:
-    key: "/org/gnome/desktop/background/picture-uri"
-    value: "'ansible.builtin.file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
 
 - name: Configure tap to click touchpad
   community.general.dconf:
@@ -91,7 +95,7 @@
 - name: Configure favourite apps
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
-    value: "['firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
+    value: "['firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'kitty.desktop', 'code_code.desktop', 'virt-manager.desktop', 'telegram-desktop_telegram-desktop.desktop', 'bitwarden_bitwarden.desktop']"
 
 - name: Configure screenshot keyboard shortcut
   community.general.dconf:

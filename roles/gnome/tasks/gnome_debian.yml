@@ -12,14 +12,3 @@
   ansible.builtin.apt:
     name: suru-icon-theme
   when: ansible_distribution == "Debian"
-
-- name: Install adwaita packages on Ubuntu
-  ansible.builtin.apt:
-    name: adwaita-icon-theme-full
-  when: ansible_distribution == "Ubuntu"
-
-- name: Configure GDM3 to have default look
-  community.general.alternatives:
-    name: gdm3-theme.gresource
-    path: /usr/share/gnome-shell/gnome-shell-theme.gresource
-  when: ansible_distribution == "Ubuntu" and gdm_default_look == "yes"

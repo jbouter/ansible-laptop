@@ -8,4 +8,13 @@
       - spotify
       - teams
       - telegram-desktop
+      - bitwarden
+    state: present
+
+- name: Install classic snaps
+  community.general.snap:
+    name:
+      - slack
+      - code
+    classic: yes
     state: present
