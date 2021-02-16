@@ -30,7 +30,7 @@
 
 - name: Ensure config directory exists for root
   ansible.builtin.file:
-    dest: "root/.config"
+    dest: "/root/.config"
     state: directory
     owner: root
     group: root
