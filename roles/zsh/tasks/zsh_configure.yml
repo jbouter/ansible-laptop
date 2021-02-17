@@ -1,4 +1,5 @@
 ---
+
 - name: Configure zsh for user
   ansible.builtin.template:
     dest: "/home/{{ username }}/.zshrc"
@@ -7,11 +8,6 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: Set zsh as default shell for user
-  ansible.builtin.user:
-    name: "{{ username }}"
-    shell: /usr/bin/zsh
-
 - name: Configure zsh for root
   ansible.builtin.template:
     dest: "/root/.zshrc"
@@ -19,8 +15,3 @@
     owner: root
     group: root
     mode: '0644'
-
-- name: Set zsh as default shell for root
-  ansible.builtin.user:
-    name: root
-    shell: /usr/bin/zsh
