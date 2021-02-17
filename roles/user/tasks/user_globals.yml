@@ -130,7 +130,7 @@
 
 - name: Configure vim for root
   ansible.builtin.file:
-    src: "/home/{{ username }}/.vim"
+    src: "/root/.vim"
     dest: /root/.vim
     owner: root
     group: root
