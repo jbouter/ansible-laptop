@@ -1,8 +1,19 @@
 # README
 
-These playbooks will setup my basic machine to my liking. 
-
-Supports both KDE and GNOME, and will detect which is being used at runtime.
+<a href="https://github.com/jbouter/ansible-laptop" style="color: black;">
+    <h1 align="center">Ansible Laptop</h1>
+</a>
+<p align="center">
+    <img src="images/laptop.png" alt=laptop-ansible width="50%", height="50%" />
+    <hr />
+    <a href="https://github.com/jbouter/ansible-laptop/actions">
+        <img src="https://img.shields.io/github/workflow/status/jbouter/ansible-laptop/Ansible%20Lint?style=for-the-badge&color=blue"
+            alt="GitHub Workflow Status">
+    </a><br>
+    <b>ansible laptop</b> will set up my laptop to my liking. Supports both KDE and GNOME.<br>
+    <a href="https://docs.ansible.com/ansible/latest/index.html"><strong>Explore the Ansible docs »</strong></a>
+    <hr>
+</p>
 
 Tested on:
 
@@ -21,8 +32,6 @@ Before starting, a few things must be configured on the OS.
 ```bash
 apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
 ```
-
-Specifically for Ubuntu, there's the option to use the stock GDM theme. Do this by specifying `-e gdm_default_look=yes`
 
 ### Fedora
 
@@ -84,3 +93,7 @@ Please read through roles for an explanation on what it all does.
 ```bash
 ansible-playbook playbooks/provision.yml
 ```
+
+## Sources
+
+Icons made by [Prosymbols](https://www.flaticon.com/authors/prosymbols) from [www.flaticon.com](https://www.flaticon.com/)
