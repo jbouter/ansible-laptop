@@ -5,7 +5,9 @@
 </a>
 <p align="center">
     <img src="images/laptop.png" alt=laptop-ansible width="50%", height="50%" />
-    <hr />
+    <hr>
+</p>
+<p align="center">
     <a href="https://github.com/jbouter/ansible-laptop/actions">
         <img src="https://img.shields.io/github/workflow/status/jbouter/ansible-laptop/Ansible%20Lint?style=for-the-badge&color=blue"
             alt="GitHub Workflow Status">
