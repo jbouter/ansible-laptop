@@ -1,5 +1,3 @@
-# README
-
 <a href="https://github.com/jbouter/ansible-laptop" style="color: black;">
     <h1 align="center">Ansible Laptop</h1>
 </a>
