@@ -117,7 +117,7 @@
 
 - name: Configure screenshot keyboard shortcuts
   ansible.builtin.shell:
-    cmd: "kwriteconfig5 --file kglobalshortcutsrc --group org.kde.spectacle.desktop --key {{ item.key }} \'{{ item.value }}\'"
+    cmd: "kwriteconfig5 --file kglobalshortcutsrc --group org.kde.spectacle.desktop --key {{ item.key }} {{ item.value }}"
   loop:
     - { key: 'ActiveWindowScreenShot', value: 'Alt+@\tMeta+Print,Meta+Print,Capture Active Window' }
     - { key: 'CurrentMonitorScreenShot', value: ',none,Capture Current Monitor' }
