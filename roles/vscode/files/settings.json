@@ -1,6 +1,7 @@
 {
     "workbench.startupEditor": "newUntitledFile",
     "editor.fontFamily": "'Ubuntu Mono'",
+    "editor.fontSize": 16,
     "git.alwaysSignOff": true,
     "git.autofetch": true,
     "git.postCommitCommand": "sync",
@@ -25,6 +26,5 @@
     "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "GitHub Light",
-    "editor.fontSize": 16
+    "workbench.colorTheme": "GitHub Light"
 }
