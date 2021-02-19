@@ -1,7 +1,7 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'Ubuntu Mono'",
-    "editor.fontSize": 16,
+    "editor.fontFamily": "'Hack'",
+    "editor.fontSize": 14,
     "git.alwaysSignOff": true,
     "git.autofetch": true,
     "git.postCommitCommand": "sync",
