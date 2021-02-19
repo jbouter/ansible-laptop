@@ -82,7 +82,7 @@
 
 - name: Configure monospace font
   ansible.builtin.shell:
-    cmd: "kwriteconfig5 --file kdeglobals --group General --key fixed 'Ubuntu Mono,12,-1,5,50,0,0,0,0,0'"
+    cmd: "kwriteconfig5 --file kdeglobals --group General --key fixed 'Hack,10,-1,5,50,0,0,0,0,0'"
 
 - name: Configure touchpad
   ansible.builtin.shell:
