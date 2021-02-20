@@ -123,3 +123,10 @@
     - { key: 'CurrentMonitorScreenShot', value: ',none,Capture Current Monitor' }
     - { key: 'FullScreenScreenShot', value: 'Alt+#\tShift+Print,Shift+Print,Capture Entire Desktop' }
     - { key: 'RectangularRegionScreenShot', value: 'Meta+Shift+Print\tAlt+$,Meta+Shift+Print,Capture Rectangular Region' }
+
+- name: Disable mouse over screen edges activies
+  ansible.builtin.shell:
+    cmd: "kwriteconfig5 --file kwinrc --group {{ item.group }} --key {{ item.key }} {{ item.value }}"
+  loop:
+    - { group: 'Effect-PresentWindows', key: 'BorderActivateAll', value: '9' }
+    - { group: 'TabBox', key: 'BorderActivate', value: '9' }
