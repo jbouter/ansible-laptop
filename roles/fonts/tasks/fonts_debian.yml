@@ -8,6 +8,7 @@
       - fonts-hack-ttf
       - fonts-open-sans
       - fonts-ubuntu
+      - fonts-firacode
 
 - name: Configure fontconfig for user
   ansible.builtin.copy:

@@ -10,6 +10,7 @@
       - ttf-opensans
       - ttf-ubuntu-font-family
       - noto-fonts-emoji
+      - ttf-fira-code
 
 - name: Enable sub-pixel-rgb font hinting
   ansible.builtin.file:

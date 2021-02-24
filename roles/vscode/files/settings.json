@@ -1,6 +1,6 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'Hack'",
+    "editor.fontFamily": "'Fira Code'",
     "editor.fontSize": 14,
     "git.alwaysSignOff": true,
     "git.autofetch": true,
