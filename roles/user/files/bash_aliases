@@ -21,6 +21,11 @@ function t () {
   tmux new-window -n "$1" "ssh $1"
 }
 
+# Set TERM if using kitty
+if [ "$TERM" == "xterm-kitty" ]; then
+  export TERM="xterm-256color"
+fi
+
 # fbd
 # fbd - delete git branch (including remote branches)
 fbd() {
