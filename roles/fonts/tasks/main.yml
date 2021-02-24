@@ -8,6 +8,28 @@
     mode: '0755'
     state: directory
 
+- name: Create local fonts directory
+  ansible.builtin.file:
+    dest: /usr/local/share/fonts
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+
+- name: Create Fira Mono fonts directory
+  ansible.builtin.file:
+    dest: /usr/local/share/fonts/FiraMono
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+
+- name: Download and extract Fira Mono
+  unarchive:
+    src: "https://fonts.google.com/download?family=Fira%20Mono"
+    dest: /usr/local/share/fonts/FiraMono
+    remote_src: yes
+
 - name: Install fonts for Debian based systems
   ansible.builtin.include_tasks: fonts_debian.yml
   when: ansible_os_family == "Debian"

@@ -5,17 +5,15 @@
     name:
       - abattis-cantarell-fonts
       - open-sans-fonts
+      - fira-code-fonts
 
-- name: Create local fonts directory
+- name: Create Hack fonts directory
   ansible.builtin.file:
-    dest: "{{ item }}"
+    dest: /usr/local/share/fonts/hack
     owner: root
     group: root
     mode: '0755'
     state: directory
-  loop:
-    - /usr/local/share/fonts
-    - /usr/local/share/fonts/hack
 
 - name: Download and extract hack
   unarchive:
