@@ -121,5 +121,16 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# Configure prompt title in starship
+set_win_title(){
+  TITLE="$(basename $PWD)"
+  if [ "$TITLE" == "$(id -un)" ]; then
+    TITLE="~"
+  fi
+  echo -ne "\033]0; ${TITLE} \007"
+}
+
+export starship_precmd_user_func="set_win_title"
+
 # Load starship
 eval "$(starship init bash)"
