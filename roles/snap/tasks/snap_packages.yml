@@ -3,18 +3,5 @@
 - name: Install generic snaps
   community.general.snap:
     name:
-      - bitwarden
-      - signal-desktop
-      - spotify
-      - teams
-      - telegram-desktop
-      - bitwarden
-    state: present
-
-- name: Install classic snaps
-  community.general.snap:
-    name:
-      - slack
-      - code
-    classic: yes
+      - chromium
     state: present

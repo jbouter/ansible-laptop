@@ -14,7 +14,11 @@
     remote: flathub
     method: system
   loop:
-    - com.nextcloud
+    - com.spotify.Client
+    - org.telegram
+    - com.bitwarden
+    - com.discordapp.Discord
+    - org.signal.Signal
 
 - name: Install gnome specific flatpaks from flathub
   community.general.flatpak:
@@ -26,3 +30,13 @@
     - org.gnome.Geary
     - com.transmissionbt.Transmission
   when: desktop_environment == "gnome"
+
+- name: Install KDE specific flatpaks from flathub
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+    remote: flathub
+    method: system
+  loop:
+    - org.kde.neochat
+  when: desktop_environment == "kde"

@@ -119,10 +119,10 @@
   ansible.builtin.shell:
     cmd: "kwriteconfig5 --file kglobalshortcutsrc --group org.kde.spectacle.desktop --key {{ item.key }} {{ item.value }}"
   loop:
-    - { key: 'ActiveWindowScreenShot', value: 'Alt+@\tMeta+Print,Meta+Print,Capture Active Window' }
+    - { key: 'ActiveWindowScreenShot', value: 'Alt+@,Meta+Print,Meta+Print,Capture Active Window' }
     - { key: 'CurrentMonitorScreenShot', value: ',none,Capture Current Monitor' }
-    - { key: 'FullScreenScreenShot', value: 'Alt+#\tShift+Print,Shift+Print,Capture Entire Desktop' }
-    - { key: 'RectangularRegionScreenShot', value: 'Meta+Shift+Print\tAlt+$,Meta+Shift+Print,Capture Rectangular Region' }
+    - { key: 'FullScreenScreenShot', value: 'Alt+#,Shift+Print,Shift+Print,Capture Entire Desktop' }
+    - { key: 'RectangularRegionScreenShot', value: 'Meta+Shift+Print,Alt+$,Meta+Shift+Print,Capture Rectangular Region' }
 
 - name: Disable mouse over screen edges activies
   ansible.builtin.shell:

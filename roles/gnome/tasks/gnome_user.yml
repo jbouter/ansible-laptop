@@ -95,7 +95,7 @@
 - name: Configure favourite apps
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
-    value: "['firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'kitty.desktop', 'code_code.desktop', 'virt-manager.desktop', 'telegram-desktop_telegram-desktop.desktop', 'bitwarden_bitwarden.desktop']"
+    value: "['firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
 
 - name: Configure screenshot keyboard shortcut
   community.general.dconf:

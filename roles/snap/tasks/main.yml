@@ -13,4 +13,5 @@
   when: ansible_os_family == "Archlinux"
 
 - name: Install snap packages
-  ansible.builtin.include_tasks: snap_packages.yml
+  ansible.builtin.include_tasks: snap_packages.yml\
+  when: ansible_virtualization_role != "guest"
