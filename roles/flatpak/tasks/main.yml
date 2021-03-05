@@ -14,3 +14,4 @@
 
 - name: Install flatpak packages
   ansible.builtin.include_tasks: flatpak_packages.yml
+  when: ansible_virtualization_role != "guest"
