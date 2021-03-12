@@ -1,14 +1,14 @@
 ---
 
 - name: Append user to groups for ubuntu
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     append: yes
     groups: adm,cdrom,sudo,dip,plugdev,input,lpadmin,sambashare,docker
   when: ansible_distribution == "Ubuntu"
 
 - name: Append user to groups for debian
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     append: yes
     groups: adm,cdrom,sudo,dip,plugdev,input,docker

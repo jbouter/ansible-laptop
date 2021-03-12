@@ -1,13 +1,13 @@
 ---
 
 - name: Create audit group
-  group:
+  ansible.builtin.group:
     name: audit
     state: present
     system: yes
 
 - name: Append user to groups
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     append: yes
     groups: wheel,libvirt,input,docker,audit,adbusers,informant

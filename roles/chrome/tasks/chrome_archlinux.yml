@@ -1,14 +1,14 @@
 ---
 
 - name: check if google chrome is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/google-chrome-stable
   register: stat_chrome
 
 - name: clone Google Chrome from aur
   become: yes
   become_user: "{{ username }}"
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/google-chrome.git
     dest: /tmp/google-chrome
     version: master
@@ -16,21 +16,21 @@
   when: not stat_chrome.stat.exists
 
 - name: install Google Chrome using makepkg
-  become: yes
-  become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command: makepkg --noconfirm -si
   args:
     chdir: /tmp/google-chrome
     creates: /usr/bin/google-chrome-stable
   when: not stat_chrome.stat.exists
+  become: yes
+  become_user: "{{ username }}"
 
 - name: check if google chrome installation was succesful
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/code
   register: stat_chromeinstalled
 
 - name: remove google chrome cloned repository
-  file:
+  ansible.builtin.file:
     path: /tmp/google-chrome
     state: absent
   when: stat_chromeinstalled.stat.exists

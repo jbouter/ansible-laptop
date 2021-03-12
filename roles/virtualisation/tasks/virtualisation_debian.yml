@@ -20,7 +20,7 @@
   when: ansible_distribution == "Debian"
 
 - name: Append user to libvirt group
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     append: yes
     groups: libvirt

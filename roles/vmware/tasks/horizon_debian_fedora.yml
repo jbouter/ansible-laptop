@@ -13,7 +13,7 @@
   when: not stat_vmware_view.stat.exists
 
 - name: Download the vmware horizon client installer
-  get_url:
+  ansible.builtin.get_url:
     url: https://download3.vmware.com/software/view/viewclients/CART21FQ2/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle
     dest: /tmp/VMware-Horizon-Client-2006-8.0.0-16522670.x64.bundle
     mode: '0755'

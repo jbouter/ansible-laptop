@@ -30,7 +30,7 @@ Before starting, a few things must be configured on the OS.
 ### Ubuntu/Debian
 
 ```bash
-apt install -y python3-virtualenv python3-dev libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
+apt install -y python3-virtualenv python3-dev python3-wheel libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
 ```
 
 ### Fedora
@@ -52,12 +52,21 @@ Set up the virtual environment as follows:
 
 ```bash
 mkdir ~/.venvs
-virtualenv -p python3 ~/.venvs/ansible
+python3 -m venv ~/.venvs/ansible
 source ~/.venvs/ansible/bin/activate
+pip install wheel
 pip install ansible
 ```
 
 Every time you work with Ansible, source the virtualenv (`source ~/.venvs/ansible/bin/activate`)
+
+## Downloading the required ansible collections from Ansible Galaxy
+
+Download the required Ansible collections from galaxy by running the following command
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
 
 ## Configuration
 

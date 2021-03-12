@@ -1,7 +1,7 @@
 ---
 
 - name: Append user to groups
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     append: yes
     groups: wheel,libvirt,input,docker

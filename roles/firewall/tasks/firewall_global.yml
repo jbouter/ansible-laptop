@@ -6,7 +6,7 @@
 #
 
 - name: INPUT - allow all loopback traffic
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     in_interface: lo
     jump: ACCEPT
@@ -17,7 +17,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - allow all localhost traffic to itself ipv4
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     source: "127.0.0.1/32"
     destination: "127.0.0.1/32"
@@ -26,7 +26,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - allow all localhost traffic to itself ipv6
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     source: "::1/128"
     destination: "::1/128"
@@ -35,7 +35,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - drop local range ipv4
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     source: "127.0.0.0/8"
     jump: DROP
@@ -43,7 +43,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - allow established and related for TCP and UDP ipv4
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     ctstate: ESTABLISHED,RELATED
     jump: ACCEPT
@@ -55,7 +55,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - allow established and related for TCP and UDP ipv6
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     ctstate: ESTABLISHED,RELATED
     jump: ACCEPT
@@ -67,7 +67,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - allow new, established and related for ICMP ipv4
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     ctstate: NEW,ESTABLISHED,RELATED
     jump: ACCEPT
@@ -76,7 +76,7 @@
   notify: "Run firewall handler"
 
 - name: INPUT - allow new, established and related for ICMP ipv6
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     ctstate: NEW,ESTABLISHED,RELATED
     jump: ACCEPT
@@ -85,7 +85,7 @@
   notify: "Run firewall handler"
 
 - name: OUTPUT - allow all loopback traffic
-  iptables:
+  ansible.builtin.iptables:
     chain: OUTPUT
     out_interface: lo
     jump: ACCEPT
@@ -96,7 +96,7 @@
   notify: "Run firewall handler"
 
 - name: OUTPUT - allow new and established
-  iptables:
+  ansible.builtin.iptables:
     chain: OUTPUT
     ctstate: NEW,ESTABLISHED
     jump: ACCEPT
@@ -112,7 +112,7 @@
 #
 
 - name: INPUT - allow traffic to KDE/GS connect TCP/UDP
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     jump: ACCEPT
     protocol: "{{ item }}"
@@ -125,7 +125,7 @@
   notify: "Run firewall handler"
 
 - name: OUTPUT - allow traffic to KDE/GS connect TCP/UDP
-  iptables:
+  ansible.builtin.iptables:
     chain: OUTPUT
     jump: ACCEPT
     protocol: "{{ item }}"
@@ -143,7 +143,7 @@
 #
 
 - name: INPUT - default policy DROP
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     policy: DROP
     ip_version: "{{ item }}"
@@ -153,7 +153,7 @@
   notify: "Run firewall handler"
 
 - name: OUTPUT - default policy DROP
-  iptables:
+  ansible.builtin.iptables:
     chain: OUTPUT
     policy: DROP
     ip_version: "{{ item }}"
@@ -163,7 +163,7 @@
   notify: "Run firewall handler"
 
 - name: FORWARD - default policy DROP
-  iptables:
+  ansible.builtin.iptables:
     chain: FORWARD
     policy: DROP
     ip_version: "{{ item }}"
@@ -180,7 +180,7 @@
 #
 
 - name: INPUT - log prefix with limit
-  iptables:
+  ansible.builtin.iptables:
     chain: INPUT
     jump: LOG
     action: append
@@ -193,7 +193,7 @@
   notify: "Run firewall handler"
 
 - name: OUTPUT - log prefix with limit
-  iptables:
+  ansible.builtin.iptables:
     chain: OUTPUT
     jump: LOG
     action: append
@@ -206,7 +206,7 @@
   notify: "Run firewall handler"
 
 - name: FORWARD - log prefix with limit
-  iptables:
+  ansible.builtin.iptables:
     chain: FORWARD
     jump: LOG
     action: append

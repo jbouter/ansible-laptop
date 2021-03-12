@@ -1,7 +1,7 @@
 ---
 
 - name: Install KDE packages
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - latte-dock

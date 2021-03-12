@@ -6,7 +6,7 @@
     state: present
 
 - name: Stop and disable systemd-timesyncd
-  systemd:
+  ansible.builtin.systemd:
     name: systemd-timesyncd
     state: stopped
     enabled: no
@@ -29,7 +29,7 @@
     - Restart chrony service fedora
 
 - name: Configure chronyd service
-  systemd:
+  ansible.builtin.systemd:
     name: chronyd
     state: started
     enabled: yes

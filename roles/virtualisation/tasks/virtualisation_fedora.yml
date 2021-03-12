@@ -6,7 +6,7 @@
     state: present
 
 - name: Set libvirtd socket read-write permissions
-  replace:
+  ansible.builtin.replace:
     path: /etc/libvirt/libvirtd.conf
     regexp: '^#unix_sock_rw_perms = "0770"'
     replace: 'unix_sock_rw_perms = "0770"'
@@ -20,7 +20,7 @@
     enabled: yes
 
 - name: Append user to libvirt group
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     append: yes
     groups: libvirt
