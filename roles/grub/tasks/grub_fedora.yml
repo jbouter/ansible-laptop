@@ -1,7 +1,7 @@
 ---
 
 - name: Configure unrestricted boot
-  replace:
+  ansible.builtin.replace:
     path: /etc/grub.d/10_linux
     regexp: "(menuentry\\s.* \\| grub_quote\\)')((?!--unrestricted).)*( \\${CLASS}\\s.+)"
     replace: '\1 --unrestricted\3'

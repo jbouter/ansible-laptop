@@ -18,7 +18,7 @@
 - name: Install visual studio code using makepkg
   become: yes
   become_user: "{{ username }}"
-  command: makepkg --noconfirm -si
+  ansible.builtin.command: makepkg --noconfirm -si
   args:
     chdir: /tmp/visual-studio-code-bin
     creates: /usr/bin/code

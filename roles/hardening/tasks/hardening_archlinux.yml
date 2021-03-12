@@ -23,13 +23,13 @@
     state: present
 
 - name: Allow users in audit group to receive auditd notifications
-  replace:
+  ansible.builtin.replace:
     path: /etc/audit/auditd.conf
     regexp: '^log_group \= root'
     replace: 'log_group = audit'
 
 - name: Enable caching of apparmor profiles
-  replace:
+  ansible.builtin.replace:
     path: /etc/apparmor/parser.conf
     regexp: '^#write-cache'
     replace: 'write-cache'
@@ -62,7 +62,7 @@
         NoDisplay=true
 
 - name: Start and enabled apparmor service
-  systemd:
+  ansible.builtin.systemd:
     name: apparmor
     state: started
     enabled: yes

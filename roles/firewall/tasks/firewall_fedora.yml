@@ -15,13 +15,13 @@
     enabled: no
 
 - name: Configure automatic iptables saving on stop
-  replace:
+  ansible.builtin.replace:
     path: /etc/sysconfig/iptables-config
     regexp: "^IPTABLES_SAVE_ON_STOP=\"yes\""
     replace: "IPTABLES_SAVE_ON_STOP=\"no\""
 
 - name: Configure automatic iptables saving on restart
-  replace:
+  ansible.builtin.replace:
     path: /etc/sysconfig/iptables-config
     regexp: "^IPTABLES_SAVE_ON_RESTART=\"yes\""
     replace: "IPTABLES_SAVE_ON_RESTART=\"no\""
