@@ -10,6 +10,22 @@
       - fonts-ubuntu
       - fonts-firacode
 
+
+- name: Create JetBrains mono fonts directory
+  ansible.builtin.file:
+    dest: /usr/local/share/fonts/JetBrainsMono
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+
+- name: Download and extract JetBrains Mono
+  ansible.builtin.unarchive:
+    src: "https://github.com/JetBrains/JetBrainsMono/releases/\
+          download/v2.225/JetBrainsMono-2.225.zip"
+    dest: /usr/local/share/fonts/JetBrainsMono
+    remote_src: yes
+
 - name: Configure fontconfig for user
   ansible.builtin.copy:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
