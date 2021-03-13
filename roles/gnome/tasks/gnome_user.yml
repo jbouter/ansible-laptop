@@ -19,7 +19,7 @@
 - name: Configure monospace font (not Ubuntu)
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'Hack 10'"
+    value: "'JetBrains Mono 10'"
   when: ansible_distribution != "Ubuntu"
 
 - name: Configure font name (Ubuntu)

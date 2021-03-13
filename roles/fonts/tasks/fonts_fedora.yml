@@ -6,6 +6,7 @@
       - abattis-cantarell-fonts
       - open-sans-fonts
       - fira-code-fonts
+      - jetbrains-mono-fonts-all
 
 - name: Create Hack fonts directory
   ansible.builtin.file:
