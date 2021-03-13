@@ -67,13 +67,13 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: Configure bash_aliases for the user
-  ansible.builtin.copy:
-    src: bash_aliases
-    dest: "/home/{{ username }}/.bash_aliases"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
+- name: Configure bash.d for the user
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: https://github.com/jbouter/bash.d.git
+    dest: "/home/{{ username }}/.config/bash.d"
+    version: main
 
 - name: Configure profile for the user
   ansible.builtin.copy:
@@ -83,22 +83,27 @@
     group: "{{ username }}"
     mode: '0644'
 
-- name: Configure bashrc for root
+- name: Configure bashrc for root on Debian
   ansible.builtin.template:
     src: bashrc.j2
-    dest: "/root/.bashrc"
+    dest: /root/.bashrc
     owner: root
     group: root
     mode: '0644'
-  when: ansible_os_family == "Debian"
 
-- name: Configure bash_aliases for root
-  ansible.builtin.copy:
-    src: bash_aliases
-    dest: "/root/.bash_aliases"
+- name: Configure config directory for root
+  ansible.builtin.file:
+    path: /root/.config
+    state: directory
     owner: root
     group: root
-    mode: '0644'
+    mode: '0750'
+
+- name: Configure bash.d for root
+  ansible.builtin.git:
+    repo: https://github.com/jbouter/bash.d.git
+    dest: "/root/.config/bash.d"
+    version: main
 
 - name: Configure profile for root
   ansible.builtin.copy:
