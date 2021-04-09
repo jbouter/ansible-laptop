@@ -12,6 +12,7 @@
       - noto-fonts-emoji
       - ttf-fira-code
       - ttf-jetbrains-mono
+      - ttf-cascadia-code
 
 - name: Enable sub-pixel-rgb font hinting
   ansible.builtin.file:

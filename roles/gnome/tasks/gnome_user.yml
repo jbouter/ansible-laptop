@@ -19,7 +19,7 @@
 - name: Configure monospace font (not Ubuntu)
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'JetBrains Mono 10'"
+    value: "'Cascadia Mono 10'"
   when: ansible_distribution != "Ubuntu"
 
 - name: Configure font name (Ubuntu)
