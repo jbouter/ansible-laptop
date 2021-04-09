@@ -1,6 +1,6 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "'JetBrains Mono'",
+    "editor.fontFamily": "'Cascadia Code'",
     "editor.fontSize": 14,
     "git.alwaysSignOff": true,
     "git.autofetch": true,
@@ -22,7 +22,7 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "explorer.confirmDelete": false,
-    "terminal.integrated.fontFamily": "'JetBrains Mono'",
+    "terminal.integrated.fontFamily": "'Cascadia Mono'",
     "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.iconTheme": "material-icon-theme",
