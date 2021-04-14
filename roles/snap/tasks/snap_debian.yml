@@ -1,6 +1,0 @@
----
-
-- name: Install snapd
-  ansible.builtin.apt:
-    pkg:
-      - snapd

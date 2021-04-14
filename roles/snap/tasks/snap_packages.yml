@@ -1,7 +1,0 @@
----
-
-- name: Install generic snaps
-  community.general.snap:
-    name:
-      - chromium
-    state: present

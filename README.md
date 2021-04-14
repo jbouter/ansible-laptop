@@ -65,7 +65,7 @@ Every time you work with Ansible, source the virtualenv (`source ~/.venvs/ansibl
 Download the required Ansible collections from galaxy by running the following command
 
 ```bash
-ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r collections/requirements.yml
 ```
 
 ## Configuration
