@@ -9,7 +9,6 @@
     - desktop_environment
     - chrome
     - flatpak
-    - snap
     - grub
     - hardening
     - chrony
