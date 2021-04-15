@@ -13,7 +13,7 @@
     group: root
     mode: '0440'
     content: |
-      #Allow members of group sudo to execute wireguard commands
+      # Allow members of group sudo/wheel to execute wireguard commands
       Cmnd_Alias WIREGUARD = /usr/bin/wg show, \
                               /usr/bin/wg-quick up wg[0-9], \
                               /usr/bin/wg-quick down wg[0-9]
@@ -28,7 +28,7 @@
     group: root
     mode: '0440'
     content: |
-      #Allow members of group sudo to execute wireguard commands
+      # Allow members of group sudo/wheel to execute fwupdmgr commands
       Cmnd_Alias FWUPD = /usr/bin/fwupdmgr update, \
                          /usr/bin/fwupdmgr upgrade, \
                          /usr/bin/fwupdmgr refresh
@@ -43,13 +43,31 @@
     group: root
     mode: '0440'
     content: |
-      #Allow members of group sudo to execute wireguard commands
+      # Allow members of group sudo/wheel to execute flatpak commands
       Cmnd_Alias FLATPAK = /usr/bin/flatpak update, \
                            /usr/bin/flatpak install *, \
                            /usr/bin/flatpak uninstall *
 
       %sudo ALL = NOPASSWD: FLATPAK
       %wheel ALL = NOPASSWD: FLATPAK
+
+- name: Configure passwordless sudo for pkcon commands
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/pkcon
+    owner: root
+    group: root
+    mode: '0440'
+    content: |
+      # Allow members of group sudo/wheel to execute pkcon commands
+      Cmnd_Alias PKCON = /usr/bin/pkcon refresh, \
+                         /usr/bin/pkcon update *, \
+                         /usr/bin/pkcon install *, \
+                         /usr/bin/pkcon remove *, \
+                         /usr/bin/pkcon offline-trigger, \
+                         /usr/bin/pkcon get-updates
+
+      %sudo ALL = NOPASSWD: PKCON
+      %wheel ALL = NOPASSWD: PKCON
 
 - name: Install bash completion for git
   ansible.builtin.get_url:
