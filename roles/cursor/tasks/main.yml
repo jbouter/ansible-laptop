@@ -1,0 +1,82 @@
+---
+
+- name: Check if Suru is installed
+  ansible.builtin.stat:
+    path: /usr/share/icons/Suru
+  register: stat_suru
+
+- name: Clone the Suru repository
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: https://github.com/snwh/suru-icon-theme.git
+    dest: /tmp/suru
+    version: master
+    update: yes
+  when: not stat_suru.stat.exists
+
+- name: Temporarily set exec rights on /tmp
+  ansible.posix.mount:
+    path: /tmp
+    opts: exec
+    state: remounted
+  when: not stat_suru.stat.exists
+
+- name: Build the Suru cursors
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.command:
+    cmd: meson "build" --prefix=/usr
+  args:
+    chdir: /tmp/suru
+    creates: /tmp/suru/build
+  when: not stat_suru.stat.exists
+
+- name: Install the Suru cursors
+  ansible.builtin.command:
+    cmd: ninja -C "build" install
+  args:
+    chdir: /tmp/suru
+    creates: /usr/share/icons/Suru
+  when: not stat_suru.stat.exists
+
+- name: Remove exec rights from /tmp
+  ansible.posix.mount:
+    path: /tmp
+    opts: noexec
+    state: remounted
+  when: not stat_suru.stat.exists
+
+- name: Create KDE specific cursor symlinks for Suru cursors
+  ansible.builtin.file:
+    state: link
+    src: "{{ item.src }}"
+    dest: "/usr/share/icons/Suru/cursors/{{ item.dest }}"
+    owner: root
+    group: root
+  loop:
+    - { src: pointer, dest: pointing_hand }
+    - { src: help, dest: whats_this }
+    - { src: progress, dest: half-busy }
+    - { src: text, dest: ibeam }
+    - { src: row-resize, dest: split_v }
+    - { src: col-resize, dest: split_h }
+    - { src: default, dest: size-ver }
+    - { src: default, dest: size-hor }
+    - { src: default, dest: size-fdiag }
+    - { src: default, dest: size-bdiag }
+    - { src: no-drop, dest: forbidden }
+    - { src: dnd-move, dest: closedhand }
+    - { src: wait, dest: watch }
+  when: desktop_environment == "kde" and not stat_suru.stat.exists
+
+- name: Check if Suru installation was succesful
+  ansible.builtin.stat:
+    path: /usr/share/icons/Suru
+  register: stat_suruinstalled
+
+- name: Remove Suru cloned repository
+  ansible.builtin.file:
+    path: /tmp/suru
+    state: absent
+  when: stat_suruinstalled.stat.exists

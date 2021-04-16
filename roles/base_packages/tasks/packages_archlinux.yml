@@ -39,6 +39,7 @@
       - yamllint
       - aspell-en
       - hunspell-en_GB
+      - meson
 
 - name: Clone yay from aur
   become: yes
