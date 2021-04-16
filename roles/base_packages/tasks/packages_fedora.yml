@@ -43,6 +43,7 @@
       - resolvconf
       - earlyoom
       - yamllint
+      - meson
 
 - name: Install Development Tools group package
   ansible.builtin.dnf:
