@@ -67,7 +67,7 @@
     - { src: default, dest: size-bdiag }
     - { src: no-drop, dest: forbidden }
     - { src: dnd-move, dest: closedhand }
-    - { src: wait, dest: watch }
+    - { src: watch, dest: wait }
   when: desktop_environment == "kde" and not stat_suru.stat.exists
 
 - name: Check if Suru installation was succesful
