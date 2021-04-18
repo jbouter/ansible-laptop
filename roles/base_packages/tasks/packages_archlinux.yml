@@ -40,6 +40,7 @@
       - aspell-en
       - hunspell-en_GB
       - meson
+      - packagekit
 
 - name: Clone yay from aur
   become: yes

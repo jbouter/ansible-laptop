@@ -7,6 +7,7 @@
       - latte-dock
       - kmail
       - korganizer
+      - packagekit-qt5
 
 - name: Check if kwalletcli is installed
   ansible.builtin.stat:

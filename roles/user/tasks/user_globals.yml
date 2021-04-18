@@ -60,6 +60,7 @@
     content: |
       # Allow members of group sudo/wheel to execute pkcon commands
       Cmnd_Alias PKCON = /usr/bin/pkcon refresh, \
+                         /usr/bin/pkcon update, \
                          /usr/bin/pkcon update *, \
                          /usr/bin/pkcon install *, \
                          /usr/bin/pkcon remove *, \

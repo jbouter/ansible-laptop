@@ -7,6 +7,7 @@
       - gnome-shell-common
       - gnome-tweaks
       - gnome-backgrounds
+      - gnome-packagekit
 
 - name: Install suru on Debian
   ansible.builtin.apt:

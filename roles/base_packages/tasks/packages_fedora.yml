@@ -44,6 +44,8 @@
       - earlyoom
       - yamllint
       - meson
+      - PackageKit
+      - PackageKit-command-not-found
 
 - name: Install Development Tools group package
   ansible.builtin.dnf:
