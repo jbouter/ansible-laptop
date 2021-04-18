@@ -35,6 +35,9 @@
       - earlyoom
       - yamllint
       - meson
+      - packagekit
+      - packagekit-tools
+      - packagekit-command-not-found
 
 - name: Install ubuntu restricted packages
   ansible.builtin.apt:

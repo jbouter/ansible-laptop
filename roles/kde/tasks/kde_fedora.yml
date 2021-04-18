@@ -8,3 +8,5 @@
       - kwalletcli
       - kmail
       - korganizer
+      - plasma-discover-packagekit
+      - PackageKit-Qt5

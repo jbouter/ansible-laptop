@@ -1,5 +1,13 @@
 ---
 
+- name: Install GNOME packages
+  community.general.pacman:
+    state: present
+    name:
+      - gnome-tweaks
+      - gnome-packagekit
+      - gnome-software-packagekit-plugin
+
 - name: Check if suru icon theme is installed
   ansible.builtin.stat:
     path: /usr/share/icons/Suru
