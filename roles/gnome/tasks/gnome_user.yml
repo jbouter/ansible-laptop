@@ -3,7 +3,7 @@
 - name: Configure cursor theme
   community.general.dconf:
     key: "/org/gnome/desktop/interface/cursor-theme"
-    value: "'Suru'"
+    value: "'Adwaita'"
 
 - name: Configure document font name
   community.general.dconf:
@@ -19,7 +19,7 @@
 - name: Configure monospace font (not Ubuntu)
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'Cascadia Mono 10'"
+    value: "'{{ monospace_font }}'"
   when: ansible_distribution != "Ubuntu"
 
 - name: Configure font name (Ubuntu)

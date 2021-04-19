@@ -27,9 +27,9 @@
     remote_src: yes
 
 - name: Configure fontconfig for user
-  ansible.builtin.copy:
+  ansible.builtin.template:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
-    src: fonts_generic.conf
+    src: fonts_generic.conf.j2
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'

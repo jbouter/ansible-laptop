@@ -23,9 +23,9 @@
     state: link
 
 - name: Configure fontconfig for user
-  ansible.builtin.copy:
+  ansible.builtin.template:
     dest: "/home/{{ username }}/.config/fontconfig/fonts.conf"
-    src: fonts_arch.conf
+    src: fonts_arch.conf.j2
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'

@@ -18,8 +18,8 @@
   when: not stat_user_vscode_config.stat.exists
 
 - name: Configure vscode for user
-  ansible.builtin.copy:
-    src: settings.json
+  ansible.builtin.template:
+    src: settings.json.j2
     dest: "/home/{{ username }}/.config/Code/User/settings.json"
     force: no
     owner: "{{ username }}"
