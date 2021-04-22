@@ -15,11 +15,11 @@
     method: system
   loop:
     - com.spotify.Client
-    - org.telegram
     - com.bitwarden
     - com.discordapp.Discord
     - org.signal.Signal
     - com.github.joseexposito.touche
+    - org.telegram
 
 - name: Install gnome specific flatpaks from flathub
   community.general.flatpak:

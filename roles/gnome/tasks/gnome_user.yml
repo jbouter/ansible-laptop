@@ -1,10 +1,5 @@
 ---
 
-- name: Configure cursor theme
-  community.general.dconf:
-    key: "/org/gnome/desktop/interface/cursor-theme"
-    value: "'Adwaita'"
-
 - name: Configure document font name
   community.general.dconf:
     key: "/org/gnome/desktop/interface/document-font-name"
@@ -16,22 +11,15 @@
     value: "'Cantarell 10'"
   when: ansible_distribution != "Ubuntu"
 
-- name: Configure monospace font (not Ubuntu)
+- name: Configure monospace font
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'{{ monospace_font }}'"
-  when: ansible_distribution != "Ubuntu"
+    value: "'{{ monospace_font }} 10'"
 
 - name: Configure font name (Ubuntu)
   community.general.dconf:
     key: "/org/gnome/desktop/interface/font-name"
     value: "'Ubuntu 10'"
-  when: ansible_distribution == "Ubuntu"
-
-- name: Configure monospace font (Ubuntu)
-  community.general.dconf:
-    key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'Ubuntu Mono 12'"
   when: ansible_distribution == "Ubuntu"
 
 - name: Configure font anti-aliasing
@@ -92,10 +80,17 @@
     key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
     value: "['<Alt><Shift>Tab', '<Super><Shift>Tab']"
 
-- name: Configure favourite apps
+- name: Configure favourite apps (for Ubuntu)
   community.general.dconf:
     key: "/org/gnome/shell/favorite-apps"
-    value: "['firefox.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.telegram.desktop.desktop', 'com.discordapp.Discord.desktop', 'virt-manager.desktop', 'visual-studio-code.desktop']"
+    value: "['google-chrome.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'com.bitwarden.desktop.desktop', 'com.spotify.Client.desktop', 'telegram-desktop_telegram-desktop.desktop', 'com.discordapp.Discord.desktop', 'code.desktop', 'vmware-view.desktop']"
+  when: ansible_distribution == "Ubuntu"
+
+- name: Configure favourite apps (non) Ubuntu)
+  community.general.dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['google-chrome.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'com.bitwarden.desktop.desktop', 'com.spotify.Client.desktop', 'org.telegram.desktop', 'com.discordapp.Discord.desktop', 'code.desktop', 'vmware-view.desktop']"
+  when: ansible_distribution != "Ubuntu"
 
 - name: Configure screenshot keyboard shortcut
   community.general.dconf:
