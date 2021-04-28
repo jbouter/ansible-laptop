@@ -4,9 +4,9 @@
   ansible.builtin.include_tasks: libinput_debian.yml
   when: ansible_os_family == "Debian" and ansible_virtualization_role != "guest"
 
-- name: Install libinput for RedHat based systems
+- name: Install libinput for Fedora based systems
   ansible.builtin.include_tasks: libinput_fedora.yml
-  when: ansible_os_family == "RedHat" and ansible_virtualization_role != "guest"
+  when: ansible_distribution == "Fedora" and ansible_virtualization_role != "guest"
 
 - name: Install libinput for Arch Linux based systems
   ansible.builtin.include_tasks: libinput_archlinux.yml

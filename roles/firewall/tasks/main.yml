@@ -4,9 +4,9 @@
   ansible.builtin.include_tasks: firewall_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: Install firewall packages for RedHat based systems
+- name: Install firewall packages for Fedora based systems
   ansible.builtin.include_tasks: firewall_fedora.yml
-  when: ansible_os_family == "RedHat"
+  when: ansible_distribution == "Fedora"
 
 - name: Install firewall packages for Arch Linux based systems
   ansible.builtin.include_tasks: firewall_archlinux.yml

@@ -15,7 +15,7 @@ pool 2.nl.pool.ntp.org iburst maxsources 4
 pool 3.nl.pool.ntp.org iburst maxsources 4
 {% endif %}
 
-{% if ansible_os_family == "RedHat" or ansible_os_family == "Archlinux" %}
+{% if ansible_distribution == "Fedora" or ansible_os_family == "Archlinux" %}
 # Record the rate at which the system clock gains/losses time.
 driftfile /var/lib/chrony/drift
 

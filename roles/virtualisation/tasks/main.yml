@@ -4,9 +4,9 @@
   ansible.builtin.include_tasks: virtualisation_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: Install virtualisation for RedHat based systems
+- name: Install virtualisation for Fedora based systems
   ansible.builtin.include_tasks: virtualisation_fedora.yml
-  when: ansible_os_family == "RedHat"
+  when: ansible_distribution == "Fedora"
 
 - name: Install virtualisation for Arch Linux based systems
   ansible.builtin.include_tasks: virtualisation_archlinux.yml

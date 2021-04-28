@@ -7,9 +7,9 @@
   ansible.builtin.include_tasks: user_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: Install user for RedHat based systems
+- name: Install user for Fedora based systems
   ansible.builtin.include_tasks: user_fedora.yml
-  when: ansible_os_family == "RedHat"
+  when: ansible_distribution == "Fedora"
 
 - name: Install user for Arch Linux based systems
   ansible.builtin.include_tasks: user_archlinux.yml
