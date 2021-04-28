@@ -27,7 +27,7 @@ alias diff='diff --color=auto'
 {% if ansible_os_family == "Debian" %}
 test -f /usr/share/doc/fzf/examples/completion.zsh && source /usr/share/doc/fzf/examples/completion.zsh
 test -f /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/key-bindings.zsh
-{% elif ansible_os_family == "RedHat" %}
+{% elif ansible_distribution == "Fedora" %}
 # if using Fedora
 test -f /usr/share/fzf/shell/key-bindings.zsh && source /usr/share/fzf/shell/key-bindings.zsh
 {% elif ansible_os_family == "Archlinux" %}

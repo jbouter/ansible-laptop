@@ -4,9 +4,9 @@
   ansible.builtin.include_tasks: chrony_debian.yml
   when: ansible_os_family == "Debian"
 
-- name: Install chrony for RedHat based systems
+- name: Install chrony for Fedora based systems
   ansible.builtin.include_tasks: chrony_fedora.yml
-  when: ansible_os_family == "RedHat"
+  when: ansible_distribution == "Fedora"
 
 - name: Install chrony for Arch Linux based systems
   ansible.builtin.include_tasks: chrony_archlinux.yml

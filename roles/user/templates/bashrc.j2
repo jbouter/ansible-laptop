@@ -91,7 +91,7 @@ alias l='ls -CF'
 {% if ansible_os_family == "Debian" %}
 test -f /usr/share/doc/fzf/examples/completion.bash && source /usr/share/doc/fzf/examples/completion.bash
 test -f /usr/share/doc/fzf/examples/key-bindings.bash && source /usr/share/doc/fzf/examples/key-bindings.bash
-{% elif ansible_os_family == "RedHat" %}
+{% elif ansible_distribution == "Fedora" %}
 test -f /usr/share/fzf/shell/key-bindings.bash && source /usr/share/fzf/shell/key-bindings.bash
 {% elif ansible_os_family == "Archlinux" %}
 test -f /usr/share/fzf/key-bindings.bash && source /usr/share/fzf/key-bindings.bash
