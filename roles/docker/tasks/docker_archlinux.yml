@@ -1,9 +1,0 @@
----
-
-- name: Set docker_daemon fact to docker for Archlinux
-  ansible.builtin.set_fact: docker_daemon="docker"
-
-- name: Install Docker
-  community.general.pacman:
-    state: present
-    name: docker

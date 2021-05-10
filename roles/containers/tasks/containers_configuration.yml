@@ -1,0 +1,21 @@
+---
+
+- name: Configure subuid for user
+  ansible.builtin.lineinfile:
+    path: /etc/subuid
+    regexp: "^{{ username }}:[0-9]+:[0-9]+$"
+    line: "{{ username }}:100000:165536"
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Configure subgid for user
+  ansible.builtin.lineinfile:
+    path: /etc/subgid
+    regexp: "^{{ username }}:[0-9]+:[0-9]+$"
+    line: "{{ username }}:100000:165536"
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
