@@ -1,0 +1,8 @@
+---
+
+- name: Install podman
+  community.general.pacman:
+    state: present
+    name:
+      - podman
+      - buildah

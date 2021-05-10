@@ -20,6 +20,6 @@
     - vmware
     - starship
     - zsh
-    - docker
+    - containers
     - user
     - cursor

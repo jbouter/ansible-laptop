@@ -1,0 +1,13 @@
+---
+
+- name: Install podman for Debian based systems
+  ansible.builtin.include_tasks: containers_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Install podman for Arch Linux based systems
+  ansible.builtin.include_tasks: containers_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
+- name: Generic podman configuration
+  ansible.builtin.include_tasks: containers_configuration.yml
+  when: ansible_os_family != "RedHat"
