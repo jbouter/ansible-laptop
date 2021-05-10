@@ -11,6 +11,3 @@
 - name: Install visual studio code for Arch Linux based systems
   ansible.builtin.include_tasks: vscode_archlinux.yml
   when: ansible_os_family == "Archlinux"
-
-- name: Configure visual studio code
-  ansible.builtin.include_tasks: vscode_configure.yml
