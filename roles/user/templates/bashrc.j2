@@ -56,9 +56,30 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Configure git status
+__git_status() {
+    STATUS=$(git status 2>/dev/null |
+    awk '
+    /^On branch / {printf($3)}
+    /^You are currently rebasing/ {printf("rebasing %s", $6)}
+    /^Initial commit/ {printf(" (init)")}
+    /^Untracked files/ {printf("|+")}
+    /^Changes not staged / {printf("|?")}
+    /^Changes to be committed/ {printf("|*")}
+    /^Your branch of ahead of/ {printf("|^")}
+    ')
+    if [ -n "$STATUS" ]; then
+      echo -ne "($STATUS)"
+    fi
+}
+
 # Prompt
 export PROMPT_DIRTRIM=2
-PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [ $(id -u) -eq 0 ]; then
+  PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;172m\]\h\[\e[00m\]:\[\e[38;5;5m\]\w\[\033[00m\]\$ '
+else
+  PS1='\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\e[38;5;245m\]\u\[\e[00m\]@\[\e[38;5;172m\]\h\[\e[00m\]:\[\e[38;5;5m\]\w\[\e[38;5;172m\]$(__git_status)\[\033[00m\]\$ '
+fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -121,6 +142,3 @@ fi
 for config in ~/.config/bash.d/*.sh; do
   source "$config"
 done
-
-# Load starship
-eval "$(starship init bash)"
