@@ -9,11 +9,11 @@
     - desktop_environment
     - chrome
     - flatpak
+    - snapd
     - grub
     - hardening
     - chrony
     - libinput
-    - vscode
     - virtualisation
     - keychron
     - pulseaudio

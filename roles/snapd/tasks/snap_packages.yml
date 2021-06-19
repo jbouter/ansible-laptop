@@ -1,0 +1,26 @@
+---
+
+- name: Install generic snaps
+  community.general.snap:
+    name:
+      - chromium
+      - telegram-desktop
+      - bitwarden
+      - discord
+      - slack
+    state: present
+
+- name: Install classic snaps
+  community.general.snap:
+    name:
+      - code
+    state: present
+    classic: yes
+
+- name: Install KDE specific snaps (candidate)
+  community.general.snap:
+    name:
+      - neochat
+    state: present
+    channel: latest/candidate
+  when: desktop_environment == "kde"
