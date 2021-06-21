@@ -19,9 +19,9 @@ Tested on:
 
 * Arch Linux
 * Debian Sid
-* Fedora 33
+* Fedora 34
 * Ubuntu 20.04 & 20.10
-* KDE Neon
+* KDE Neon (20.04)
 
 ## Preface/Notes
 
