@@ -19,3 +19,14 @@
     masked: no
   notify:
     - Manually remount /tmp with noexec permissions
+
+- name: Configure apt to remount tmp with exec permissions
+  ansible.builtin.copy:
+    src: apt_00exectmp
+    dest: /etc/apt/apt.conf.d/apt_00exectmp
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure all handlers (up until now) are run
+  meta: flush_handlers
