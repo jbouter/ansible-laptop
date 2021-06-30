@@ -1,0 +1,12 @@
+---
+
+- name: Install pipewire for Ubuntu based systems
+  ansible.builtin.include_tasks: pipewire_ubuntu.yml
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == 20.04
+
+- name: Install pipewire for Arch Linux based systems
+  ansible.builtin.include_tasks: pipewire_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
+- name: Configure pipewire
+  ansible.builtin.include_tasks: pipewire_config.yml

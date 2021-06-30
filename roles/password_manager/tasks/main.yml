@@ -1,0 +1,13 @@
+---
+
+- name: Install 1password for Debian based systems
+  ansible.builtin.include_tasks: 1password_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Install 1password for Fedora based systems
+  ansible.builtin.include_tasks: 1password_fedora.yml
+  when: ansible_distribution == "Fedora"
+
+- name: Install 1password for Arch Linux based systems
+  ansible.builtin.include_tasks: 1password_archlinux.yml
+  when: ansible_os_family == "Archlinux"

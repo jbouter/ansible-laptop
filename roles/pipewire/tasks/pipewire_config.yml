@@ -1,0 +1,44 @@
+---
+
+- name: Create pipewire config directories for user
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+  loop:
+    - "/home/{{ username }}/.config/pipewire"
+    - "/home/{{ username }}/.config/pipewire/media-session.d"
+
+- name: Create alsa-monitor pipewire configuration
+  ansible.builtin.copy:
+    src: alsa-monitor.conf
+    dest: "/home/{{ username }}/.config/pipewire/media-session.d/alsa-monitor.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: Ensure pulseaudio services are stopped
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    state: stopped
+    enabled: no
+    name: pulseaudio
+    scope: user
+  ignore_errors: yes
+
+- name: Ensure pipewire services are enabled
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    enabled: yes
+    name: "{{ item }}"
+    scope: user
+  loop:
+    - pipewire
+    - pipewire-pulse
+    - pipewire-media-session
+  notify:
+    - Restart pipewire services
