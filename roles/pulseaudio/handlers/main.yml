@@ -1,9 +1,0 @@
----
-
-- name: Restart pulseaudio
-  ansible.builtin.systemd:
-    state: restarted
-    name: pulseaudio
-    scope: user
-  become: yes
-  become_user: "{{ username }}"

@@ -5,7 +5,6 @@
     name:
       - chromium
       - telegram-desktop
-      - bitwarden
       - discord
       - slack
     state: present

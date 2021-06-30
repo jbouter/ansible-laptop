@@ -16,9 +16,10 @@
     - libinput
     - virtualisation
     - keychron
-    - pulseaudio
+    - pipewire
     - vmware
     - zsh
     - containers
     - user
     - cursor
+    - password_manager

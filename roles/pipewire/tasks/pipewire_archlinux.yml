@@ -1,0 +1,8 @@
+---
+
+- name: Install pipewire packages
+  community.general.pacman:
+    name:
+      - pipewire
+      - pipewire-media-session
+      - pipewire-pulse

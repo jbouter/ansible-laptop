@@ -1,0 +1,19 @@
+---
+
+- name: Add the pipewire ppa
+  ansible.builtin.apt_repository:
+    repo: ppa:pipewire-debian/pipewire-upstream
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version == 20.04
+
+- name: Install pipewire packages
+  ansible.builtin.apt:
+    pkg:
+      - pipewire
+      - pipewire-audio-client-libraries
+      - pipewire-bin
+      - pipewire-locales
+      - pipewire-media-session
+      - pipewire-pulse
+      - libspa-bluetooth
+      - libspa-ffmpeg
+      - gstreamer1.0-pipewire

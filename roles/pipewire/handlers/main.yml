@@ -1,0 +1,13 @@
+---
+
+- name: Restart pipewire services
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    state: restarted
+    name: "{{ item }}"
+    scope: user
+  loop:
+    - pipewire
+    - pipewire-pulse
+    - pipewire-media-session
