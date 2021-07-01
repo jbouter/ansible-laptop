@@ -1,0 +1,56 @@
+---
+
+- name: Check if telegram-desktop is installed
+  ansible.builtin.stat:
+    path: /usr/bin/telegram-desktop
+  register: stat_telegram-desktop
+
+- name: Clone telegram-desktop from aur
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/telegram-desktop-bin.git
+    dest: /tmp/telegram-desktop
+    version: master
+    update: yes
+  when: not stat_telegram-desktop.stat.exists
+
+- name: Install telegram-desktop using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/telegram-desktop
+    creates: /usr/bin/telegram-desktop
+  when: not stat_telegram-desktop.stat.exists
+
+- name: Check if telegram-desktop installation was succesful
+  ansible.builtin.stat:
+    path: /usr/bin/telegram-desktop
+  register: stat_telegram-desktopinstalled
+
+- name: Remove telegram-desktop cloned repository
+  ansible.builtin.file:
+    path: /tmp/telegram-desktop
+    state: absent
+  when: stat_telegram-desktopinstalled.stat.exists
+
+- name: Create snap symlink to support classic snaps
+  ansible.builtin.file:
+    src: /var/lib/telegram-desktop/snap
+    dest: /snap
+    state: link
+
+- name: Start and enable telegram-desktop apparmor service
+  ansible.builtin.systemd:
+    name: telegram-desktop.apparmor.service
+    state: started
+    enabled: yes
+  notify: "Parse apparmor files on Archlinux"
+
+- name: Start and enable the telegram-desktop socket
+  ansible.builtin.systemd:
+    name: telegram-desktop.socket
+    state: started
+    enabled: yes
