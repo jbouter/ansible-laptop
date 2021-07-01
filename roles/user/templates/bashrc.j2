@@ -142,3 +142,6 @@ fi
 for config in ~/.config/bash.d/*.sh; do
   source "$config"
 done
+
+# Load starship
+eval "$(starship init bash)"
