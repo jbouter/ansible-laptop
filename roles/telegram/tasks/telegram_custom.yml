@@ -1,0 +1,27 @@
+---
+
+- name: Download and extract the telegram tarball
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.unarchive:
+    src: https://telegram.org/dl/desktop/linux
+    dest: "/home/{{ username }}/.local/share/"
+    remote_src: yes
+    creates: "/home/{{ username }}/.local/share/TelegramDesktop"
+  notify: Move Telegram to the right location
+
+- name: Create the Telegram desktop file
+  ansible.builtin.template:
+    src: telegram.desktop.j2
+    dest: "/home/{{ username }}/.local/share/applications/telegram.desktop"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'
+
+- name: Create the Telegram desktop autostart file
+  ansible.builtin.template:
+    src: telegram-autostart.desktop.j2
+    dest: "/home/{{ username }}/.config/autostart/telegram.desktop"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0644'

@@ -4,7 +4,6 @@
   community.general.snap:
     name:
       - chromium
-      - telegram-desktop
       - discord
       - slack
     state: present

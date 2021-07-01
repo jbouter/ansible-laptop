@@ -1,0 +1,5 @@
+---
+
+- name: Move Telegram to the right location
+  ansible.builtin.command:
+    cmd: "mv /home/{{ username }}/.local/share/Telegram /home/{{ username }}/.local/share/TelegramDesktop"
