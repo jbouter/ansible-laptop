@@ -3,6 +3,8 @@
 - name: Install font packages
   ansible.builtin.dnf:
     name:
+      - terminus-fonts
+      - terminus-fonts-console
       - abattis-cantarell-fonts
       - open-sans-fonts
       - fira-code-fonts
@@ -31,3 +33,13 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
+
+- name: Configure Terminus in vconsole font
+  ansible.builtin.copy:
+    dest: /etc/vconsole.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      FONT=ter-p16n
+      FONT_MAP=8859-2

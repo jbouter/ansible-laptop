@@ -4,6 +4,7 @@
   community.general.pacman:
     state: present
     name:
+      - terminus-font
       - cantarell-fonts
       - ttf-hack
       - ttf-liberation
@@ -29,3 +30,13 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
+
+- name: Configure Terminus in vconsole font
+  ansible.builtin.copy:
+    dest: /etc/vconsole.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      FONT=ter-p16n
+      FONT_MAP=8859-2
