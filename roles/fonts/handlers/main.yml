@@ -1,0 +1,5 @@
+---
+
+- name: Regenerate initramfs for Debian
+  ansible.builtin.command:
+    cmd: update-initramfs -u

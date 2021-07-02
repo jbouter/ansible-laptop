@@ -2,5 +2,5 @@
 
 gdm_default_look: "no"
 desktop_environment: "none"
-monospace_font: "Hack"
+monospace_font: "Cascadia Mono"
 editor_font: "Cascadia Code"
