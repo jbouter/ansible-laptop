@@ -2,26 +2,18 @@
 eval "$(starship init zsh)"
 
 # Configure zsh history
-export HISTFILE=~/.zsh_history
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
-export HISTTIMEFORMAT="[%F %T] "
-setopt INC_APPEND_HISTORY
-setopt EXTENDED_HISTORY
+HISTSIZE=5000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=5000               #Number of history entries to save to disk
+HISTTIMEFORMAT="[%F %T] "   #Configure the style of history
+HISTDUP=erase              #Erase duplicates in the history file
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 
 # Fix CTRL+Arrow keys
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-
-# Common aliases
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias diff='diff --color=auto'
 
 # Configure Fuzzy Finder
 {% if ansible_os_family == "Debian" %}
@@ -35,5 +27,7 @@ test -f /usr/share/fzf/key-bindings.zsh && source /usr/share/fzf/key-bindings.zs
 test -f /usr/share/fzf/completion.zsh && source /usr/share/fzf/completion.zsh
 {% endif %}
 
-# Load custom aliases
-[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+# Load custom bash config
+for config in ~/.config/bash.d/*.sh; do
+  source "$config"
+done
