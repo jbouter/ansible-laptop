@@ -11,7 +11,7 @@
 - name: Install classic snaps
   community.general.snap:
     name:
-      - code
+      - codium
     state: present
     classic: yes
 
