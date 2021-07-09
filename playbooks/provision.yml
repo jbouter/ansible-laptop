@@ -10,6 +10,7 @@
     - chrome
     - flatpak
     - snapd
+    - vscodium
     - grub
     - hardening
     - chrony
