@@ -1,29 +1,17 @@
 ---
 
-- name: Ensure VSCodium configuration directories exist
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0755'
-  loop:
-    - "/home/{{ username }}/.config/VSCodium"
-    - "/home/{{ username }}/.config/VSCodium/User"
+- name: Install vscodium for Debian based systems
+  ansible.builtin.include_tasks: vscodium_debian.yml
+  when: ansible_os_family == "Debian"
 
-- name: Configure VSCodium to use the VSCode repositories for extensions
-  ansible.builtin.copy:
-    src: product.json
-    dest: "/home/{{ username }}/.config/Code/product.json"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0644'
+- name: Install vscodium for Fedora based systems
+  ansible.builtin.include_tasks: vscodium_fedora.yml
+  when: ansible_distribution == "Fedora"
 
-- name: Configure user settings for VSCodium
-  ansible.builtin.template:
-    src: settings.json.j2
-    dest: "/home/{{ username }}/.config/Code/User/settings.json"
-    force: no
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: '0664'
+- name: Install vscodium for Arch Linux based systems
+  ansible.builtin.include_tasks: vscodium_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
+- name: Install vscodium configuration
+  ansible.builtin.include_tasks: vscodium_configuration.yml
+  when: ansible_virtualization_role != "guest"
