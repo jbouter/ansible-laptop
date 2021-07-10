@@ -8,13 +8,6 @@
       - slack
     state: present
 
-- name: Install classic snaps
-  community.general.snap:
-    name:
-      - codium
-    state: present
-    classic: yes
-
 - name: Install KDE specific snaps (candidate)
   community.general.snap:
     name:

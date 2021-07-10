@@ -1,0 +1,37 @@
+---
+
+- name: Check if vscodium is installed
+  ansible.builtin.stat:
+    path: /usr/bin/vscodium
+  register: stat_vscodium
+
+- name: Clone vscodium from aur
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/vscodium-bin.git
+    dest: /tmp/vscodium
+    version: master
+    update: yes
+  when: not stat_vscodium.stat.exists
+
+- name: Install vscodium using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.command:
+    cmd: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/vscodium
+    creates: /usr/bin/vscodium
+  when: not stat_vscodium.stat.exists
+
+- name: Check if vscodium installation was succesful
+  ansible.builtin.stat:
+    path: /usr/bin/vscodium
+  register: stat_vscodiuminstalled
+
+- name: Remove vscodium cloned repository
+  ansible.builtin.file:
+    path: /tmp/vscodium
+    state: absent
+  when: stat_vscodiuminstalled.stat.exists

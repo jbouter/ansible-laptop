@@ -1,0 +1,20 @@
+---
+
+- name: Import the GPG key for VSCodium
+  ansible.builtin.apt_key:
+    url: https://gitlab.com/paulcarroty/VSCodium-deb-rpm-repo/-/raw/master/pub.gpg
+    state: present
+
+- name: Configure the package repository for VSCodium
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/vscodium.list
+    owner: root
+    group: root
+    mode: '0644'
+    content: 'deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs/ vscodium main'
+
+- name: Install VSCodium
+  ansible.builtin.apt:
+    name: codium
+    state: present
+    update_cache: yes
