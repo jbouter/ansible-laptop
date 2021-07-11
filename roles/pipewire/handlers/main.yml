@@ -10,4 +10,11 @@
   loop:
     - pipewire
     - pipewire-pulse
-    - pipewire-media-session
+
+- name: Restart pipewire media session
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    state: restarted
+    name: pipewire-media-session
+    scope: user

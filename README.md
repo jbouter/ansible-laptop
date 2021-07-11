@@ -30,20 +30,19 @@ Before starting, a few things must be configured on the OS.
 ### Ubuntu/Debian
 
 ```bash
-apt install -y python3-virtualenv python3-dev python3-wheel libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
+apt install -y git python3-virtualenv python3-dev python3-wheel libxml2-dev libxslt-dev libssl-dev linux-headers-generic build-essential
 ```
 
 ### Fedora
 
 ```bash
-dnf install -y python3-virtualenv
-dnf groupinstall -y "Development Tools"
+dnf install -y git python3-virtualenv python3-devel libxml2-devel libxlst-devel kernel-headers kernel-devel
 ```
 
 ### Arch Linux
 
 ```bash
-sudo pacman -S python-pip python-virtualenv base-devel
+sudo pacman -S git python-pip python-virtualenv base-devel
 ```
 
 ## Setting up the Virtual Environment
