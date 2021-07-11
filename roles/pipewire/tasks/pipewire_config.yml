@@ -39,6 +39,16 @@
   loop:
     - pipewire
     - pipewire-pulse
-    - pipewire-media-session
   notify:
     - Restart pipewire services
+
+- name: Ensure pipewire-media-session is enabled
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.systemd:
+    enabled: yes
+    name: pipewire-media-session
+    scope: user
+  notify:
+    - Restart pipewire media session
+  when: ansible_distribution != "Fedora"

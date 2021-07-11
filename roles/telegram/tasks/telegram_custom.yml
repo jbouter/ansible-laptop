@@ -10,6 +10,17 @@
     creates: "/home/{{ username }}/.local/share/TelegramDesktop"
   notify: Move Telegram to the right location
 
+- name: Ensure local directories to place telegram desktop files exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+  loop:
+    - "/home/{{ username }}/.local/share/applications/"
+    - "/home/{{ username }}/.config/autostart"
+
 - name: Create the Telegram desktop file
   ansible.builtin.template:
     src: telegram.desktop.j2
