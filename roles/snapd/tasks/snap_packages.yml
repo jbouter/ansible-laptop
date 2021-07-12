@@ -1,12 +1,18 @@
 ---
 
-- name: Install generic snaps
+- name: install generic snaps
   community.general.snap:
     name:
       - chromium
       - discord
+    state: present
+
+- name: install classic snaps
+  community.general.snap:
+    name:
       - slack
     state: present
+    classic: yes
 
 - name: Install KDE specific snaps (candidate)
   community.general.snap:

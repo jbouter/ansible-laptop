@@ -14,7 +14,7 @@
 - name: Configure VSCodium to use the VSCode repositories for extensions
   ansible.builtin.copy:
     src: product.json
-    dest: "/home/{{ username }}/.config/Code/product.json"
+    dest: "/home/{{ username }}/.config/VSCodium/product.json"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: '0644'
@@ -22,7 +22,7 @@
 - name: Configure user settings for VSCodium
   ansible.builtin.template:
     src: settings.json.j2
-    dest: "/home/{{ username }}/.config/Code/User/settings.json"
+    dest: "/home/{{ username }}/.config/VSCodium/User/settings.json"
     force: no
     owner: "{{ username }}"
     group: "{{ username }}"
