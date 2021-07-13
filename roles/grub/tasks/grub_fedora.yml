@@ -1,5 +1,18 @@
 ---
 
+- name: Find the grub EFI file
+  ansible.builtin.stat:
+    path: /etc/grub2-efi.cfg
+  register: stat_grub_efi
+
+- name: Set grub_path fact to efi
+  ansible.builtin.set_fact: grub_path="/etc/grub2-efi.cfg"
+  when: stat_grub_efi.stat.exists
+
+- name: Set grub_path fact to non-efi
+  ansible.builtin.set_fact: grub_path="/etc/grub2.cfg"
+  when: not stat_grub_efi.stat.exists
+
 - name: Configure unrestricted boot
   ansible.builtin.replace:
     path: /etc/grub.d/10_linux
@@ -19,3 +32,10 @@
       EOF
   notify:
     - Update grub fedora
+
+- name: Configure grub timeout to be 0 seconds instead of 5
+  ansible.builtin.replace:
+    path: /etc/default/grub
+    regexp: "^GRUB_TIMEOUT=5$"
+    replace: 'GRUB_TIMEOUT=0'
+  notify: Update grub fedora

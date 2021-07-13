@@ -5,8 +5,9 @@
     cmd: update-grub
 
 - name: Update grub fedora
-  ansible.builtin.command:
-    cmd: grub2-mkconfig -o "$(readlink -e /etc/grub2.conf)"
+  ansible.builtin.shell:
+    cmd: grub2-mkconfig -o "$(readlink -e {{ grub_path }})"
+    chdir: '/'
 
 - name: Update grub archlinux
   ansible.builtin.command:
