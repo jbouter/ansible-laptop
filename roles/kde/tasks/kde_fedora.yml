@@ -10,3 +10,13 @@
       - korganizer
       - plasma-discover-packagekit
       - PackageKit-Qt5
+
+- name: Configure sddm to use the breeze cursor theme
+  ansible.builtin.copy:
+    dest: /etc/sddm.conf.d/kde_settings.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      [Theme]
+      CursorTheme=breeze_cursors
