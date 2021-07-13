@@ -9,8 +9,11 @@
       - libinput-utils
     state: present
 
+- name: Configure the touchegg copr repository
+  community.general.copr:
+    name: jose_exposito/touchegg
+
 - name: Install touchegg
   ansible.builtin.dnf:
-    name: 'https://github.com/JoseExposito/touchegg/releases/download/2.0.9/touchegg-2.0.9-1.x86_64.rpm'
+    name: touchegg
     state: present
-    disable_gpg_check: yes
