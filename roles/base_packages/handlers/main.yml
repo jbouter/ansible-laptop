@@ -9,3 +9,8 @@
 - name: Initialise informant
   ansible.builtin.command:
     cmd: informant read --all
+
+- name: Stop pcskr kernel module
+  community.general.modprobe:
+    name: pcspkr
+    state: absent

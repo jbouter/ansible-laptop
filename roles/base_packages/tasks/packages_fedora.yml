@@ -55,11 +55,12 @@
       - pavucontrol
       - openssl
       - resolvconf
-      - earlyoom
+      - systemd-oom
       - yamllint
       - meson
       - PackageKit
       - PackageKit-command-not-found
+      - tlp
 
 - name: Install Development Tools group package
   ansible.builtin.dnf:
@@ -71,8 +72,17 @@
     name: '@Multimedia'
     state: latest
 
-- name: Start & enable service earlyoom
+- name: Start & enable systemd-oomd
   ansible.builtin.systemd:
-    name: earlyoom
+    name: systemd-oomd
     state: started
     enabled: yes
+
+- name: Disable pcspkr kernel module
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/pcspkr.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: 'blacklist pcspkr'
+  notify: Stop pcskr kernel module

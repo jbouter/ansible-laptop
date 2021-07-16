@@ -35,7 +35,6 @@
       - cups
       - pavucontrol
       - resolvconf
-      - earlyoom
       - yamllint
       - aspell-en
       - hunspell-en_GB
@@ -140,8 +139,17 @@
       Exec = /bin/sh -c 'systemctl start reflector.service; if [ -f /etc/pacman.d/mirrorlist.pacnew ]; then rm /etc/pacman.d/mirrorlist.pacnew; fi'
   notify: "Run the reflector service"
 
-- name: Start & enable service earlyoom
+- name: Start & enable systemd-oomd
   ansible.builtin.systemd:
-    name: earlyoom
+    name: systemd-oomd
     state: started
     enabled: yes
+
+- name: Disable pcspkr kernel module
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/pcspkr.conf
+    owner: root
+    group: root
+    mode: '0644'
+    content: 'blacklist pcspkr'
+  notify: Stop pcskr kernel module
