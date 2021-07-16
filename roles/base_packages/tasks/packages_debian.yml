@@ -61,7 +61,7 @@
     name: editor
     path: /usr/bin/vim.basic
 
-- name: Start & enable service earlyoom
+- name: Start & enable earlyoom
   ansible.builtin.systemd:
     name: earlyoom
     state: started
