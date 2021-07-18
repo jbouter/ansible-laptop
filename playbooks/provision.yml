@@ -9,7 +9,6 @@
     - desktop_environment
     - chrome
     - flatpak
-    - snapd
     - vscodium
     - grub
     - hardening
