@@ -18,6 +18,7 @@
     - com.github.joseexposito.touche
     - com.discordapp.Discord
     - com.slack.Slack
+    - org.telegram.desktop
 
 - name: Install gnome specific flatpaks from flathub
   community.general.flatpak:

@@ -7,9 +7,6 @@
       - terminus-fonts-console
       - abattis-cantarell-fonts
       - open-sans-fonts
-      - fira-code-fonts
-      - jetbrains-mono-fonts-all
-      - cascadia-fonts-all
 
 - name: Create Hack fonts directory
   ansible.builtin.file:

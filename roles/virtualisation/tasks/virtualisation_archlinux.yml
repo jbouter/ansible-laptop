@@ -9,7 +9,6 @@
       - virt-manager
       - virt-viewer
       - dnsmasq
-      - ebtables
       - dmidecode
 
 - name: Append user to libvirt group

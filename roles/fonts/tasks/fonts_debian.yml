@@ -9,8 +9,6 @@
       - fonts-hack-ttf
       - fonts-open-sans
       - fonts-ubuntu
-      - fonts-firacode
-      - fonts-cascadia-code
 
 - name: Create JetBrains mono fonts directory
   ansible.builtin.file:

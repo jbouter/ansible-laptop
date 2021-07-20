@@ -21,8 +21,7 @@
       - wireguard-tools
       - tmux
       - vim
-      - adb
-      - fastboot
+      - android-tools
       - android-udev
       - gnupg
       - fzf

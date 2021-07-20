@@ -9,6 +9,41 @@
       - korganizer
       - packagekit-qt5
 
+- name: Check if mksh is installed
+  ansible.builtin.stat:
+    path: /usr/bin/mksh
+  register: stat_mksh
+
+- name: Clone mksh from aur
+  become: yes
+  become_user: "{{ username }}"
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/mksh.git
+    dest: /tmp/mksh
+    version: master
+    update: yes
+  when: not stat_mksh.stat.exists
+
+- name: Install mksh using makepkg
+  become: yes
+  become_user: "{{ username }}"
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/mksh
+    creates: /usr/bin/mksh
+  when: not stat_mksh.stat.exists
+
+- name: Check if mksh installation was succesful
+  ansible.builtin.stat:
+    path: /usr/bin/mksh
+  register: stat_mkshinstalled
+
+- name: Remove mksh cloned repository
+  ansible.builtin.file:
+    path: /tmp/mksh
+    state: absent
+  when: stat_mkshinstalled.stat.exists
+
 - name: Check if kwalletcli is installed
   ansible.builtin.stat:
     path: /usr/bin/kwalletcli

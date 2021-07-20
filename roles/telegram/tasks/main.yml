@@ -1,9 +1,0 @@
----
-
-- name: Install telegram-desktop in user home
-  ansible.builtin.include_tasks: telegram_custom.yml
-  when: ansible_os_family != "Archlinux"
-
-- name: Install telegram-desktop for Arch Linux based systems
-  ansible.builtin.include_tasks: telegram_archlinux.yml
-  when: ansible_os_family == "Archlinux"

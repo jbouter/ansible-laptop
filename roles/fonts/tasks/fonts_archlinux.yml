@@ -11,13 +11,10 @@
       - ttf-opensans
       - ttf-ubuntu-font-family
       - noto-fonts-emoji
-      - ttf-fira-code
-      - ttf-jetbrains-mono
-      - ttf-cascadia-code
 
 - name: Enable sub-pixel-rgb font hinting
   ansible.builtin.file:
-    src: /etc/fonts/conf.avail/10-sub-pixel-rgb.conf
+    src: /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf
     dest: /etc/fonts/conf.d/10-sub-pixel-rgb.conf
     owner: root
     group: root

@@ -2,5 +2,5 @@
 
 gdm_default_look: "no"
 desktop_environment: "none"
-monospace_font: "Hack"
-editor_font: "Fira Code"
+monospace_font: "Source Code Pro"
+editor_font: "Source Code Pro"
